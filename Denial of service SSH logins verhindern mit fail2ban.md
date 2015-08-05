@@ -1,7 +1,3 @@
----
-date: 2014-03-14
-title: Denial of Serivce SSH Logins verhindern mit fail2ban
-...
 # Denial of Serivce SSH Logins verhindern mit fail2ban
 
 Früher verschob ich den standard Port für ssh auf einen nicht Standard
