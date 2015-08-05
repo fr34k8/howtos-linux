@@ -75,4 +75,3 @@ wird eine IP mittels iptables gesperrt und nach einer gewissen Zeit
 wieder freigegeben. Das Tool überprüft die Logfiles von über 47
 verschiedenen Diensten und sperrt fremde IP's wenn eines der
 Angriffsmuster auftritt.
-
