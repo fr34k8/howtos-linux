@@ -15,6 +15,9 @@
 	keazii9gaeVu
 	echo "keazii9gaeVu" | pwqcheck -1
 	OK
+
+* [passwdqc](http://www.openwall.com/passwdqc/)
+
 # Vim
 
 ## encoding to utf-8
