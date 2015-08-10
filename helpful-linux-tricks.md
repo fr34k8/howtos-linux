@@ -1,6 +1,7 @@
 # Zitate
 
 > "Mutt was developed with the concept of one task per tool, enabling performance through combination with other high quality modular programs. This is an aspect of the unix philosophy" [mutt.org](http://dev.mutt.org/trac/wiki/MailConcept#muttandSMTP)
+
 > A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. – [John Gruber](http://pandoc.org/README.html#pandocs-markdown)
 
 # Wie konvertiere ich flash videos nach mp3 audio? 
