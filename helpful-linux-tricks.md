@@ -1,3 +1,9 @@
+# Zitate
+
+## mutt
+
+"Mutt was developed with the concept of one task per tool, enabling performance through combination with other high quality modular programs. This is an aspect of the unix philosophy" [mutt.org](http://dev.mutt.org/trac/wiki/MailConcept#muttandSMTP)
+
 # Wie konvertiere ich flash videos nach mp3 audio? 
 
 	mplayer -dumpaudio file.flv -dumpfile file.mp3
@@ -163,3 +169,4 @@ Note: Einige CD Brenner Software mögen eher .toc's andere .cue's
 	  # Bedinung e-mail adresse ist im client certificate enthalten
 	  SSLRequire %{SSL_CLIENT_S_DN_Email}  eq "email@domain.tld"
 	</Location>
+
