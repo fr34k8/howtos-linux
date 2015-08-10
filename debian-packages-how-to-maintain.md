@@ -132,10 +132,10 @@ debian-mentors mailinglist A sponsor has uploaded your package? Yes!
 
 # Send bug report to sponsorship-requests
 
-    reportbug -$\,$-no-query-bts -$\,$-severity=normal $\backslash$
-      -$\,$-email=marco@balmer.name -$\,$-gpg -$\,$-paranoid $\backslash$
-      -$\,$-subject="RFS: fadecut/0.1.4-1" $\backslash$
-      -i fadecut-rfs-template.txt sponsorship-requests
+	reportbug --no-query-bts --severity=normal \
+	  --email=marco@balmer.name --gpg --paranoid \
+	  --subject="RFS: fadecut/0.1.4-1" \
+	  -i fadecut-rfs-template.txt sponsorship-requests
 
 # pbuilder
 
@@ -143,11 +143,12 @@ debian-mentors mailinglist A sponsor has uploaded your package? Yes!
 
 Create debian testing environment under ubuntu:
 
-    sudo DIST=testing pbuilder create -$\,$-debootstrapopts -$\,$-keyring=/usr/share/keyrings/debian-archive-kyring.gpg
-    pbuilder create -$\,$-debootstrapopts -$\,$-arch=amd64
-    cd /tmp
-    apt-get source couriergrey
-    pbuilder build *.dsc
+	sudo DIST=testing pbuilder create --debootstrapopts \
+	  --keyring=/usr/share/keyrings/debian-archive-kyring.gpg
+	pbuilder create -$\,$-debootstrapopts -$\,$-arch=amd64
+	cd /tmp
+	apt-get source couriergrey
+	pbuilder build *.dsc
 
 # Anhang
 
