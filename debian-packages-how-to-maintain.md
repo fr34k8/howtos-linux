@@ -114,7 +114,7 @@ have no one
     vim ~/.dput.cnf
     [mentors]
     fqdn = mentors.debian.net
-    incoming = /upload/marco@balmer.name/166443eea46773ad15c4ef57d33c0299
+    incoming = /upload/marco@balmer.name/xyz
     method = http
     allow_unsigned_uploads = 0
     progress_indicator = 2
