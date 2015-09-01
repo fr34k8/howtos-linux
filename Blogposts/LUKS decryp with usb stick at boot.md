@@ -84,7 +84,7 @@ ausgerüstet sind und zur Verfügung stehen. In diesem Beispiel ist es
 
 ## decryptkeydevice\_keyscript.sh
 
-    wget decryptkeydevice_keyscript.sh
+    wget [decryptkeydevice_keyscript.sh](https://github.com/micressor/howtos-linux/blob/master/Blogposts/uploads/decryptkeydevice_keyscript.sh)
     chmod +x decryptkeydevice_keyscript.sh
 
 ## decryptkeydevice.conf
