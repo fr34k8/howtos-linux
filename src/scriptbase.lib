@@ -1,0 +1,280 @@
+# ------------------------------------------------------------------------------
+# File:         scriptbase.lib
+# Description:	Base functionality for bash scripts
+#
+# License:      This program is free software; you can redistribute it and/
+#               or modify it under the terms of the GNU General Public
+#               License as published by the Free Software Foundation;
+#               version 2 dated June, 1991.
+#
+# Usage:	1. . /path/to/scriptbase.lib
+#		2. use functions
+#
+# Returnvalues  :       0 - successfully
+#                       1 - partionally unsuccuessfully
+#                       2 - function unexpected aborted
+#                       3 - action aborted
+#                       4 - syntax error
+#                       5 - couldn't read, write or find file
+#                       6 - invalid status
+#                       99 - undefinded error code
+# ------------------------------------------------------------------------------
+
+# Variables --------------------------------------------------------------------
+# Functions --------------------------------------------------------------------
+
+# Functions --------------------------------------------------------------------
+
+#functionName()
+#
+# Description:  This is a template
+#
+# Parameter:    $1 - the ....
+#
+# Std. Output:
+#
+# Return:
+#
+#{
+# if [ ${DEBUG} -ge 1 ]; then set -x
+# fi
+# rVal=2
+
+# return $rVal
+#}
+
+logging()
+#
+# Description:  It writes messages to logfile or standard output.
+#
+# Parameter  :  $1 - the level of message
+#               $2 - the message
+#
+# Std. Output:  Logging messages.
+#
+{
+ prefix=""
+
+ case $1 in
+   -e)     prefix="Error:   ";;
+   -i)     prefix="Info:    ";;
+   -n)     prefix="Notice:  ";;
+   -s)     prefix="Success: ";;
+   -w)     prefix="Warning: ";;
+   -d)     prefix="Debug:   ";;
+   -a)     prefix="         ";;
+ esac
+ shift
+ echo "${prefix}" ${1}
+}
+
+checkRoot()
+#
+# Description:  check if user is root
+#
+# Parameter:    $1 - the ....
+#
+# Std. Output:
+#
+# Return:
+#
+{
+ if [ ${DEBUG} -ge 1 ]; then set -x
+ fi
+ rValcR=2
+
+ if [ "${LOGNAME}" != "root" ];
+ then
+   logging -e "checkRoot(): You are \"${LOGNAME}\", but must run this "
+   logging -a "script as \"root\""
+   rValcR=6
+ else
+   rValcR=0
+ fi
+
+ return $rValcR
+}
+
+
+errHandler()
+#
+# Description:  Central error handling for all scripts
+#
+# Parameter  :  $1 - the failed function
+#               $2 - the executed action of the function
+#               $3 - the return code of the failed function
+#               $4 - the severity code value of the called function/action
+#
+# Std. Output:  State dependent messages.
+#
+# Return:       In case of partially successfull functions = 0.
+#
+# Remarks:      The priorities are defined in /usr/include/sys/syslog.h
+#
+{
+ if [ ! ${DEBUG} ];
+ then
+   logging -e "\$DEBUG variable is not set!"
+   exit 1
+ fi
+ if [ ${DEBUG} -ge 1 ]; then set -x
+ fi
+
+ message=""                             # system log message
+ priority=6
+ rVal=$3
+
+ case ${1} in
+   initialize|init)
+   logging -i "errHanlder(): Initialize"
+   ENVFILE="/tmp/$0.env"
+   echo "export ErrCounter=0
+export ERR_TRESHOLD=${2}" >${ENVFILE}
+   return 0
+   ;;
+   release)
+   logging -i "errHanlder(): release"
+   rm ${ENVFILE}
+   return 0
+   ;;
+ esac
+
+ if [ ! -r ${ENVFILE} ];
+ then
+   logging -e "errHanlder(): is not initialized!"
+   exit 4
+ fi
+
+ . ${ENVFILE}
+
+ ErrCounter=`expr $ErrCounter + $4`
+ case ${3} in
+   1)                                   # partionally failed"
+     logging -e "The function '${1}' is during the action '${2}'"
+     logging -a "partionally failed but the basics of this service isn't"
+     logging -a "compromised!"
+     message="${1}: ${2} - partionally failed"
+     priority=3
+   ;;
+
+   2)                                   # function unexpected aborted
+     logging -e "The function '${1}' is during the action '${2}'"
+     logging -a "unexpected aborted. This error is not handled!"
+     message="${1}: ${2} - unexpected aborted"
+     priority=1
+   ;;
+
+   3)                                   # action aborted
+     logging -e "The function '${1}' is during the action '${2}'"
+     logging -a "aborted. Because of any reason the action is not executed or"
+     logging -a "is hanging!"
+     message="${1}: ${2} - action aborted or hanging"
+     priority=1
+   ;;
+
+   4)                                   # syntax error
+     logging -e "Because of a syntax error the function '${1}' was"
+     logging -a "stopped during the action '${2}'."
+     message="${1}: ${2} - syntax error"
+     priority=3
+   ;;
+
+   5)                                   # couldn't read file
+     logging -e "The function '${1}' stopped during the action '${2}'."
+     logging -a "File not found or not readable."
+     message="${1}: ${2} - could not read, write or find file"
+     priority=3
+   ;;
+
+   6)                                   # invalid status
+     logging -e "The function '${1}' has an 'invalid status'"
+     logging -a "Check function output above."
+     message="${1}: ${2} - invalid status"
+     priority=3
+   ;;
+
+   *)                                   # undefined error code
+     logging -w "The used error code '$3' in the function '${1}' is undefined!"
+     message="${1}: ${2} - undefined error code"
+     priority=4
+     rVal=99
+   ;;
+ esac
+ logger -p ${priority} ${message}
+ echo "export ErrCounter=${ErrCounter}
+export ERR_TRESHOLD=${ERR_TRESHOLD}" > ${ENVFILE}
+ if [ ${ErrCounter} -ge ${ERR_TRESHOLD} ]; then
+   logging -e "Exiting script! Returnvalue = $rVal"
+   exit $rVal
+ else
+   return $rVal
+ fi
+} # end of errHandler
+
+line()
+#
+#  Description: a single line
+#
+{
+ logging -a "-----------------------------------------------------------------"
+}
+
+
+counterrors()
+#
+#  Description: Count script errors
+#
+{
+ if [ "${?}" -ne 0 ];
+  then
+   logging -w "Exit: ${?}"
+   let "ERRORS=ERRORS+1"
+ fi
+}
+
+execcommand()
+#
+#  Description: exec a command and report errors to errors()
+#
+{
+ if [ ${DEBUG} -ge 3 ]; then set -x
+ fi
+ logging -d "$1"
+ $1
+ counterrors $?
+ let "COMMANDS+=1"
+ return $?
+}
+
+findProcess()
+#
+# Description:  This function searches for process given by the search patterns
+#               $1 and $2.
+#
+# Parameter  :  $1 - the first search pattern
+#               $2 - the second search pattern (optional)
+#
+# Std. Output:  none
+#
+# Return:       0 - if the pattern was found
+#               1 - if the pattern was not found
+#
+# Remark:       The second search pattern will be used for searching of two
+#               patterns in a line.
+#
+{
+ if [ ${DEBUG} -ge 1 ]; then set -x
+ fi
+ retFP=1
+
+ if [ $# -ne 0 ]
+ then
+   if [ $# -eq 1 ]; then
+     ps -eo args |grep -v grep |grep "${1}" > /dev/null 2>&1 && retFP=0
+   else
+     ps -eo args |grep -v grep |grep "${1}" |grep "${2}" > /dev/null 2>&1 \
+       && retFP=0
+   fi
+ fi
+ return $retFP
+}
