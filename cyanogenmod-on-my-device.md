@@ -66,9 +66,9 @@ Files from my repo
 -   Verify restored data from important apps: k-9 mail, calendar,
     contacts, firefox
 
-### Anpassungen {#anpassungen .unnumbered}
+### Anpassungen
 
-#### Firefox Add-Ons für Android {#firefox-add-ons-für-android .unnumbered}
+#### Firefox Add-Ons für Android
 
 -   Bluhell Firewall
 
