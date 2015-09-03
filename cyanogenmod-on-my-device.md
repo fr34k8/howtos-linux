@@ -57,20 +57,23 @@ Install (if necessary [google apps](https://wiki.cyanogenmod.org/w/Google_Apps))
 
 ## Restore
 
--   Google-Einstellungen –\> Apps –\> Prüfung deaktivieren.
+*   Google-Einstellungen –\> Apps –\> Prüfung deaktivieren.
 
--   Restore only necessary APPS via titaniumbackup
+*   Restore only necessary APPS via TitaniumBackup
 
--   Restore sdcard0 via sdcard1.tar: adb shell; cd /storage/sdcard0 &&
-    tar -vx -f /storage/sdcard1/backups/sdcard0.tar
+Restore sdcard0 via sdcard1.tar:
 
--   Cleanup files at /storage/sdcard0 and /storage/sdcard1
+	adb shell
+	cd /storage/sdcard0
+	tar -vx -f /storage/sdcard1/backups/sdcard0.tar
 
--   Restore only necessary App-DATA via titaniumbackup
+*   Cleanup files at /storage/sdcard0 and /storage/sdcard1
 
--   reboot into the system
+*   Restore only necessary App-DATA via TitaniumBackup
 
--   Verify restored data from important apps: k-9 mail, calendar,
+*   reboot into the system
+
+*   Verify restored data from important apps: k-9 mail, calendar,
     contacts, firefox
 
 ### Anpassungen
