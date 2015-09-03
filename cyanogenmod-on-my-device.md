@@ -6,8 +6,10 @@
 
 A full backup of sdcard0 to sdcard1:
 
-	adb shell;
-	cd /storage/sdcard1/backups && tar -vch -f sdcard0.tar /storage/sdcard0
+	adb shell
+	cd /storage/sdcard1
+	mkdir backups
+	tar -vch -f sdcard0.tar /storage/sdcard0
 
 *   TitaniumBackup: Create an update.zip to sdcard1/backups/
 
@@ -15,40 +17,43 @@ A full backup of sdcard0 to sdcard1:
 
 ## Install
 
-Files from my repo
+*   Factory reset/wipe/format all (/system, /data, /cache) partitions via CM-Recovery
 
--   Factory reset/wipe/format all partitions via ClockworkMod
+	apt-get android-tools-adb
+	sudo adb sideload image.zip
 
--   adb sideload cm image
+*   reboot into the system
 
--   reboot into the system
+*   date, time and check that the installation is o.k.
 
--   date, time and check that the installation is o.k.
+*   Einstellungen \> Datenschutz \> aktivieren
 
--   Einstellungen \> Datenschutz \> aktivieren
+*   Einstellungen \> Entwickleroptionen \> Erweiterter Neustart
 
--   Einstellungen \> Entwickleroptionen \> Erweiterter Neustart
-
--   Einstellungen \> Entwickleroptionen \> App beenden (gedrückte zurück
+*   Einstellungen \> Entwickleroptionen \> App beenden (gedrückte zurück
     taste)
 
--   Shutdown
+*   Shutdown
 
--   add sdcard1
+*   add sdcard1
 
--   reboot into the recovery
+*   reboot into CM-Recovery
 
--   adb sideload/Install TitaniumBackup.zip from sdcard1/backups/
+Restore TitaniumBackup.zip which was saved ad sdcard1/backups/
 
--   reboot into the system
+	adb sideload TitaniumBackup.zip
 
--   Check TitaniumBackup configuration
+*   reboot into the system
 
--   adb sideload google apps image
+*   Check TitaniumBackup configuration
 
--   Prevent connection to internet
+Install (if necessary [google apps](https://wiki.cyanogenmod.org/w/Google_Apps)):
 
--   configure google/cm sync accounts
+	adb sideload gapps.zip
+
+*   Restore/Configure firewall (AFWall+)
+
+*   configure google/cm sync accounts
 
 ## Restore
 
