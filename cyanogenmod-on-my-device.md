@@ -109,6 +109,19 @@ From [f-droid.org](http://f-droid.org):
 * OsmAnd~ - Offline/online maps and navigation
 * Vanilla Music - Music player
 
+# FAQ
+
+## Google-Play-Services crashes (cm-12.1)
+
+* Boot into CM-Recovery
+
+	* Wipe dalvik/art cache
+
+	* Format /cache partition
+
+* Reboot into the system (take a long time, because of [dalvik](https://de.wikipedia.org/wiki/Dalvik_Virtual_Machine) / [ART](https://de.wikipedia.org/wiki/Android_Runtime)).
+
+* If necessary repeat this steps again.
 
 ## factory reset für bluetooth paring auf android 4.1.2
 
