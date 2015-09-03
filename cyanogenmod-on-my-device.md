@@ -17,7 +17,9 @@ A full backup of sdcard0 to sdcard1:
 
 ## Install
 
-*   Factory reset/wipe/format all (/system, /data, /cache) partitions via CM-Recovery
+* Factory reset/wipe/format all (/system, /data, /cache) partitions via CM-Recovery
+
+Install cm image:
 
 	apt-get android-tools-adb
 	sudo adb sideload image.zip
