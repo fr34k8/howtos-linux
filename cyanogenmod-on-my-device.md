@@ -2,14 +2,16 @@
 
 ## Backup
 
--   A full backup with titanium backup to sdcard1
+*   A full backup with titanium backup to sdcard1
 
--   A full backup of sdcard0 to sdcard1: adb shell; cd
-    /storage/sdcard1/backups && tar -vch -f sdcard0.tar /storage/sdcard0
+A full backup of sdcard0 to sdcard1:
 
--   TitaniumBackup: Create an update.zip to sdcard1/backups/
+	adb shell;
+	cd /storage/sdcard1/backups && tar -vch -f sdcard0.tar /storage/sdcard0
 
--   Remove sdcard1 from device
+*   TitaniumBackup: Create an update.zip to sdcard1/backups/
+
+*   Remove sdcard1 from device
 
 ## Install
 
