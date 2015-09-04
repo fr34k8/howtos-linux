@@ -1,4 +1,4 @@
-# DVD's rippen
+# How to rip DVD movies in Linux with Handbrake
 
 ## Requirements
 

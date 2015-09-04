@@ -73,17 +73,6 @@
 
 Interessanter teschnischer Artikel über die Vor- und Nachteilen der Paketmanagern DEB und RPM. [Zum Artikel](http://lwn.net/Articles/223183/)
 
-# Wie mache ich aus einem DVD (.vob) ein schönes Matroska (.mkv)?
-
-  
-	apt-get install mplayer transcode transcode-utils ogmtools mkvtoolnix  
-  
-## Eine Kopie der DVD auf dem Rechner erstellen
-
-	mplayer dvd://1 -dvd-device /dev/sr0 -v -dumpstream -dumpfile film.vob  
-	dvdxchap -t \<ID\> /dev/dvd \> chaptes.dump  
-	mkvmerge -o film.mks --title "Mein Film" film.vob --chapters chapters.dump  
-
 # create a dvd from a avi file
 
 	apt-get install dvd+rw-tools ffmpeg dvdauthor
@@ -96,6 +85,7 @@ Interessanter teschnischer Artikel über die Vor- und Nachteilen der Paketmanage
 If you receive an error such as “ERR: no video format specified for VMGM”
 you must set the video format variable. An easy way to do this is to add
 export VIDEO\_FORMAT=NTSC (for NTSC regions) to your  /.bashrc.
+
 ## Und wenn ich nur eine Audiospur will?
 
 	mplayer dvd://1 -dvd-device /dev/sr0 -v -dumpstream -dumpfile film.vob  
