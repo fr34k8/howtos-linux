@@ -1,3 +1,7 @@
-# Debian desktop install
+# Debian install docs
 
-Anpassungen die vom Standard abweichen, sind im Unterordner lenovo/ und den jeweiligen Rechner dokumentiert.
+* Dokus für Desktop- und Server Setups.
+
+* Backup Konzept mit BTRFS und Unison
+
+* Passwordstore.
