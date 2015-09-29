@@ -163,3 +163,6 @@ Note: Einige CD Brenner Software mögen eher .toc's andere .cue's
 	  SSLRequire %{SSL_CLIENT_S_DN_Email}  eq "email@domain.tld"
 	</Location>
 
+# Ping-alive
+
+Überwachung von Hosts mit [einfachem Cronjob.](https://wiki.ubuntuusers.de/Skripte/Ping-alive)
