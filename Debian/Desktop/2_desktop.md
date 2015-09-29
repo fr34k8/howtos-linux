@@ -8,8 +8,7 @@
 
       cd /tmp
 
-Download der Treiber:
-<https://www.marco-balmer.ch/~maba/linux/hb/lenovo/t510>
+Download der Treiber von [hier](https://github.com/micressor/firmware/tree/master/printers/PIXMA%20MG%204100%20Series).
 
       tar xfz cnijfilter*.tar.gz
       tar xfz scangearmp*.tar.gz
