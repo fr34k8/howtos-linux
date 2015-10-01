@@ -11,25 +11,22 @@ Aktuell ist Debian 8.0 (Jessie).
 
 ## From USB Live Image
 
+Einen USB-Stick [vorbereiten](https://www.debian.org/releases/jessie/amd64/ch04s03.html.de#usb-copy-isohybrid) mit einem Hybrid-CD- oder -DVD-Image.
+
+	cp debian.iso /dev/sdX
+	sync
+
+* Das Image muss auf das vollständige Gerät geschrieben werden, nicht auf eine einzelne Partition, also z.B. auf /dev/sdb, nicht auf /dev/sdb1. Nutzen Sie keine Werkzeuge wie unetbootin, da diese das Image verändern.
+
+* Einfach das CD- oder DVD-Image wie hier gezeigt auf USB zu schreiben sollte für die meisten Benutzer funktionieren. Die anderen unten erwähnten Optionen sind komplexer und hauptsächlich für Leute mit speziellen Bedürfnissen gedacht.
+
 * [Offizielle Releases](https://www.debian.org/releases/)
 
 * [Statistik](https://wiki.debian.org/DebianReleases#Release_statistics)
 
 * [Download LIVE ISO Images.](https://www.debian.org/CD/live)
 
-cp [debian-live-8.0.0-amd64-gnome-desktop.iso](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid) /dev/sd{usb}
-
-oder
-
-cp [debian-live-8.1.0-amd64-gnome-desktop+nonfree.iso](http://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/current-live/amd64/iso-hybrid) /dev/sd{usb}
-
-oder die **fehlende Firmware** für Wireless von
-[hier](https://www.debian.org/releases/stable/amd64/ch06s04.html.de) herunterladen und auf einem separaten
-USB Stick bereitstellen.
-
-	mount /dev/sd{usb} /mnt
-	mkdir -p /mnt/firmware
-	wget http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/jessie/current/firmware.tar.gz -O /mnt/firmware/firmware.tar.gz
+Oder die [fehlende Firmware nachladen](https://www.debian.org/releases/jessie/amd64/ch06s04.html.de) für Wireless.
 
 Statt in das **Live**-System zu starten die Option **Install** auswählen.
 

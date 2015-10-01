@@ -22,7 +22,7 @@ dass Hilfe benötigt und Du betreuen möchtest: [wnpp](http://www.debian.org/dev
 Bug erstellen um ein neues Packet bei Debian aufzunehmen:
 
 	aptitude install reportbug
-	reportbug -$\,$-email username@domain.tld wnpp
+	reportbug --email username@domain.tld wnpp
 	git setup
 
 # For a good packaging
