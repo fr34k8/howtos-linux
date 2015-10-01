@@ -100,7 +100,7 @@ Update ./debian/changelog only debian packaging related changes between versions
 Lintian will check now the package for a lot of debian policies. We have
 to fix all warnings and errors.
 
-    lintian -i -v -I -$\,$-pedantic ../fadecut_0.0.1-1_source.changes | grep -v N:
+    lintian -i -v -I --pedantic ../fadecut_0.0.1-1_source.changes | grep -v N:
 
 Check install/uninstall witz
 
