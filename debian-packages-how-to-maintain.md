@@ -87,59 +87,52 @@ Update ./debian/changelog only debian packaging related changes between versions
 
 # Build without singing
 
-    dpkg-buildpackage -uc -us
-    ll ../fadecut_0.0.2*
-    w-r--r-- 1 maba maba 11K 9. Feb 16:04 ../fadecut_0.0.1-1_all.deb
-    -rw-r--r-- 1 maba maba 1.7K 9. Feb 16:04 ../fadecut_0.0.1-1_amd64.changes
-    -rw-r--r-- 1 maba maba 2.0K 9. Feb 16:04 ../fadecut_0.0.1-1.debian.tar.gz
-    -rw-r--r-- 1 maba maba 767 9. Feb 16:04 ../fadecut_0.0.1-1.dsc
-    -rw-r--r-- 1 maba maba 19K 9. Feb 16:03 ../fadecut_0.0.1.orig.tar.bz2
+	dpkg-buildpackage -uc -us
 
-# Quality checks with lintian
+Quality checks with lintian:
 
-Lintian will check now the package for a lot of debian policies. We have
-to fix all warnings and errors.
-
-    lintian -i -v -I --pedantic ../fadecut_0.0.1-1_source.changes | grep -v N:
-
-Check install/uninstall witz
-
-    git add debian/\$files
-    git commit
-    git push
+	lintian -i -v -I --pedantic ../fadecut_0.0.1-1_source.changes | grep -v N:
+oder
+	debuild -uc -us
+	ls -1 ../fadecut_0.0.1*
+	../fadecut_0.0.1-1_all.deb
+	../fadecut_0.0.1-1_amd64.changes
+	../fadecut_0.0.1-1.debian.tar.gz
+	../fadecut_0.0.1-1.dsc
+	../fadecut_0.0.1.orig.tar.bz2
 
 sign and upload. Create account on <http://mentors.debian.net,> if you
 have no one
 
-    vim ~/.dput.cnf
-    [mentors]
-    fqdn = mentors.debian.net
-    incoming = /upload/marco@balmer.name/xyz
-    method = http
-    allow_unsigned_uploads = 0
-    progress_indicator = 2
+	vim ~/.dput.cnf
+	[mentors]
+	fqdn = mentors.debian.net
+	incoming = /upload/user@domain.tld/xyz
+	method = http
+	allow_unsigned_uploads = 0
+	progress_indicator = 2
 
-    dpkg-buildpackage
+    debuild
     dput mentors fadecut_0.0.1-1_amd64.changes
 
 Find a sponsor: <http://wiki.debian.org/Mentors/BTS> Find a sponsor at
 debian-mentors mailinglist A sponsor has uploaded your package? Yes!
 
-    git tag debian/0.0.1-1 commitid
-    git checkout master
-    git push
-    git push -$\,$-tags
+	git tag debian/0.0.1-1 commitid
+	git checkout master
+	git push
+	git push --tags
 
 # Send bug report to sponsorship-requests
 
 	reportbug --no-query-bts --severity=normal \
-	  --email=marco@balmer.name --gpg --paranoid \
+	  --email=my@email.tld --gpg --paranoid \
 	  --subject="RFS: fadecut/0.1.4-1" \
 	  -i fadecut-rfs-template.txt sponsorship-requests
 
 # pbuilder
 
-    apt-get install debian-archive-keyring
+	apt-get install debian-archive-keyring
 
 Create debian testing environment under ubuntu:
 
@@ -187,15 +180,15 @@ Create debian testing environment under ubuntu:
 <http://honk.sigxcpu.org/projects/git-buildpackage/manual-html/gbp.html>
 <http://wiki.debian.org/Mentors/BTS> Check license of each source file?
 
-    licensecheck /path/to/source
+	licensecheck /path/to/source
 
 ## tutorial for perl packages
 
-    \url{http://mathforum.org/~ken/perl_modules.html}
+<http://mathforum.org/~ken/perl_modules.html>
 
 import upstream source to master branch
 
-    git-import-orig -$\,$-upstream-branch=master -$\,$-upstream-tag=upstream/0.3.2 /tmp/couriergrey-0.3.2.tar.gz
+	git-import-orig --upstream-branch=master --upstream-tag=upstream/0.3.2 /tmp/couriergrey-0.3.2.tar.gz
 
 ## Bedeutung des Status bei dpkg
 
@@ -203,8 +196,6 @@ import upstream source to master branch
     ||/ Name           Version      Architektur  Beschreibung
     +++-==============-============-============-=================================
     ii  fadecut        0.1.1-1      all          toolset to rip audiostreams, cut,
-
- 
 
     First character: The possible value for the first character. The first character signifies the desired state, like we (or some user) is marking the package for installation 
 

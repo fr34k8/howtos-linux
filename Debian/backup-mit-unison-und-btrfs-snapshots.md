@@ -66,7 +66,7 @@ Auf der WS, die den **Stern** in der Topologie darstellt, werden alle Configs ab
 	path = .unison/common.prf
 	path = .unison/home-dir.prf
 	path = .unison/local-dir.prf
-	path = .unison/mbalmer2-dir.prf
+	path = .unison/hostname-dir.prf
 	path = .unison/mutt-dir.prf
 	perms = -1
 	sortbysize = true

@@ -170,8 +170,8 @@ Genereller [Aufbau](http://toroid.org/ams/git-website-howto).
 	git clone ~/www tww
 	cat << EOF > ~/www/hooks/post-receive
 	. /usr/share/doc/git/contrib/hooks/post-receive-email
-	GIT_WORK_TREE=/home/maba/www git checkout -f
-	GIT_WORK_TREE=/home/maba/www
+	GIT_WORK_TREE=/home/user1/www git checkout -f
+	GIT_WORK_TREE=/home/user1/www
 	/usr/local/jmeter/jmeter.pl -p domain.jmx
 	sudo chgrp www-data $GIT_WORK_TREE/key/www.domain.key
 	sudo chgrp www-data $GIT_WORK_TREE/key/www.domain.crt
@@ -213,7 +213,7 @@ EOF
 	vi /etc/aliases
 	postmaster: root
 	debarchiver: root
-	maba: root
+	user1: root
 	root: myname@domain.tld
 
 	newaliases

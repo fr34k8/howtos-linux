@@ -2,7 +2,7 @@
 
 * [Yoga 3 pro](http://shop.lenovo.com/ch/de/laptops/lenovo/yoga/yoga-3-pro) auf lenovo.com
 
-* [PDF's](https://www.marco-balmer.ch/~maba/linux/hb/lenovo/yoga) auf marco-balmer.ch
+* [PDF's](https://github.com/micressor/docs-mirror/tree/master/lenovo/yoga)
 
 ## Test
 
