@@ -139,40 +139,14 @@ Erst wenn alles sauber sync, den batch job ausprobieren:
 
 ### Cron
 
-Ping stuff in this script is from [stackoverflow](http://stackoverflow.com/questions/28130330/bash-script-to-ping-a-ip-and-if-the-ms-is-over-100-print-a-echo-msg).
+Zum starten und überwachen der sync jobs nutze ich diesen Script:
 
-	cat << EOF >/usr/local/bin/unison-cron
-	#!/bin/bash
-	# Usage: ./unison-cron server sync-to-server.prf
+<https://github.com/micressor/howtos-linux/blob/master/scripts/unison-cron>
 
-	#exec 1>/dev/null;
-	#set -xv
+	crontab -l
+	*/5 * * * * unison-cron my-sync-host my-unison-config.prf my@email.tld
 
-	host=$1
-	config=$2
-
-	# Start unison sync only, if we have a low ping time. In this case, we assume
-	# that the server is in the same local network.
-	t="$(ping6 -c 1 $host | sed -ne '/.*time=/{;s///;s/\..*//;p;}')"
-
-	if [ "$t" -lt "15" ];
-	then
-	  ps -ef | grep $LOGNAME | grep "unison $2" | \
-	    grep -vE "grep|ssh|bash" || (unison -testServer $config 2>&1 >/dev/null && \
-	    unison $config -batch -auto -repeat 300)
-	else
-	  # ping to high
-	  #echo "ping is $t"
-	  exit 1
-	fi
-EOF
-
-	chmod +x /usr/local/bin/unison-cron
-
-	su - user1
-	crontab -e
-	PATH="/usr/bin:/bin:/home/user/bin:/usr/local/bin"
-	*/5  * * * * /usr/local/bin/unison-cron servername sync-for-xy.prf
+Der ping stuff habe ich auf [stackoverflow](http://stackoverflow.com/questions/28130330/bash-script-to-ping-a-ip-and-if-the-ms-is-over-100-print-a-echo-msg) gefunden.
 
 ## BTRFS Snapshots
 
@@ -319,8 +293,3 @@ Alternatively, if you're restoring data on a remote host, do something like this
 
 	btrfs send /srv/backup/subvol.20150101 | ssh root@my-remote-host.com btrfs receive /mnt/btr_pool/subvol
 
-## Cron wrapper
-
-Zum starten und überwachen der sync jobs nutze ich diesen Script:
-
-<https://github.com/micressor/howtos-linux/blob/master/scripts/unison-cron>
