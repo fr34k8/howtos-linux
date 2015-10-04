@@ -274,8 +274,11 @@ Disk in /etc/{crypttab,fstab} eintragen:
 ### Test
 
 	cryptdisks_start yellowdisk_crypt
-	cryptdisks_stop yellowdisk_crypt
 	cryptsetup status yellowdisk_crypt
+	mount /srv/backup
+	btrfs subvolume create /srv/backup/user1
+	umount /srv/backup
+	cryptdisks_stop yellowdisk_crypt
 
 ### Enable
 
