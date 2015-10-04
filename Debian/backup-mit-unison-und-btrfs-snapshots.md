@@ -48,7 +48,8 @@ Auf der WS, die den **Stern** in der Topologie darstellt, werden alle Configs ab
 
 	cd ~/.unison
 	cat << EOF > common.prf
-	group = true
+	group = false
+	prefer = newer
 	ignore = Name .*~
 	ignore = Name *~
 	ignore = Name desktop.ini
@@ -64,15 +65,11 @@ Auf der WS, die den **Stern** in der Topologie darstellt, werden alle Configs ab
 	mountpoint = .unison-enabled
 	owner = false
 	path = .unison/common.prf
-	path = .unison/home-dir.prf
-	path = .unison/local-dir.prf
-	path = .unison/hostname-dir.prf
-	path = .unison/mutt-dir.prf
 	perms = -1
 	sortbysize = true
 	sshargs = -C
 	times = true
-EOF
+	EOF
 
 	cat << EOF > home-dir.prf
 	path = .bashrc
@@ -127,6 +124,8 @@ EOF
 * sshargs = -C Enables ssh's compression feature.
 
 ### Initial sync
+
+Auf beiden root sync's muss das *.unison-mounted* file existieren.
 
 Während dem initalen Sync sehr genau aufpassen, was er wohin syncen will:
 
