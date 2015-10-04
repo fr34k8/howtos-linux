@@ -1,0 +1,83 @@
+#!/bin/bash
+#exec 1>/dev/null;
+#set -xv
+
+# Vars
+TMPDIR=/var/tmp
+HOST=$1
+CONFIG=$2
+EMAIL=$3
+FLAGFILE=${CONFIG}-${LOGNAME}
+FLAG=${TMPDIR}/${FLAGFILE}
+
+# Functions
+check_unison()
+{
+if ps -ef | grep $LOGNAME | grep "unison $CONFIG" | grep -vE "grep|ssh|bash" &>/dev/null;
+then
+  return 1
+else
+  return 0
+fi
+} # check_unison
+
+check_network()
+{
+# If default route does not answer on dns port, then exit
+nc -z `ip r | grep default | cut -d ' ' -f 3` 53 &>/dev/null || return 1
+
+# Start unison sync only, if we have a low ping time. In this case, we assume
+# that the server is in the same local network.
+#t="$(ping6 -c 1 $HOST | sed -ne '/.*time=/{;s///;s/\..*//;p;}')"
+t="$(ping6 -c 1 $HOST 2>/dev/null | sed -ne '/.*time=/{;s///;s/\..*//;s/ms//;p;}')"
+
+if ! unison -testServer $CONFIG &>/dev/null;
+then
+
+  if [ ! -f $FLAG ];
+  then
+    cat << EOF | mailx -s "$HOSTNAME:~$LOGNAME/.unison/$CONFIG is late, OOPS!!" $EMAIL
+`ls -l ${FLAG}`
+`date`
+EOF
+    touch $FLAG
+  else
+    # check, ob FLAG älter als 12h
+    find $TMPDIR -maxdepth 1 -type f -name $FLAGFILE -mmin +720 -exec rm -f {} \;
+  fi
+  return 1
+fi
+
+if [ "$t" -gt "20" ];
+then
+  # ping to high
+  #echo "ping is $t"
+  return 1
+fi
+
+return 0
+} # check_network
+
+start_unison()
+{
+unison $CONFIG -batch -auto -repeat 300 -silent &
+
+cat << EOF | mailx -s "$HOSTNAME:~$LOGNAME/.unison/$CONFIG started, YEAH!!" $EMAIL
+`date`
+EOF
+if [ -f $FLAG ];
+then
+  rm $FLAG
+fi
+} # start_unison
+
+# Main
+
+if [ -z $HOST ] || [ -z $CONFIG ] || [ -z $EMAIL ];
+then
+  echo "Usage: ./unison-cron server sync-to-server.prf email@domain.tld"
+  exit 3
+fi
+
+
+check_unison && check_network && start_unison

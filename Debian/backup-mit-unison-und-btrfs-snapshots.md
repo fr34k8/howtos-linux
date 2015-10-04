@@ -221,12 +221,18 @@ EOF
 
 ### Cron
 
-Stündliche Snapshots:
+Täglicher Snapshot:
 
 	cat << EOF >/etc/cron.daily/btrbk 
-	#!/bin/bash
+	DISK_CRYPT=bluedisk_crypt
+	DISK_MOUNT=/srv/btr_backup
+	if sudo cryptdisks_start $DISK_CRYPT;
+	then
+	  mount $DISK_MOUNT
+	fi
 	btrbk run
-EOF
+	sync
+	EOF
 
 	chmod 755 /etc/cron.daily/btrbk
 
@@ -313,54 +319,8 @@ Alternatively, if you're restoring data on a remote host, do something like this
 
 	btrfs send /srv/backup/subvol.20150101 | ssh root@my-remote-host.com btrfs receive /mnt/btr_pool/subvol
 
-## Monitoring
+## Cron wrapper
 
-Zu Überwachung, ob alle Sync's regelmässig laufen, sonst E-Mail senden.
+Zum starten und überwachen der sync jobs nutze ich diesen Script:
 
-	vi /etc/cron.daily/unison-moni
-	#!/bin/bash
-	su -c "/usr/local/bin/backup-cycle-checker.sh" - user1
-	su -c "/usr/local/bin/backup-cycle-checker.sh" - user2
-	  
-
-	cat << backupEOF >/usr/local/bin/backup-cycle-checker.sh
-	TMPDIR=/tmp
-	FILE=backup-cycle-checker-$LOGNAME
-	FLAG=$TMPDIR/$FILE
-
-	# check, ob FLAG älter als 12h
-	if [ -f $FLAG ]
-	then
-        	find $TMPDIR -name $FILE -mmin +720 -exec rm -f {} \;
-	fi
-
-	if [ ! -f $FLAG ]
-	then
-        	ps -ef | grep $LOGNAME | grep unison | \
-	          grep -vE "grep|ssh|bash" &>/dev/null
-	else
-        	ps -ef | grep $LOGNAME | grep unison | \
-	          grep -vE "grep|ssh|bash" &>/dev/null
-	        if [ "$?" = "0" ]
-	        then
-	        cat << EOF | mailx -s "YEAH! $HOSTNAME:~$LOGNAME is SYNC again!!" $1
-	`date`
-	EOF
-
-        	cd /tmp
-	        rm $FLAG
-	        fi
-
-	fi
-
-	# verschicke Mail, wenn wenn Unison Job nicht läuft
-	if [ "$?" != "0" ]
-	then
-        	cat << EOF | mailx -s "OOPS! $HOSTNAME:~$LOGNAME backup is late!!" $1
-	`date`
-	EOF
-
-	cd /tmp
-	touch $FLAG
-	fi
-backupEOF
+<https://github.com/micressor/howtos-linux/blob/master/scripts/unison-cron>
