@@ -144,8 +144,11 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	apt-get update
 	apt-get upgrade
 	apt-get install \
-	uptimed logwatch sysstat popularity-contest deborphan mtr \
-	strace
+	uptimed sysstat popularity-contest deborphan mtr strace
+
+## Useful monitoring software
+
+	apt-get install mcelog logwatch
 
 ## Useful tools
 
