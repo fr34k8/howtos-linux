@@ -150,6 +150,14 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 
 	apt-get install mcelog logwatch
 
+### logwatch
+
+Wöchentlich eine logwatch e-mail der letzten 7 Tage:
+
+	dpkg-divert --local --rename --divert /etc/cron.weekly/00logwatch --add /etc/cron.daily/00logwatch
+	vi /etc/cron.weekly/00logwatch
+	  /usr/sbin/logwatch --range 'between -7 days ago and yesterday' --output mail
+
 ## Useful tools
 
 	apt-get install \
@@ -323,13 +331,3 @@ Wäre ideal aber läuft in 0.98.7 nicht wirklich.
 	service clamav-daemon restart
 
 	tail -f /var/log/clamav/clamav.log
-
-## logwatch
-
-Wöchentlich eine logwatch e-mail der letzten 7 Tage:
-
-	dpkg-divert --local --rename --divert /etc/cron.weekly/00logwatch --add /etc/cron.daily/00logwatch
-	vi /etc/cron.weekly/00logwatch
-	  /usr/sbin/logwatch --range 'between -7 days ago and yesterday' --output
-
-
