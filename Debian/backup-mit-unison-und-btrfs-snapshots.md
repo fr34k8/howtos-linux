@@ -210,6 +210,10 @@ Täglicher Snapshot:
 
 	chmod 755 /etc/cron.daily/btrbk
 
+### Fixing Btrfs Filesystem Full Problems
+
+Gefunden bei [merlins.org](http://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html) und bei [btrfs.wiki.kernel.org](https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space).
+
 ## usb disk mit cryptsetup (luks)
 
 Wenn nebst dem Unison Sync zwischen den WS ausserdem ein Backup auf eine verschlüsselte USB Disk folgen soll.
@@ -292,4 +296,3 @@ That's it; your data subvolume is restored. If everything went fine, it's time t
 Alternatively, if you're restoring data on a remote host, do something like this:
 
 	btrfs send /srv/backup/subvol.20150101 | ssh root@my-remote-host.com btrfs receive /mnt/btr_pool/subvol
-
