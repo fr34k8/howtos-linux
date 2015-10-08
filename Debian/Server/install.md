@@ -37,7 +37,6 @@ EOF
 	action = %(action_mwl)s
 	#sender = fail2ban@localhost
 	ignoreip = 127.0.0.1/8 # more ip's
-	action = %(action_mwl)s
 	# A host is banned if it has generated "maxretry" during the last "findtime"
 	# seconds.
 	findtime = 600
