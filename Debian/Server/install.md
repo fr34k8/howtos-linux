@@ -32,29 +32,32 @@ EOF
 
 ### config
 
-	vi /etc/fail2ban/jail.local
+	cat << EOF >>/etc/fail2ban/jail.local
 	[DEFAULT]
-	ignoreip = 127.0.0.1/8
-	[ssh]
-	bantime = 86400 ; 1 day
-	[apache]
-	enabled = true
-	bantime = 86400 ; 1 day
-	[ssh-ddos]
-	enabled = true
-	bantime = 86400 ; 1 day
-	[postfix]
-	enabled = true
-	bantime = 86400 ; 1 day
-	[apache-noscript]
-	enabled = true
-	bantime = 86400 ; 1 day
-	[apache-overflows]
-	enabled = true
-	bantime = 86400 ; 1 day
-
-	vi /etc/fail2ban/jail.conf
 	action = %(action_mwl)s
+	#sender = fail2ban@localhost
+	ignoreip = 127.0.0.1/8 # more ip's
+	action = %(action_mwl)s
+	# A host is banned if it has generated "maxretry" during the last "findtime"
+	# seconds.
+	findtime = 600
+	maxretry = 3
+	bantime  = 86400  ; 1 day
+
+	# ssh default enabled
+	#[ssh]
+	#enabled  = true
+	[apache]
+	enabled  = true
+	[ssh-ddos]
+	enabled  = true
+	[postfix]
+	enabled  = true
+	[apache-noscript]
+	enabled  = true
+	[apache-overflows]
+	enabled  = true
+	EOF
 
 	service fail2ban restart
 
