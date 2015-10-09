@@ -144,7 +144,7 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	apt-get update
 	apt-get upgrade
 	apt-get install \
-	uptimed sysstat popularity-contest deborphan mtr strace
+	uptimed sysstat popularity-contest deborphan mtr strace rfkill
 
 ## Useful monitoring software
 
