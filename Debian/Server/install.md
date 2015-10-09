@@ -43,7 +43,6 @@ EOF
 	maxretry = 3
 	bantime  = 86400  ; 1 day
 
-	# ssh default enabled
 	#[ssh]
 	#enabled  = true
 	[apache]
@@ -56,6 +55,18 @@ EOF
 	enabled  = true
 	[apache-overflows]
 	enabled  = true
+	[asterisk-tcp]
+	enabled = true
+	[asterisk-udp]
+	enabled = true
+	[pam-generic]
+	enabled = true
+	[php-url-fopen]
+	enabled = true
+	logpath = /var/log/apache*/*access.log
+	[mysqld-auth]
+	enabled = true
+	logpath = /var/log/mysql/error.log
 	EOF
 
 	service fail2ban restart
