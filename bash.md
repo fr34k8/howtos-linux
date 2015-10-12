@@ -2,6 +2,12 @@
 
 	LOCKFILE="/tmp/`basename $0`.lock"
 	trap "echo Aborting!; rm $LOCKFILE; exit 1" SIGHUP SIGINT SIGTERM
+	if [ -f $LOCKFILE ];
+	then
+	  ps -ef | grep "`basename $0`"
+	  echo "$LOCKFILE: Lockfile exists."
+	  exit 1
+	fi
 	touch $LOCKFILE
 	# code
 	rm $LOCKFILE
