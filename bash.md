@@ -1,3 +1,12 @@
+# Lockfile example
+
+	LOCKFILE="/tmp/`basename $0`.lock"
+	trap "echo Aborting!; rm $LOCKFILE; exit 1" SIGHUP SIGINT SIGTERM
+	touch $LOCKFILE
+	# code
+	rm $LOCKFILE
+	exit 0
+
 # Configure Automatic Logout (Linux)
 
 ## Bash
