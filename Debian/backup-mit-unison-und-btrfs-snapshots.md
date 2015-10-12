@@ -71,6 +71,8 @@ Auf der WS, die den **Stern** in der Topologie darstellt, werden alle Configs ab
 	times = true
 	EOF
 
+Diese Pfade werden mit der zweiten Workstation in Sync gehalten:
+
 	cat << EOF > home-dir.prf
 	path = .bashrc
 	path = Bilder
@@ -81,27 +83,43 @@ Auf der WS, die den **Stern** in der Topologie darstellt, werden alle Configs ab
 	path = .profile
 	path = Videos
 	path = Vorlagen
-EOF
+	EOF
 
-	cat << EOF > mutt-dir.prf
+Diese Pfade werden zusätzlich in Sync gehalten:
+
+	cat << EOF > local-dir.prf
+	path = backup
+	path = bin
 	path = localMaildir
 	path =.mutt/colors.rc
 	path =.mutt/gpg.rc
 	path = .muttrc
-EOF
-
-	cat << EOF > local-dir.prf
-	include mutt-dir
-	path = backup
-	path = bin
-	path = .gitconfig
-	path = .gnupg
 	path = src
 	path = .ssh
+	EOF
+
+Diese Pfade werden mit dem Server in Sync gehalten:
+
+	cat << EOF > server-dir.prf
+	path = bin
+	path = .dput.cf
+	path = git
+	path = .gitconfig
+	path = .gnupg
+	path = localMaildir
+	path = .mcabber
+	path =.mutt/colors.rc
+	path =.mutt/gpg.rc
+	path = .muttrc
+	path = offlineIMAP
+	path = .offlineimaprc
+	path = .openvpn
 	path = .vim
 	path = .vimrc
-	path = .openvpn
-EOF
+	path = www
+	EOF
+
+Vorsicht bei cross syncing. Auf **Stern** anordnung achten.
 
 	cat << EOF >{$HOSTNAME}-sync.prf
 	include common
@@ -111,7 +129,8 @@ EOF
 
 	include local-dir
 	include home-dir
-EOF
+	#include server-dir
+	EOF
 
 * -path Paths to synchronize 
 * -mountpoint abort if this path does not exist
