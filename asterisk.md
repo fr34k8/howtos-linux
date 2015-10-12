@@ -1,4 +1,4 @@
-# Asterisk
+# Asterisk configure to receive incoming sip calls
 
     apt-get install asterisk
 
