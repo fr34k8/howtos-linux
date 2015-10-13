@@ -217,14 +217,27 @@ EOF
 Täglicher Snapshot:
 
 	cat << EOF >/etc/cron.daily/btrbk 
-	DISK_CRYPT=bluedisk_crypt
-	DISK_MOUNT=/srv/btr_backup
+	#!/bin/bash
+
+	# Vars
+	DISK_CRYPT=disk_crypt
+	MOUNT_CRYPT=/srv/btr_backup
+	MOUNT_HOME=/home
+	BALANCE_DUSAGE=55
+
+	# Main
+	set -x
 	if sudo cryptdisks_start $DISK_CRYPT;
 	then
-	  mount $DISK_MOUNT
+	  mount $MOUNT_CRYPT
 	fi
-	btrbk run
-	sync
+	btrfs filesystem show
+	btrfs filesystem usage $MOUNT_HOME
+	btrfs filesystem usage $MOUNT_CRYPT
+	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_HOME
+	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_CRYPT
+	time btrbk run
+	time sync
 	EOF
 
 	chmod 755 /etc/cron.daily/btrbk
