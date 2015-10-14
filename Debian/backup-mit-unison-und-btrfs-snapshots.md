@@ -232,8 +232,8 @@ Täglicher Snapshot:
 	  mount $MOUNT_CRYPT
 	fi
 	btrfs filesystem show
-	btrfs filesystem usage $MOUNT_HOME
-	btrfs filesystem usage $MOUNT_CRYPT
+	btrfs filesystem df $MOUNT_HOME
+	btrfs filesystem df $MOUNT_CRYPT
 	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_HOME
 	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_CRYPT
 	time btrbk run
