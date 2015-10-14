@@ -331,3 +331,32 @@ Wäre ideal aber läuft in 0.98.7 nicht wirklich.
 	service clamav-daemon restart
 
 	tail -f /var/log/clamav/clamav.log
+
+## Fail2ban
+
+	apt-get install fail2ban
+	fail2ban-client ping
+	fail2ban-client status
+
+### config
+
+	cat << EOF >>/etc/fail2ban/jail.local
+	[DEFAULT]
+	action = %(action_mwl)s
+	ignoreip = 127.0.0.1/8 # more ip's
+	findtime = 600
+	maxretry = 3
+	bantime  = 86400  ; 1 day
+
+	# destemail is necessary because of ssmtp config.
+	destemail = <my@email.tld>
+
+	[ssh]
+	enabled  = true
+	[ssh-ddos]
+	enabled  = true
+	[pam-generic]
+	enabled = true
+	EOF
+
+	service fail2ban restart
