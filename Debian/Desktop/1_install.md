@@ -349,7 +349,7 @@ Wäre ideal aber läuft in 0.98.7 nicht wirklich.
 	bantime  = 86400  ; 1 day
 
 	# destemail is necessary because of ssmtp config.
-	destemail = <my@email.tld>
+	destemail = my@email.tld
 
 	[ssh]
 	enabled  = true
