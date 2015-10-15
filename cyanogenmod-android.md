@@ -137,3 +137,7 @@ funktionierenden Geräte wieder verbinden
 * [defekte bluetooth config](http://www.android-hilfe.de/android-allgemein/158745-defekte-bluetooth-konfiguration.html)
 * [this is why i love my android phone](http://sandeep.wordpress.com/2011/07/02/this-is-why-i-love-my-android-phone/)
 * [issue](https://code.google.com/p/android/issues/detail?id=24522)
+
+# Links
+
+* <http://androidvulnerabilities.org>
