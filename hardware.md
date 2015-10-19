@@ -1,5 +1,7 @@
 # Extract hardware infos
 
+Inspired by [this](http://www.binarytides.com/linux-commands-hardware-info).
+
 	cat << EOF >/tmp/get-hw-info.sh
 	#!/bin/bash
 	set -x
