@@ -70,16 +70,17 @@ Gefunden im privacy-handbuch.de
 
 URL: about:config
 
-      media.peerconnection.enabled = False
-      geo.enabled = False
-      dom.battery.enabled = False
-      dom.gamepad.enabled = False
-      media.video_stats.enabled = False
-      extensions.blocklist.enabled = False
-      extensions.getAddons.cache.enabled = False
-      beacon.enabled = False
-      browser.cache.disk.enable = False
-      browser.cache.memory.enable = False
+	media.peerconnection.enabled = False
+	geo.enabled = False
+	dom.battery.enabled = False
+	dom.gamepad.enabled = False
+	media.video_stats.enabled = False
+	extensions.blocklist.enabled = False
+	extensions.getAddons.cache.enabled = False
+	beacon.enabled = False
+	browser.cache.disk.enable = False
+	browser.cache.memory.enable = False
+	network.http.sendRefererHeader = 0
 
 ### Silverlight
 
@@ -113,8 +114,6 @@ Neustart des Browsers.
 -   Certificate Patrol
 
 -   SixorNot
-
--   Smart Referer
 
 -   Adblock Edge
 
