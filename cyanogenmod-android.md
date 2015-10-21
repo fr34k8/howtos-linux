@@ -86,9 +86,9 @@ Restore sdcard0 via sdcard1.tar:
 
 -   Self-Destructing Cookies
 
--   Smart Referer
-
 -   Toggle JavaScript Enabled
+
+-   network.http.sendRefererHeader = 0
 
 Anschliessend mit <http://ip-check.info> testen.
 
