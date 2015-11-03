@@ -127,12 +127,6 @@ So geht’s:
 
 	ERROR_COUNT=$((ERROR_COUNT+1))
 
-## Logfile umleiten
-
-	LOGFILE="/tmp/`basename "$0" .sh`.log"
-	exec 1>${LOGFILE}
-	exec 2>&1
-
 ## Datum
 
 	BACKUP_DATE=$(date +%Y%m%d-%H%M)

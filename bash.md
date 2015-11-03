@@ -13,9 +13,13 @@
 	rm $LOCKFILE
 	exit 0
 
-# Configure Automatic Logout (Linux)
+# Logfile umleiten
 
-## Bash
+	LOGFILE="/tmp/`basename "$0" .sh`.log"
+	exec 1>${LOGFILE}
+	exec 2>&1
+
+# Configure Automatic Logout (Linux)
 
 Found at [cyberciti.biz](http://www.cyberciti.biz/faq/appleosx-bsd-linux-unix-configure-automatic-logout-for-bash-shell):
 
@@ -26,7 +30,7 @@ Found at [cyberciti.biz](http://www.cyberciti.biz/faq/appleosx-bsd-linux-unix-co
 	export TMOUT
 EOF
 
-## Screen
+# Screen
 
 	vi ~/.screenrc
 	idle 300 pow_detach
