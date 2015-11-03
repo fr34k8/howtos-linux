@@ -205,8 +205,13 @@ Aktualisiere Stabile und Sicherheits-Updates.
 	};
 	Unattended-Upgrade::Mail "root";
 
-	dpkg-reconfigure -plow unattended-upgrades
+testen:
+
 	unattended-upgrade -d –dry-run
+
+Und aktivieren mit:
+
+	dpkg-reconfigure -plow unattended-upgrades
 
 Inspired by <https://wiki.debian.org/UnattendedUpgrades>
 
