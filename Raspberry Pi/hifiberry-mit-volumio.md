@@ -43,6 +43,12 @@ Permit only ssh key login:
 	grep PasswordAuthentication /etc/ssh/sshd_config
 	PasswordAuthentication no
 
+Enable system e-mails:
+
+	apt-get install ssmtp
+
+Configuration according to [ssmtp.conf](https://github.com/micressor/howtos-linux/blob/master/Debian/Desktop/install-os.md#mail--smtp-ssmtp).
+
 Enable IPv6 access volumio web ui:
 
 	grep -B 1 -A 2 "80;" /etc/nginx/nginx.conf
