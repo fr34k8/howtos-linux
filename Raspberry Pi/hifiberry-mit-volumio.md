@@ -50,6 +50,11 @@ Enable IPv6 access volumio web ui:
 	  	#listen       80;
 		listen       [::]:80;
 
+Setting up volumio to get [great audio](https://www.hifiberry.com/guides/setting-up-volumio-to-get-great-audio/):
+
+* Go to Menu > System. I2S driver: Hifiberry+
+* Go to Menu > Playback > General music daemon options > Auto update: yes
+
 There is a problem to add web radios with this version. Login via ssh:
 
 	cd /var/lib/mpd/music/WEBRADIO
@@ -60,4 +65,4 @@ There is a problem to add web radios with this version. Login via ssh:
 	Length1=-1
 	EOF
 
-On the Volmio UI click on Menu > Library and then click *update library*.
+Enjoy!
