@@ -31,13 +31,13 @@ Configure network:
 Copy output of psk="" to wlan0 interface config:
 
 	vi /etc/network/interfaces
-allow-hotplug eth0
-iface eth0 inet dhcp
+	allow-hotplug eth0
+	iface eth0 inet dhcp
 
-allow-hotplug wlan0
-iface wlan0 inet dhcp
-	wpa-ssid sid
-	wpa-psk <from wpa_passphrase calculated hash>
+	allow-hotplug wlan0
+	iface wlan0 inet dhcp
+		wpa-ssid sid
+		wpa-psk <from wpa_passphrase calculated hash>
 
 Permit only ssh key login:
 	grep PasswordAuthentication /etc/ssh/sshd_config
