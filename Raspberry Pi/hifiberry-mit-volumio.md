@@ -39,6 +39,10 @@ iface wlan0 inet dhcp
 	wpa-ssid sid
 	wpa-psk <from wpa_passphrase calculated hash>
 
+Permit only ssh key login:
+	grep PasswordAuthentication /etc/ssh/sshd_config
+	PasswordAuthentication no
+
 Enable IPv6 access volumio web ui:
 
 	grep -B 1 -A 2 "80;" /etc/nginx/nginx.conf
