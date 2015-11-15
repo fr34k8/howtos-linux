@@ -40,6 +40,7 @@ Copy output of psk="" to wlan0 interface config:
 		wpa-psk <from wpa_passphrase calculated hash>
 
 Permit only ssh key login:
+
 	grep PasswordAuthentication /etc/ssh/sshd_config
 	PasswordAuthentication no
 
