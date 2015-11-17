@@ -64,10 +64,15 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	apt-get install mailutils ssmtp mpack
 
 	vi /etc/motion/motion.conf
+	width 1024
+	height 800
+	# Note: threshold will change if you change width and height
 	threshold 1500 # Fahne weht nur leicht
 	threshold 1700
 	quality 100
 	on_picture_save mpack -s 'moni webcam alert' %f user@domain.tld
+	on_movie_end mpack -s 'moni webcam movie alert' %f user@domain.tld
+	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
 	text_changes on
 	# For e-mail testing set snapshot_interval
 	# snapshot_interval 10
