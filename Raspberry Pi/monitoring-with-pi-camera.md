@@ -37,7 +37,7 @@ Copy output of psk="" to wlan0 interface config:
 
 ## Camera driver
 
-Enable raspi camera module ([from here](http://raspberrypi.stackexchange.com/questions/10480/raspi-camera-board-and-motion):
+Enable raspi camera module ([from here](http://raspberrypi.stackexchange.com/questions/10480/raspi-camera-board-and-motion)):
 
 Load camera modul into kernel:
 
