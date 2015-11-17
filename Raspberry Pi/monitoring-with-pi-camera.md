@@ -1,6 +1,6 @@
 # Monitoring with pi camera
 
-Resicende monitoring for about CHF 200.- with Raspian and motion.
+Resicende monitoring for about CHF 200.- with (pure opensource) Raspian and motion.
 
 ## Hardware
 
