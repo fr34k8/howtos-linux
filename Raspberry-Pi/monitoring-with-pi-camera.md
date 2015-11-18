@@ -70,6 +70,7 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	# Threshold will change if you change width and height
 	# Based on 1024x800 I've got good results with threshold of 70000.
 	threshold 70000
+	lightswitch 10
 	output_normal best
 	quality 100
 	webcam_quality 100
@@ -90,5 +91,13 @@ Disable red led on the pi camera module:
 	reboot
 
 Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-red-led-on-the-pi-camera-module/)
+
+# Cron
+
+Start and pause motion detection via cron:
+
+	crontab -e
+	00  7 * * * curl http://localhost:8080/0/detection/start
+	00  8 * * * curl http://localhost:8080/0/detection/pause
 
 Enjoy!
