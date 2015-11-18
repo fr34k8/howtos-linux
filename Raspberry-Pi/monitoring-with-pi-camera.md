@@ -70,6 +70,7 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	# Threshold will change if you change width and height
 	# Based on 1024x800 I've got good results with threshold of 70000.
 	threshold 70000
+	output_normal best
 	quality 100
 	webcam_quality 100
 	ffmpeg_video_codec mpeg4
