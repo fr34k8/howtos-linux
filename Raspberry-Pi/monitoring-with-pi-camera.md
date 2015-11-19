@@ -94,16 +94,25 @@ Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-re
 
 # Cron
 
-Raspi is not running 24 hours. With anacron start and stop jobs will anyway started.
+Raspi is usually under power from 06:00 until 23:59. When I leave my residence and start up raspi,
+anacron will shutup motion within an hour.
 
 	apt-get install anacron
+
+Change schedule of /etc/cron.d/anacron to:
+
+	8 * * * * root test -x /etc/init.d/anacron && /usr/sbin/invoke-rc.d anacron start >/dev/null
 
 Start and pause motion detection via cron:
 
 	crontab -e
 	PATH="/usr/bin:/bin:/usr/sbin:/sbin"
-	00 07 * * 1-5 service motion start
-	15 17 * * 1-5 service motion stop
+	# Shutdown motion detection after 17:15.
+	15 17 * * 1-5  service motion stop
+	# Shutdown raspi at 23:15 for this day.
+	15 23 * * *    shutdown -h now
+	# Optional configurations:
+	#00 07 * * 1-5 service motion start
 	#00  7 * * 1-5 curl http://localhost:8080/0/detection/start
 	#15 17 * * 1-5 curl http://localhost:8080/0/detection/pause
 
