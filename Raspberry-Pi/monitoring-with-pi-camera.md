@@ -94,10 +94,17 @@ Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-re
 
 # Cron
 
+Raspi is not running 24 hours. With anacron start and stop jobs will anyway started.
+
+	apt-get install anacron
+
 Start and pause motion detection via cron:
 
 	crontab -e
-	00  7 * * * curl http://localhost:8080/0/detection/start
-	00  8 * * * curl http://localhost:8080/0/detection/pause
+	PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+	00 07 * * 1-5 service motion start
+	15 17 * * 1-5 service motion stop
+	#00  7 * * 1-5 curl http://localhost:8080/0/detection/start
+	#15 17 * * 1-5 curl http://localhost:8080/0/detection/pause
 
 Enjoy!
