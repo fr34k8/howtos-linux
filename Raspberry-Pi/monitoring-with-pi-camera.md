@@ -64,23 +64,34 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	apt-get install mailutils ssmtp mpack
 
 	vi /etc/motion/motion.conf
+	# Cam resolution.
 	width 1024
 	height 800
-	# Note:
-	# Threshold will change if you change width and height
-	# Based on 1024x800 I've got good results with threshold of 70000.
-	threshold 70000
+	# The threshold is the number of changed pixels (depending on width and height) counted after
+	# noise filtering, masking,
+	threshold 500
+	# Ignore sudden massive light intensity changes given as a percentage of the picture area
+	# that changed intensity.
 	lightswitch 10
+	#  Let motion regulate the brightness of a video device. Only recommended for cameras
+	# without auto brightness
+	auto_brightness on
 	output_normal best
 	quality 100
 	webcam_quality 100
 	ffmpeg_video_codec mpeg4
+	# Rotate image the given number of degrees. The rotation affects all saved images as well as
+	# mpeg movies.
+	rotate 90
+	# Use mpack to send out e-mail with images and videos
 	on_picture_save mpack -s 'moni webcam alert' %f user@domain.tld
 	on_movie_end mpack -s 'moni webcam movie alert' %f user@domain.tld
 	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
 	text_changes on
 	# For e-mail testing set snapshot_interval
 	# snapshot_interval 10
+	# 4 hours
+	snapshot_interval 14400
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
