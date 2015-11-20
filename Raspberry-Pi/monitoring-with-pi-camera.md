@@ -65,20 +65,21 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 
 	vi /etc/motion/motion.conf
 	# Cam resolution.
-	width 1024
-	height 800
+	width 704
+	height 576
 	# The threshold is the number of changed pixels (depending on width and height) counted after
 	# noise filtering, masking,
-	threshold 500
+	threshold 50
 	# Ignore sudden massive light intensity changes given as a percentage of the picture area
 	# that changed intensity.
-	lightswitch 10
+	lightswitch 1
 	#  Let motion regulate the brightness of a video device. Only recommended for cameras
 	# without auto brightness
 	auto_brightness on
 	output_normal best
 	quality 100
 	webcam_quality 100
+	webcam_maxrate 4
 	ffmpeg_video_codec mpeg4
 	# Rotate image the given number of degrees. The rotation affects all saved images as well as
 	# mpeg movies.
@@ -88,10 +89,9 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	on_movie_end mpack -s 'moni webcam movie alert' %f user@domain.tld
 	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
 	text_changes on
-	# For e-mail testing set snapshot_interval
-	# snapshot_interval 10
-	# 4 hours
-	snapshot_interval 14400
+	text_left MONI
+	text_double on
+	snapshot_interval 10800 # 3 hours
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
