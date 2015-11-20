@@ -115,7 +115,7 @@ and start up raspi, anacron will shutup motion within an hour.
 
 Let anacron check daily run's every hour:
 
-	vi /etc/cron.d/anacro
+	vi /etc/cron.d/anacron
 	8 * * * * root test -x /etc/init.d/anacron && /usr/sbin/invoke-rc.d anacron start >/dev/null
 
 This script will change red and green leds. If motion is on, red led is
