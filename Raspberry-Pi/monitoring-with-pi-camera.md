@@ -117,22 +117,9 @@ Change schedule of /etc/cron.d/anacron to:
 This script will change red and green leds. If motion is on, red led is
 turned on. If motion is not running, the green led is on.
 
-	cat << EOF >/usr/local/bin/checkMotion.sh
-	#!/bin/bash
-
-	# Disable triggers: led0=green | led1=red
-	echo none >/sys/class/leds/led0/trigger
-	echo none >/sys/class/leds/led1/trigger
-
-	if [ -z `pidof motion` ];
-	then
-	  echo 1 >/sys/class/leds/led0/brightness
-	  echo 0 >/sys/class/leds/led1/brightness
-	else
-	  echo 1 >/sys/class/leds/led1/brightness
-	  echo 0 >/sys/class/leds/led0/brightness
-	fi
-	EOF
+	cd /usr/local/bin
+	wget https://github.com/micressor/howtos-linux/raw/master/Raspberry-Pi/checkMotion.sh
+	chmod 755 /usr/local/bin/checkMotion.sh
 
 This check starts via cron:
 
