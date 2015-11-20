@@ -35,6 +35,16 @@ Copy output of psk="" to wlan0 interface config:
 		wpa-ssid sid
 		wpa-psk <from wpa_passphrase calculated hash>
 
+Set time:
+
+	dpkg-reconfigure tzdata
+	apt-get install ntpdate
+
+Enable syslog:
+
+	apt-get install rsyslog
+	update-rc.d rsyslog enable
+
 ## Camera driver
 
 Enable raspi camera module ([from here](http://raspberrypi.stackexchange.com/questions/10480/raspi-camera-board-and-motion)):

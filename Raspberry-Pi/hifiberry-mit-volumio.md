@@ -44,6 +44,16 @@ Permit only ssh key login:
 	grep PasswordAuthentication /etc/ssh/sshd_config
 	PasswordAuthentication no
 
+Set time:
+
+	dpkg-reconfigure tzdata
+	apt-get install ntpdate
+
+Enable syslog:
+
+	apt-get install rsyslog
+	update-rc.d rsyslog enable
+
 Enable system e-mails:
 
 	apt-get install ssmtp
