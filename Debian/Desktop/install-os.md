@@ -298,15 +298,17 @@ Um zu sehen ob die cron e-mail sauber kommt, anacron ausführen
 
 	cat << EOF >/etc/cron.weekly/clamscan
 	#!/bin/bash
-	nice -n 20 clamscan -o -i --stdout \
+	nice -n 20 clamscan -o --stdout --quiet \
 	--follow-file-symlinks=2 \
-	--follow-dir-symlinks=2 \
+	--follow-dir-symlinks=0 \
 	--exclude-dir=backup \
 	--exclude-dir=/sys \
+	--exclude-dir=btrbk_snapshots \
+	--exclude-dir=_SNAPSHOTS \
 	--exclude-dir=/run \
 	--exclude-dir=/dev \
 	--exclude-dir=/proc -r /
-EOF
+	EOF
 
 	chmod +x /etc/cron.daily/clamscan
 	wget http://www.eicar.org/download/eicar.com.txt
