@@ -74,25 +74,18 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	apt-get install mailutils ssmtp mpack
 
 	vi /etc/motion/motion.conf
-	# Cam resolution.
+	# Camera resolution optimized for recognition and performance.
 	width 704
 	height 576
-	# The threshold is the number of changed pixels (depending on width and height) counted after
-	# noise filtering, masking,
+	# Combination of threshold and lightswitch are the most important
+	# parameters.
 	threshold 300
-	# Ignore sudden massive light intensity changes given as a percentage of the picture area
-	# that changed intensity.
 	lightswitch 98
-	#  Let motion regulate the brightness of a video device. Only recommended for cameras
-	# without auto brightness
-	auto_brightness on
 	output_normal best
 	quality 100
 	webcam_quality 100
 	webcam_maxrate 4
 	ffmpeg_video_codec mpeg4
-	# Rotate image the given number of degrees. The rotation affects all saved images as well as
-	# mpeg movies.
 	rotate 90
 	# Use mpack to send out e-mail with images and videos
 	on_picture_save mpack -s 'moni webcam alert' %f user@domain.tld
