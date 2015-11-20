@@ -105,14 +105,40 @@ Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-re
 
 # Cron
 
-Raspi is usually under power from 06:00 until 23:59. When I leave my residence and start up raspi,
-anacron will shutup motion within an hour.
+Raspi is usually under power from 06:00 until 23:59. When I leave my residence
+and start up raspi, anacron will shutup motion within an hour.
 
 	apt-get install anacron
 
 Change schedule of /etc/cron.d/anacron to:
 
 	8 * * * * root test -x /etc/init.d/anacron && /usr/sbin/invoke-rc.d anacron start >/dev/null
+
+This script will change red and green leds. If motion is on, red led is
+turned on. If motion is not running, the green led is on.
+
+	cat << EOF >/usr/local/bin/checkMotion.sh
+	#!/bin/bash
+
+	# Disable triggers: led0=green | led1=red
+	echo none >/sys/class/leds/led0/trigger
+	echo none >/sys/class/leds/led1/trigger
+
+	if [ -z `pidof motion` ];
+	then
+	  echo 1 >/sys/class/leds/led0/brightness
+	  echo 0 >/sys/class/leds/led1/brightness
+	else
+	  echo 1 >/sys/class/leds/led1/brightness
+	  echo 0 >/sys/class/leds/led0/brightness
+	fi
+	EOF
+
+This check starts via cron:
+
+	cat << EOF >/etc/cron.d/checkMotion
+	*/5 * * * * root /usr/local/bin/checkMotion.sh
+	EOF
 
 Start and pause motion detection via cron:
 
