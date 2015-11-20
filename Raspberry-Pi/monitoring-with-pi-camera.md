@@ -79,10 +79,10 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	height 576
 	# The threshold is the number of changed pixels (depending on width and height) counted after
 	# noise filtering, masking,
-	threshold 50
+	threshold 300
 	# Ignore sudden massive light intensity changes given as a percentage of the picture area
 	# that changed intensity.
-	lightswitch 1
+	lightswitch 98
 	#  Let motion regulate the brightness of a video device. Only recommended for cameras
 	# without auto brightness
 	auto_brightness on
