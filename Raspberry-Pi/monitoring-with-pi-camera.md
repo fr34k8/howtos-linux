@@ -134,14 +134,7 @@ This check starts via cron:
 Start and pause motion detection via cron:
 
 	crontab -e
-	PATH="/usr/bin:/bin:/usr/sbin:/sbin"
-	# Shutdown motion detection after 17:15.
-	15 17 * * 1-5  service motion stop
-	# Shutdown raspi at 23:15 for this day.
-	15 23 * * *    shutdown -h now
-	# Optional configurations:
-	#00 07 * * 1-5 service motion start
-	#00  7 * * 1-5 curl http://localhost:8080/0/detection/start
-	#15 17 * * 1-5 curl http://localhost:8080/0/detection/pause
+	00  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
+	15    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
 
 Enjoy!
