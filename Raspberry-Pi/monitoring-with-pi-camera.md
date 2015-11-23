@@ -85,8 +85,7 @@ A new device /dev/video0 should be there now:
 
 How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatically-emailing-motion-snapshots) snapshots:
 
-	apt-get install mailutils ssmtp mpack
-
+	apt-get install mailutils ssmtp mpack motion
 	vi /etc/motion/motion.conf
 	# Camera resolution optimized for recognition and performance.
 	width 704
@@ -122,6 +121,10 @@ Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-re
 
 # Cron
 
+Disable motion at raspi's start up:
+
+	update-rc.d motion disable
+
 Raspi is usually under power from 06:00 until 23:59. When I leave my residence
 and start up raspi, anacron will shutup motion within an hour.
 
@@ -148,7 +151,8 @@ This check starts via cron:
 Start and pause motion detection via cron:
 
 	crontab -e
-	30  7-17 * * 1-5 pidof motion || /usr/sbin/service motion start
+	PATH="/usr/bin:/bin:/sbin:/usr/sbin"
+	30  7-17 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
 	35  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
 	15    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
 
