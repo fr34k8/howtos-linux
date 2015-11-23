@@ -168,3 +168,11 @@ Vim mit gnupg http://wiki.debianforum.de/Vim_mit_gnupg
 
 Verschlüsselte E-Mails mit GnuPG als Supergrundrecht
 http://www.kuketz-blog.de/verschluesselte-e-mails-mit-gnupg-als-supergrundrecht/
+
+## Photoprint
+
+Zum praktischen ausdrucken von mehreren Fotos auf einre Seite:
+
+	apt-get install photoprint
+
+Siehe [hier](https://wiki.ubuntuusers.de/photoprint).
