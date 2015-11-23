@@ -128,13 +128,14 @@ turned on. If motion is not running, the green led is on.
 This check starts via cron:
 
 	cat << EOF >/etc/cron.d/checkMotion
-	*/5 * * * * root /usr/local/bin/checkMotion.sh
+	40 * * * * root /usr/local/bin/checkMotion.sh
 	EOF
 
 Start and pause motion detection via cron:
 
 	crontab -e
-	00  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
+	30  7-17 * * 1-5 pidof motion || /usr/sbin/service motion start
+	35  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
 	15    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
 
 Enjoy!
