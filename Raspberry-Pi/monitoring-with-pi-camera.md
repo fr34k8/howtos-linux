@@ -171,3 +171,7 @@ Start and pause motion detection via cron:
 	17    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
 
 Enjoy!
+
+# Links
+
+* [Surveillance with Raspberry Pi NoIR Camera HowTo](http://www.home-automation-community.com/surveillance-with-raspberry-pi-noir-camera-howto)
