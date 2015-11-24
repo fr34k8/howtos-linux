@@ -100,27 +100,30 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	threshold 300
 	lightswitch 97
 	output_normal best
+	rotate 90
 	quality 100
 	webcam_quality 100
 	webcam_maxrate 4
+	# Filename formats
 	snapshot_filename %Y-%m-%dT%H%M_%v-%q-%D-snapshot
 	jpeg_filename %Y-%m-%dT%H%M_%v-%q-%D
 	movie_filename %Y-%m-%dT%H%M_%v-%q-%D
+	timelapse_filename %Y-%m-%d_timelapse
 	ffmpeg_video_codec mpeg4
-	rotate 90
 	control_html_output off
-	# Use mpack to send out e-mail with images and videos
-	on_picture_save mpack -s "moni webcam alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
-	on_movie_end mpack -s "moni webcam movie alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
-	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
+	# Image detail
 	text_changes on
 	locate on
 	text_left MONI
 	text_double on
+	# Event config
+	# Use mpack to send out e-mail with images and videos
+	on_picture_save mpack -s "moni webcam alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
+	on_movie_end mpack -s "moni webcam movie alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
+	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
 	# Timelapse config
 	ffmpeg_timelapse 120
 	ffmpeg_timelapse_mode daily
-	timelapse_filename %Y-%m-%d_timelapse
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
