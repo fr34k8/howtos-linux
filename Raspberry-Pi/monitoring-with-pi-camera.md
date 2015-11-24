@@ -104,6 +104,7 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	timelapse_filename %Y-%m-%d_timelapse
 	ffmpeg_video_codec mpeg4
 	rotate 90
+	control_html_output off
 	# Use mpack to send out e-mail with images and videos
 	on_picture_save mpack -s "moni webcam alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
 	on_movie_end mpack -s "moni webcam movie alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
