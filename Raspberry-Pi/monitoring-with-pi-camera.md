@@ -119,6 +119,13 @@ Disable red led on the pi camera module:
 
 Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-red-led-on-the-pi-camera-module/)
 
+# Delete files in /tmp
+
+Older than 7 days:
+
+	vi /etc/default/rcS
+	TMPTIME=7
+
 # Cron
 
 Disable motion at raspi's start up:
