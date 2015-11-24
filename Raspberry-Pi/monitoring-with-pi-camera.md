@@ -98,13 +98,18 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	quality 100
 	webcam_quality 100
 	webcam_maxrate 4
+	snapshot_filename %Y-%m-%dT%H%M_%v-%q-%D-snapshot
+	jpeg_filename %Y-%m-%dT%H%M_%v-%q-%D
+	movie_filename %Y-%m-%dT%H%M_%v-%q-%D
+	timelapse_filename %Y-%m-%d_timelapse
 	ffmpeg_video_codec mpeg4
 	rotate 90
 	# Use mpack to send out e-mail with images and videos
-	on_picture_save mpack -s 'moni webcam alert' %f user@domain.tld
-	on_movie_end mpack -s 'moni webcam movie alert' %f user@domain.tld
+	on_picture_save mpack -s "moni webcam alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
+	on_movie_end mpack -s "moni webcam movie alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
 	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
 	text_changes on
+	locate on
 	text_left MONI
 	text_double on
 	snapshot_interval 10800 # 3 hours
