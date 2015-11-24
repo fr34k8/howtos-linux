@@ -161,19 +161,13 @@ turned on. If motion is not running, the green led is on.
 	wget https://github.com/micressor/howtos-linux/raw/master/Raspberry-Pi/checkMotion.sh
 	chmod 755 /usr/local/bin/checkMotion.sh
 
-Start checkMotion.sh via cron:
-
-	cat << EOF >/etc/cron.d/checkMotion
-	18 * * * * root /usr/local/bin/checkMotion.sh
-	EOF
-
 Start and pause motion detection via cron:
 
 	crontab -e
-	PATH="/usr/bin:/bin:/sbin:/usr/sbin"
+	PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin"
 	15  7-16 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
-	16  7-16 * * 1-5 curl -sf http://localhost:8080/0/detection/start >/dev/null
-	26    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
+	15    18 * * 1-5 service motion stop
+	16     * * * *   checkMotion.sh
 
 Enjoy!
 
