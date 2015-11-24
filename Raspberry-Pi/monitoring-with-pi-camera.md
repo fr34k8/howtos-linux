@@ -171,9 +171,9 @@ Start and pause motion detection via cron:
 
 	crontab -e
 	PATH="/usr/bin:/bin:/sbin:/usr/sbin"
-	15  7-17 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
-	16  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
-	17    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
+	15  7-16 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
+	16  7-16 * * 1-5 curl -sf http://localhost:8080/0/detection/start >/dev/null
+	26    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
 
 Enjoy!
 
