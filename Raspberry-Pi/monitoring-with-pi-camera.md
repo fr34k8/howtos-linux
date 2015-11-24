@@ -32,6 +32,11 @@ Be sure, that ipv6 is loaded until pi's next reboot:
 
 	echo "ipv6" >>/etc/modules
 
+Add FQDN to hosts file:
+
+	vi /etc/hosts
+	127.0.1.1       moni.domain.tld moni
+
 ### Configure WLAN
 
 	wpa_passphrase sid passasdf
