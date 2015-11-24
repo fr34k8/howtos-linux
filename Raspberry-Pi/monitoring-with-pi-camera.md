@@ -93,7 +93,7 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	# Combination of threshold and lightswitch are the most important
 	# parameters.
 	threshold 300
-	lightswitch 98
+	lightswitch 97
 	output_normal best
 	quality 100
 	webcam_quality 100
@@ -125,15 +125,11 @@ Disable motion at raspi's start up:
 
 	update-rc.d motion disable
 
-Raspi is usually under power from 06:00 until 23:59. When I leave my residence
-and start up raspi, anacron will shutup motion within an hour.
+Raspi is usually under power. If not cron.{daily,weekly,monthly} should run anyway. This is done with:
 
 	apt-get install anacron
 
-Let anacron check daily run's every hour:
-
-	vi /etc/cron.d/anacron
-	2 * * * * root test -x /etc/init.d/anacron && /usr/sbin/invoke-rc.d anacron start >/dev/null
+# Status via raspi's leds
 
 This script will change red and green leds. If motion is on, red led is
 turned on. If motion is not running, the green led is on.
@@ -142,18 +138,18 @@ turned on. If motion is not running, the green led is on.
 	wget https://github.com/micressor/howtos-linux/raw/master/Raspberry-Pi/checkMotion.sh
 	chmod 755 /usr/local/bin/checkMotion.sh
 
-This check starts via cron:
+Start checkMotion.sh via cron:
 
 	cat << EOF >/etc/cron.d/checkMotion
-	40 * * * * root /usr/local/bin/checkMotion.sh
+	18 * * * * root /usr/local/bin/checkMotion.sh
 	EOF
 
 Start and pause motion detection via cron:
 
 	crontab -e
 	PATH="/usr/bin:/bin:/sbin:/usr/sbin"
-	30  7-17 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
-	35  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
-	15    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
+	15  7-17 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
+	16  7-17 * * 1-5 curl -sf http://localhost:8080/0/detection/start
+	17    17 * * 1-5 curl -sf http://localhost:8080/0/detection/pause
 
 Enjoy!
