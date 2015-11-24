@@ -106,7 +106,6 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	snapshot_filename %Y-%m-%dT%H%M_%v-%q-%D-snapshot
 	jpeg_filename %Y-%m-%dT%H%M_%v-%q-%D
 	movie_filename %Y-%m-%dT%H%M_%v-%q-%D
-	timelapse_filename %Y-%m-%d_timelapse
 	ffmpeg_video_codec mpeg4
 	rotate 90
 	control_html_output off
@@ -118,7 +117,10 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	locate on
 	text_left MONI
 	text_double on
-	snapshot_interval 10800 # 3 hours
+	# Timelapse config
+	ffmpeg_timelapse 120
+	ffmpeg_timelapse_mode daily
+	timelapse_filename %Y-%m-%d_timelapse
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
