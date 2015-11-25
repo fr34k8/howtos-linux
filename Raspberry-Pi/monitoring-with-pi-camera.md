@@ -118,8 +118,8 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	text_double on
 	# Event config
 	# Use mpack to send out e-mail with images and videos
-	on_picture_save mpack -s "moni webcam alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
-	on_movie_end mpack -s "moni webcam movie alert | event: %v | frame: %q | changed pixels: %D" %f user@domain.tld
+	on_picture_save mpack -s "MONI-Image-Alert_%v-%v | noise: %N | changed pixels: %D" %f user@domain.tld
+	on_movie_end mpack -s "MONI-Video-Alert_%v-%v | noise: %N | changed pixels: %D" %f user@domain.tld
 	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
 	# Timelapse config
 	ffmpeg_timelapse 120
