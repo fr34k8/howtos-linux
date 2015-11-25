@@ -91,17 +91,16 @@ A new device /dev/video0 should be there now:
 How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatically-emailing-motion-snapshots) snapshots:
 
 	apt-get install mailutils ssmtp mpack motion
+
+General settings:
+
 	vi /etc/motion/motion.conf
 	# Camera resolution optimized for recognition and performance.
 	width 704
 	height 576
-	# Combination of threshold and lightswitch are the most important
-	# parameters.
-	threshold 300
-	lightswitch 97
 	output_normal best
 	rotate 90
-	quality 100
+	quality 75
 	webcam_quality 100
 	webcam_maxrate 4
 	# Filename formats
@@ -120,10 +119,21 @@ How to [automatically emailing] (http://sirlagz.net/2013/02/18/how-to-automatica
 	# Use mpack to send out e-mail with images and videos
 	on_picture_save mpack -s "MONI-Image-Alert_%v-%v | noise: %N | changed pixels: %D" %f user@domain.tld
 	on_movie_end mpack -s "MONI-Video-Alert_%v-%v | noise: %N | changed pixels: %D" %f user@domain.tld
-	on_camera_lost echo "Cam connection lost" | mail -s "Cam connection lost" user@domain.tld
+	on_camera_lost echo "Oops!" | mail -s "MONI-Cam: Connection lost" user@domain.tld
 	# Timelapse config
+	ffmpeg_cap_new on
 	ffmpeg_timelapse 120
 	ffmpeg_timelapse_mode daily
+	pre_capture 4
+	post_capture 4
+
+Relevant *Raspberry Pi HD-CAM* settings:
+	vi /etc/motion/motion.conf
+	threshold_tune off
+	threshold 140
+	noise_tune on
+	noise_level 32
+	lightswitch 70
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
