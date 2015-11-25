@@ -1,4 +1,4 @@
-## mail / SMTP (SSMTP)
+# mail / sSMTP
 
 **Manpage:** ssmtp is a send-only sendmail emulator for machines which
 normally pick their mail up from a centralized mailhub (via pop, imap,
