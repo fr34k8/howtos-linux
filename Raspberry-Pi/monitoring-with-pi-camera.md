@@ -117,8 +117,8 @@ General settings:
 	text_double on
 	# Event config
 	# Use mpack to send out e-mail with images and videos
-	on_picture_save mpack -s "MONI-Image-Alert_%v-%v | noise: %N | changed pixels: %D" %f user@domain.tld
-	on_movie_end mpack -s "MONI-Video-Alert_%v-%v | noise: %N | changed pixels: %D" %f user@domain.tld
+	on_picture_save mpack -s "MONI-Alert | %v-%v | Image | Noise: %N | Changed pixels: %D" %f user@domain.tld
+	on_movie_end mpack -s "MONI-Alert | %v-%v | Movie | Noise: %N | Changed pixels: %D" %f user@domain.tld
 	on_camera_lost echo "Oops!" | mail -s "MONI-Cam: Connection lost" user@domain.tld
 	# Timelapse config
 	ffmpeg_cap_new on
