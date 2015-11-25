@@ -125,14 +125,14 @@ General settings:
 	ffmpeg_timelapse 120
 	ffmpeg_timelapse_mode daily
 	pre_capture 4
-	post_capture 4
+	post_capture 2
 
 Relevant *Raspberry Pi HD-CAM* settings:
 	vi /etc/motion/motion.conf
 	threshold_tune off
-	threshold 140
+	threshold 250
 	noise_tune on
-	noise_level 32
+	noise_level 16
 	lightswitch 70
 
 	vi /etc/default/motion
@@ -176,7 +176,7 @@ Start and pause motion detection via cron:
 	crontab -e
 	PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin"
 	15  7-16 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
-	15    18 * * 1-5 service motion stop
+	15    17 * * 1-5 service motion stop
 	16     * * * *   checkMotion.sh
 
 Enjoy!
