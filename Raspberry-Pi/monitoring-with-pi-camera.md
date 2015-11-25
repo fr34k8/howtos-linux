@@ -178,6 +178,7 @@ Start and pause motion detection via cron:
 	15  7-16 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
 	15    17 * * 1-5 service motion stop
 	16     * * * *   checkMotion.sh
+	16    17 * * *   mpack -s 'Moni-Daily_timelapse' /tmp/motion/$(date "+\%Y-\%m-\%d")_timelapse.mpg user@domain.tld
 
 Enjoy!
 
