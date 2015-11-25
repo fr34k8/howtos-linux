@@ -133,7 +133,7 @@ Relevant *Raspberry Pi HD-CAM* settings:
 	threshold 250
 	noise_tune on
 	noise_level 16
-	lightswitch 70
+	lightswitch 50
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
