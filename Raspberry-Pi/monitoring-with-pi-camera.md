@@ -98,10 +98,10 @@ General settings:
 	# Camera resolution optimized for recognition and performance.
 	width 704
 	height 576
-	output_normal best
+	output_normal first
 	rotate 90
-	quality 75
-	webcam_quality 100
+	quality 100
+	webcam_quality 75
 	webcam_maxrate 4
 	# Filename formats
 	snapshot_filename %Y-%m-%dT%H%M_%v-%q-%D-snapshot
@@ -124,16 +124,16 @@ General settings:
 	ffmpeg_cap_new on
 	ffmpeg_timelapse 120
 	ffmpeg_timelapse_mode daily
-	pre_capture 4
-	post_capture 2
+	pre_capture 3
+	post_capture 3
 
 Relevant *Raspberry Pi HD-CAM* settings:
 	vi /etc/motion/motion.conf
 	threshold_tune off
 	threshold 250
-	noise_tune on
-	noise_level 16
-	lightswitch 50
+	noise_tune off
+	noise_level 15
+	lightswitch 15
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
@@ -150,7 +150,7 @@ Found this [here](http://www.raspberrypi-spy.co.uk/2013/05/how-to-disable-the-re
 Older than 7 days:
 
 	vi /etc/default/rcS
-	TMPTIME=7
+	TMPTIME=1
 
 # Cron
 
