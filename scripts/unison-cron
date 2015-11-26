@@ -53,7 +53,7 @@ fi
 
 Hops=`tracepath6 $HOST | wc -l`
 
-if [ "$Hops" -gt "10" ];
+if [ "$Hops" -gt "11" ];
 then
   # Do not start if to many hops to the server. We assume we are not in local
   # wlan.
