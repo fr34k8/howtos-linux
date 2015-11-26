@@ -242,6 +242,19 @@ Täglicher Snapshot:
 
 	chmod 755 /etc/cron.daily/btrbk
 
+### Report about exclusive used data
+
+	btrfs quota enable /home
+	btrfs qgroup show -f /home
+	wget https://raw.githubusercontent.com/agronick/btrfs-size/master/btrfs-size.sh -O /usr/local/bin/btrfs-size.sh
+	chmod 755 /usr/local/bin/btrfs-size.sh
+	btrfs-size.sh /home
+	cat << EOF >/etc/cron.weekly/btrfs-size
+	#!/bin/bash
+	/usr/local/bin/btrfs-size.sh /home
+	EOF
+	chmod +x /usr/local/bin/btrfs-size.sh
+
 ### Fixing Btrfs Filesystem Full Problems
 
 Gefunden bei [merlins.org](http://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html) und bei [btrfs.wiki.kernel.org](https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space).
