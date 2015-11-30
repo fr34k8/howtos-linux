@@ -132,8 +132,10 @@ Relevant *Raspberry Pi HD-CAM* settings:
 	threshold_tune off
 	threshold 250
 	noise_tune off
-	noise_level 15
-	lightswitch 15
+	noise_level 19
+	lightswitch 0
+	framerate 6
+	minimum_motion_frames 3
 
 	vi /etc/default/motion
 	start_motion_daemon=yes
@@ -178,7 +180,7 @@ Start and pause motion detection via cron:
 	15  7-16 * * 1-5 pidof motion >/dev/null || /usr/sbin/service motion start
 	15    17 * * 1-5 service motion stop
 	16     * * * *   checkMotion.sh
-	16    17 * * *   mpack -s 'Moni-Daily_timelapse' /tmp/motion/$(date "+\%Y-\%m-\%d")_timelapse.mpg user@domain.tld
+	16    17 * * 1-5 mpack -s 'Moni-Daily_timelapse' /tmp/motion/$(date "+\%Y-\%m-\%d")_timelapse.mpg user@domain.tld
 
 Enjoy!
 
