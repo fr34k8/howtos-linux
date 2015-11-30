@@ -11,6 +11,12 @@ After boot of Pi:
 	apt-get update
 	apt-get upgrade
 
+	vi /etc/default/rcS
+	# automatically repair filesystems with inconsistencies during boot
+	FSCKFIX=yes
+
+## Network
+
 Configure WLAN USB stick:
 
 	cat << EOF >/etc/apt/sources.list.d/non-free.list
@@ -39,10 +45,14 @@ Copy output of psk="" to wlan0 interface config:
 		wpa-ssid sid
 		wpa-psk <from wpa_passphrase calculated hash>
 
+## SSH
+
 Permit only ssh key login:
 
 	grep PasswordAuthentication /etc/ssh/sshd_config
 	PasswordAuthentication no
+
+## Base
 
 Set time:
 
@@ -57,6 +67,10 @@ Enable syslog:
 Enable system e-mails:
 
 	apt-get install ssmtp
+
+Enable anacron jobs:
+
+	apt-get install anacron
 
 Configuration according to [ssmtp.conf](https://github.com/micressor/howtos-linux/blob/master/Debian/Desktop/install-os.md#mail--smtp-ssmtp).
 
