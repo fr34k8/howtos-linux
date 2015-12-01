@@ -9,60 +9,9 @@ Resicende monitoring for about CHF 200.- with (pure opensource) Raspian and moti
 * Raspberry Pi [Silver Case](https://www.adafruit.com/products/2346)
 * [Realtek RTL5370](https://www.pi-shop.ch/miniature-wifi-802-11b-g-n-module-fuer-raspberry-pi) Wireless LAN 802.11n USB 2.0 Network Adapter
 
-# Install Raspian
-Download Raspian from [here](https://www.raspberrypi.org/downloads/raspbian/) and install it
-according their instructions.
+# Install raspian
 
-## Update firmware
-
-After installation boot your pi and update firmware and packages:
-
-	rpi-update
-	reboot
-	apt-get update
-	apt-get upgrade
-
-## Network
-
-We'd like to use ipv6.
-
-	modprobe ipv6
-
-Be sure, that ipv6 is loaded until pi's next reboot:
-
-	echo "ipv6" >>/etc/modules
-
-Add FQDN to hosts file:
-
-	vi /etc/hosts
-	127.0.1.1       moni.domain.tld moni
-
-### Configure WLAN
-
-	wpa_passphrase sid passasdf
-
-Copy psk="" part of wpa_passphrase's out:
-
-	vi /etc/network/interfaces
-	allow-hotplug eth0
-	iface eth0 inet dhcp
-
-	allow-hotplug wlan0
-	iface wlan0 inet dhcp
-		wpa-ssid sid
-		wpa-psk <Copy content of psk="" here>
-
-## Time and logging
-
-Set time:
-
-	dpkg-reconfigure tzdata
-	apt-get install ntpdate
-
-Enable syslog:
-
-	apt-get install rsyslog
-	update-rc.d rsyslog enable
+According to [this](https://github.com/micressor/blob/master/Raspberry-Pi/raspian.md).
 
 ## Camera driver
 
