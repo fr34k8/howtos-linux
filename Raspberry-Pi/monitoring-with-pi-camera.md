@@ -81,7 +81,7 @@ Relevant *Raspberry Pi HD-CAM* settings:
 	threshold_tune off
 	threshold 250
 	noise_tune off
-	noise_level 19
+	noise_level 24
 	lightswitch 0
 	framerate 6
 	minimum_motion_frames 3
