@@ -43,17 +43,20 @@
 	[netvoip_in]
 
 	; Only allow mobile Numbers 076 - 079. Block all other calls
-	exten => _X.,1,Set(regx=^[0][3-9])
-	exten => _X.,2,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?20:90)
+	exten => _X.,1,GotoIf($["${EXTEN}" = "033xyz"]?90)
+	exten => _X.,2,Set(regx=^[0][6-9])
+	exten => _X.,3,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?20:90)
 
 	exten => _X.,20,GotoIf($["${EXTEN}" = "031xyz"]?90:21)
-	exten => _X.,21,System(echo "Asterisk"|mail -s "Anruf von ${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
+	exten => _X.,21,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
 	exten => _X.,22,Answer
 	exten => _X.,23,Dial(SIP/031xyz@netvoip,30,trg)
 	exten => _X.,24,Hangup
 
-	exten => _X.,90,System(echo "Asterisk"|mail -s "Anruf von ${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
-	exten => _X.,91,Hangup
+	exten => _X.,90,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} hört jetzt RaBe :-)" user@domain.tld)
+	exten => _X.,91,Answer
+	exten => _X.,92,Musiconhold(rabe)
+	exten => _X.,93,Hangup
 
 	; Ohne Hangup() wird via SIP ein 404 not found zurückgesendet
 
