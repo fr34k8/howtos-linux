@@ -30,6 +30,12 @@
 	vi /etc/asterisk/skinny.conf
 	bindaddr=127.0.0.1
 
+## musiconhold.conf
+
+	[rabe]
+	mode=custom
+	application=/usr/bin/mpg123 -q -r 8000 -f 8192 -b 2048 --mono -s http://stream.rabe.ch:8000/livestream/rabe-mid.mp3
+
 ## extensions.conf
 
 	vi /etc/asterisk/extensions.conf
