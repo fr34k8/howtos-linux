@@ -34,14 +34,28 @@
 
 	vi /etc/asterisk/extensions.conf
 	[netvoip_in]
-	exten => 031XXXXXX1,1,Answer
-	exten => 031XXXXXX1,2,System(echo "Greetings from asterisk" | mail -s "Verpasster Anruf von ${CALLERID(num)} an ${EXTEN}" user@domain.tld)
-	exten => 031XXXXXX1,3,Dial(SIP/078xxxxxxx@netvoip,30,trg)
+
+	; Only allow mobile Numbers 076 - 079. Block all other calls
+	exten => _X.,1,Set(regx=^[0][3-9])
+	exten => _X.,2,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?20:90)
+
+	exten => _X.,20,GotoIf($["${EXTEN}" = "031xyz"]?90:21)
+	exten => _X.,21,System(echo "Asterisk"|mail -s "Anruf von ${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
+	exten => _X.,22,Answer
+	exten => _X.,23,Dial(SIP/031xyz@netvoip,30,trg)
+	exten => _X.,24,Hangup
+
+	exten => _X.,90,System(echo "Asterisk"|mail -s "Anruf von ${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
+	exten => _X.,91,Hangup
+
 	; Ohne Hangup() wird via SIP ein 404 not found zurückgesendet
-	exten => _X.,2,Hangup(1)
 
 	[catchall]
 	; for security reason
 
 	asterisk -R
 	localhost*CLI> reload
+
+# Links
+
+* [How to hack the FreePBX blacklist for better call blocking capability ](http://tech.iprock.com/?p=10261)
