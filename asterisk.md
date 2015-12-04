@@ -32,6 +32,7 @@
 
 ## musiconhold.conf
 
+	; apt-get install mpg123
 	[rabe]
 	mode=custom
 	application=/usr/bin/mpg123 -q -r 8000 -f 8192 -b 2048 --mono -s http://stream.rabe.ch:8000/livestream/rabe-mid.mp3
