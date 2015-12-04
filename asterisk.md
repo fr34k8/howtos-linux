@@ -18,7 +18,7 @@
 	secret=xyz
 	host=sip.netvoip.ch
 	insecure=invite
-	context=netvoip_in
+	context=sip_incoming
 	nat=no
 	disallow=all
 	allow=alaw 
@@ -33,38 +33,52 @@
 ## musiconhold.conf
 
 	; apt-get install mpg123
-	[rabe]
+	[music1]
 	mode=custom
-	application=/usr/bin/mpg123 -q -r 8000 -f 8192 -b 2048 --mono -s http://stream.rabe.ch:8000/livestream/rabe-mid.mp3
+	application=/usr/bin/mpg123 -q -r 8000 -f 8192 -b 2048 --mono -s http://stream.url
+
+	[music2]
+	mode=files
+	directory=/var/lib/asterisk/sounds/custom
 
 ## extensions.conf
 
 	vi /etc/asterisk/extensions.conf
-	[netvoip_in]
+	[context1]
+	exten => _X.,1,Answer
+	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
+	exten => _X.,3,MusicOnHold(music1)
+	exten => _X.,4,Hangup
 
+	[context2]
+	exten => _X.,1,Answer
+	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
+	exten => _X.,3,MusicOnHold(music2)
+	exten => _X.,4,Hangup
+
+	[context3]
+	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
+	exten => _X.,2,Answer
+	exten => _X.,3,SetMusicOnHold(test)
+	exten => _X.,4,Dial(SIP/031xyz@netvoip,30,tgm)
+	exten => _X.,5,Hangup
+
+	[sip_incoming]
+	exten => _X.,1,GotoIf($["${CALLERID(num)}" = "058xyz"]?context1,${EXTEN},1)
+	exten => _X.,2,GotoIf($["${EXTEN}" = "033xyz"]?context2,${EXTEN},1)
+	exten => _X.,3,GotoIf($["${EXTEN}" = "031xyz"]?context3,${EXTEN},1)
 	; Only allow mobile Numbers 076 - 079. Block all other calls
-	exten => _X.,1,GotoIf($["${EXTEN}" = "033xyz"]?90)
-	exten => _X.,2,Set(regx=^[0][6-9])
-	exten => _X.,3,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?20:90)
-
-	exten => _X.,20,GotoIf($["${EXTEN}" = "031xyz"]?90:21)
-	exten => _X.,21,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
-	exten => _X.,22,Answer
-	exten => _X.,23,Dial(SIP/031xyz@netvoip,30,trg)
-	exten => _X.,24,Hangup
-
-	exten => _X.,90,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} hört jetzt RaBe :-)" user@domain.tld)
-	exten => _X.,91,Answer
-	exten => _X.,92,Musiconhold(rabe)
-	exten => _X.,93,Hangup
-
+	exten => _X.,4,Set(regx=^[0][6-9])
+	exten => _X.,5,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?context1,${EXTEN},1:context2,${EXTEN},1)
 	; Ohne Hangup() wird via SIP ein 404 not found zurückgesendet
 
 	[catchall]
 	; for security reason
 
-	asterisk -R
+	asterisk -vvvR
 	localhost*CLI> reload
+
+Tested with Asterisk PBX 11.13
 
 # Links
 
