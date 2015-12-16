@@ -20,8 +20,8 @@
 	insecure=invite
 	context=sip_incoming
 	nat=no
-	disallow=all
-	allow=alaw 
+	; http://www.voip-info.org/wiki/view/ITU+G.711
+	allow=!all,g722,alaw
 
 <http://www.voip-info.org/wiki/view/Asterisk+codecs>
 
