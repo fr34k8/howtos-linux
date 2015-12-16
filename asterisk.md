@@ -41,6 +41,18 @@
 	mode=files
 	directory=/var/lib/asterisk/sounds/custom
 
+## confbridge.conf
+
+	vi /etc/asterisk/confbridge.conf
+	[general]
+	[default_user]
+	type=user
+	music_on_hold_when_empty=yes
+	music_on_hold_class=music1
+	announce_user_count=yes
+	announce_user_count_all=yes
+	announce_only_user=yes
+
 ## extensions.conf
 
 	vi /etc/asterisk/extensions.conf
@@ -63,8 +75,14 @@
 	exten => _X.,4,Dial(SIP/031xyz@netvoip,30,tgm)
 	exten => _X.,5,Hangup
 
+	[context4]
+	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} added to ConfBridge" user@domain.tld)
+	exten => _X.,1,Answer
+	exten => _X.,2,ConfBridge(1234)
+	exten => _X.,3,Hangup
+
 	[sip_incoming]
-	exten => _X.,1,GotoIf($["${CALLERID(num)}" = "058xyz"]?context1,${EXTEN},1)
+	exten => _X.,1,GotoIf($["${CALLERID(num)}" = "058xyz"]?context4,${EXTEN},1)
 	exten => _X.,2,GotoIf($["${EXTEN}" = "033xyz"]?context2,${EXTEN},1)
 	exten => _X.,3,GotoIf($["${EXTEN}" = "031xyz"]?context3,${EXTEN},1)
 	; Only allow mobile Numbers 076 - 079. Block all other calls
