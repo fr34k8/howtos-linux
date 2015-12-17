@@ -53,7 +53,8 @@
 	type=user
 	music_on_hold_when_empty=yes
 	music_on_hold_class=music1
-	userunce_user_count=yes
+	announce_join_leave=yes
+	announce_user_count=yes
 	announce_user_count_all=no
 	announce_only_user=yes
 	dsp_drop_silence=yes
@@ -91,12 +92,16 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 	exten => _X.,3,Hangup
 
 	[sip_incoming]
+
+	; Route 031xyz direct to the conference app
+	exten => 031xyz,1,Goto(conf1,${EXTEN},1)
+
+	; route callerid|EXTEN based to a context
 	exten => _X.,1,GotoIf($["${CALLERID(num)}" = "058xyz"]?conf1,${EXTEN},1)
 	exten => _X.,2,GotoIf($["${EXTEN}" = "033xyz"]?music1,${EXTEN},1)
-	exten => _X.,3,GotoIf($["${EXTEN}" = "031xyz"]?music2,${EXTEN},1)
 	; Only allow mobile Numbers 076 - 079. Block all other calls
-	exten => _X.,4,Set(regx=^[0][6-9])
-	exten => _X.,5,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music1,${EXTEN},1:conf1,${EXTEN},1)
+	exten => _X.,3,Set(regx=^[0][6-9])
+	exten => _X.,4,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music1,${EXTEN},1:conf1,${EXTEN},1)
 	; Ohne Hangup() wird via SIP ein 404 not found zurückgesendet
 
 	[catchall]
