@@ -56,38 +56,38 @@
 ## extensions.conf
 
 	vi /etc/asterisk/extensions.conf
-	[context1]
+	[music1]
 	exten => _X.,1,Answer
 	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
 	exten => _X.,3,MusicOnHold(music1)
 	exten => _X.,4,Hangup
 
-	[context2]
+	[music2]
 	exten => _X.,1,Answer
 	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
 	exten => _X.,3,MusicOnHold(music2)
 	exten => _X.,4,Hangup
 
-	[context3]
+	[music3]
 	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
 	exten => _X.,2,Answer
 	exten => _X.,3,SetMusicOnHold(test)
 	exten => _X.,4,Dial(SIP/031xyz@netvoip,30,tgm)
 	exten => _X.,5,Hangup
 
-	[context4]
+	[conf1]
 	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} added to ConfBridge" user@domain.tld)
 	exten => _X.,1,Answer
 	exten => _X.,2,ConfBridge(1234)
 	exten => _X.,3,Hangup
 
 	[sip_incoming]
-	exten => _X.,1,GotoIf($["${CALLERID(num)}" = "058xyz"]?context4,${EXTEN},1)
-	exten => _X.,2,GotoIf($["${EXTEN}" = "033xyz"]?context2,${EXTEN},1)
-	exten => _X.,3,GotoIf($["${EXTEN}" = "031xyz"]?context3,${EXTEN},1)
+	exten => _X.,1,GotoIf($["${CALLERID(num)}" = "058xyz"]?conf1,${EXTEN},1)
+	exten => _X.,2,GotoIf($["${EXTEN}" = "033xyz"]?music1,${EXTEN},1)
+	exten => _X.,3,GotoIf($["${EXTEN}" = "031xyz"]?music2,${EXTEN},1)
 	; Only allow mobile Numbers 076 - 079. Block all other calls
 	exten => _X.,4,Set(regx=^[0][6-9])
-	exten => _X.,5,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?context1,${EXTEN},1:context2,${EXTEN},1)
+	exten => _X.,5,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music3,${EXTEN},1:conf1,${EXTEN},1)
 	; Ohne Hangup() wird via SIP ein 404 not found zurückgesendet
 
 	[catchall]
