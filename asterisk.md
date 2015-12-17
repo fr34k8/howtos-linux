@@ -45,13 +45,17 @@
 
 	vi /etc/asterisk/confbridge.conf
 	[general]
-	[default_user]
+	...
+	[my_pin_user]
 	type=user
 	music_on_hold_when_empty=yes
 	music_on_hold_class=music1
-	announce_user_count=yes
-	announce_user_count_all=yes
+	userunce_user_count=yes
+	announce_user_count_all=no
 	announce_only_user=yes
+	dsp_drop_silence=yes
+	denoise=yes
+	pin=1234
 
 ## extensions.conf
 
@@ -65,20 +69,20 @@
 	[music2]
 	exten => _X.,1,Answer
 	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
-	exten => _X.,3,MusicOnHold(music2)
+	exten => _X.,3,MusicOnHold(music1)
 	exten => _X.,4,Hangup
 
 	[music3]
 	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
 	exten => _X.,2,Answer
-	exten => _X.,3,SetMusicOnHold(test)
+	exten => _X.,3,SetMusicOnHold(music1)
 	exten => _X.,4,Dial(SIP/031xyz@netvoip,30,tgm)
 	exten => _X.,5,Hangup
 
 	[conf1]
 	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} added to ConfBridge" user@domain.tld)
 	exten => _X.,1,Answer
-	exten => _X.,2,ConfBridge(1234)
+	exten => _X.,2,ConfBridge(1,,my_pin_user,sample_admin_menu)
 	exten => _X.,3,Hangup
 
 	[sip_incoming]
@@ -87,7 +91,7 @@
 	exten => _X.,3,GotoIf($["${EXTEN}" = "031xyz"]?music2,${EXTEN},1)
 	; Only allow mobile Numbers 076 - 079. Block all other calls
 	exten => _X.,4,Set(regx=^[0][6-9])
-	exten => _X.,5,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music3,${EXTEN},1:conf1,${EXTEN},1)
+	exten => _X.,5,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music1,${EXTEN},1:conf1,${EXTEN},1)
 	; Ohne Hangup() wird via SIP ein 404 not found zurückgesendet
 
 	[catchall]
