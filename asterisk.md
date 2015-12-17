@@ -57,6 +57,8 @@
 	denoise=yes
 	pin=1234
 
+Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/ConfBridge) is here.
+
 ## extensions.conf
 
 	vi /etc/asterisk/extensions.conf
