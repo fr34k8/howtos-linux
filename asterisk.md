@@ -12,6 +12,9 @@
 	context=catchall
 	allowguest=no
 	alwaysauthreject=yes
+	; Enable IPv6 listening
+	udpbindaddr=::
+	useragent=Asterisk PBX
 	[netvoip]
 	type=peer
 	username=031XXXXXX1
