@@ -53,22 +53,36 @@
 
 	vi /etc/asterisk/confbridge.conf
 	[general]
-	...
-	[pin_conf]
-	type=user
-	music_on_hold_when_empty=yes
-	music_on_hold_class=music1
-	announce_join_leave=yes
-	announce_user_count=yes
-	announce_user_count_all=no
-	announce_only_user=yes
-	dsp_drop_silence=yes
-	denoise=yes
-	pin=1234
+	[default_bridge]
+	type=bridge
+	language=de
 
-	[recording_bridge]
+	[rec_bridge]
 	type=bridge
 	record_conference=yes
+	language=de
+
+	[admin_user]
+	type=user
+	admin=yes
+	marked=yes
+	announce_user_count=yes
+	announce_user_count_all=no
+	dsp_drop_silence=yes
+	denoise=yes
+	music_on_hold_when_empty=yes
+	music_on_hold_class=music1
+
+	[moderated_user]
+	type=user
+	wait_marked=yes
+	announce_user_count=yes
+	announce_user_count_all=no
+	dsp_drop_silence=yes
+	denoise=yes
+	music_on_hold_when_empty=yes
+	music_on_hold_class=rabe
+	pin=1234
 
 Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/ConfBridge) is here.
 
@@ -96,10 +110,11 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 	exten => _X.,1,Set(number=${EXTEN})
 	exten => _X.,2,Answer
 	exten => _X.,3,Wait(1)
-	exten => _X.,4,ConfBridge(1,recording_bridge,pin_conf,sample_admin_menu)
-	exten => h,1,Set(subject="${CALLERID(num)} nach ${number} (blockiert), war ${CDR(duration)} Sekundenverbunden")
+	exten => _X.,4,GotoIf($["${CALLERID(num)}" = "031xyz"]?conf1,${EXTEN},5:6)
+	exten => _X.,5,ConfBridge(1,default_bridge,admin_user,sample_admin_menu)
+	exten => _X.,6,ConfBridge(1,default_bridge,moderated_user,sample_user_menu)
+	exten => h,1,Set(subject="${CALLERID(num)} nach ${number} (ConfBridge), war ${CDR(duration)} Sekunden verbunden")
 	exten => h,2,System(echo ${subject} | mail -s ${subject} user@domain.tld)
-
 
 	[sip_incoming]
 
