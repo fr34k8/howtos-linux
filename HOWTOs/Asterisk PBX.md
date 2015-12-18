@@ -1,6 +1,11 @@
 # Asterisk configure to receive incoming sip calls
 
-    apt-get install asterisk
+    apt-get install asterisk asterisk-prompt-de
+
+## asterisk.conf
+
+	vi /etc/asterisk/asterisk.conf
+	defaultlanguage = de
 
 ## sip.conf
 
@@ -71,33 +76,30 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 
 	vi /etc/asterisk/extensions.conf
 	[music1]
-	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
+	exten => _X.,1,Set(number=${EXTEN})
 	exten => _X.,2,Answer
 	exten => _X.,3,Wait(1)
 	exten => _X.,4,MusicOnHold(music1)
-	exten => _X.,5,Hangup
-
-	[music2]
-	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
-	exten => _X.,2,Answer
-	exten => _X.,3,Wait(1)
-	exten => _X.,4,MusicOnHold(music1)
-	exten => _X.,5,Hangup
+	exten => h,1,Set(subject="${CALLERID(num)} nach ${number} (blockiert), war ${CDR(duration)} Sekundenverbunden")
+	exten => h,2,System(echo ${subject} | mail -s ${subject} user@domain.tld)
 
 	[music3]
-	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
+	exten => _X.,1,Set(number=${EXTEN})
 	exten => _X.,2,Answer
 	exten => _X.,3,Wait(1)
 	exten => _X.,4,SetMusicOnHold(music1)
 	exten => _X.,5,Dial(SIP/031xyz@netvoip,30,tgm)
-	exten => _X.,6,Hangup
+	exten => h,1,Set(subject="${CALLERID(num)} nach ${number} (weiterleitung), war ${CDR(duration)} Sekundenverbunden")
+	exten => h,2,System(echo ${subject} | mail -s ${subject} user@domain.tld)
 
 	[conf1]
-	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} added to ConfBridge" user@domain.tld)
-	exten => _X.,1,Answer
-	exten => _X.,2,Wait(1)
-	exten => _X.,3,ConfBridge(1,recording_bridge,pin_conf,sample_admin_menu)
-	exten => _X.,3,Hangup
+	exten => _X.,1,Set(number=${EXTEN})
+	exten => _X.,2,Answer
+	exten => _X.,3,Wait(1)
+	exten => _X.,4,ConfBridge(1,recording_bridge,pin_conf,sample_admin_menu)
+	exten => h,1,Set(subject="${CALLERID(num)} nach ${number} (blockiert), war ${CDR(duration)} Sekundenverbunden")
+	exten => h,2,System(echo ${subject} | mail -s ${subject} user@domain.tld)
+
 
 	[sip_incoming]
 
