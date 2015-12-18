@@ -59,8 +59,8 @@
 
 	[rec_bridge]
 	type=bridge
-	record_conference=yes
 	language=de
+	record_conference=yes
 
 	[admin_user]
 	type=user
@@ -81,7 +81,7 @@
 	dsp_drop_silence=yes
 	denoise=yes
 	music_on_hold_when_empty=yes
-	music_on_hold_class=rabe
+	music_on_hold_class=music1
 	pin=1234
 
 Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/ConfBridge) is here.
