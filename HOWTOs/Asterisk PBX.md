@@ -49,7 +49,7 @@
 	vi /etc/asterisk/confbridge.conf
 	[general]
 	...
-	[my_pin_user]
+	[pin_conf]
 	type=user
 	music_on_hold_when_empty=yes
 	music_on_hold_class=music1
@@ -61,34 +61,42 @@
 	denoise=yes
 	pin=1234
 
+	[recording_bridge]
+	type=bridge
+	record_conference=yes
+
 Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/ConfBridge) is here.
 
 ## extensions.conf
 
 	vi /etc/asterisk/extensions.conf
 	[music1]
-	exten => _X.,1,Answer
-	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
-	exten => _X.,3,MusicOnHold(music1)
-	exten => _X.,4,Hangup
+	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
+	exten => _X.,2,Answer
+	exten => _X.,3,Wait(1)
+	exten => _X.,4,MusicOnHold(music1)
+	exten => _X.,5,Hangup
 
 	[music2]
-	exten => _X.,1,Answer
-	exten => _X.,2,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
-	exten => _X.,3,MusicOnHold(music1)
-	exten => _X.,4,Hangup
+	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} blockiert" user@domain.tld)
+	exten => _X.,2,Answer
+	exten => _X.,3,Wait(1)
+	exten => _X.,4,MusicOnHold(music1)
+	exten => _X.,5,Hangup
 
 	[music3]
 	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} umgeleitet" user@domain.tld)
 	exten => _X.,2,Answer
-	exten => _X.,3,SetMusicOnHold(music1)
-	exten => _X.,4,Dial(SIP/031xyz@netvoip,30,tgm)
-	exten => _X.,5,Hangup
+	exten => _X.,3,Wait(1)
+	exten => _X.,4,SetMusicOnHold(music1)
+	exten => _X.,5,Dial(SIP/031xyz@netvoip,30,tgm)
+	exten => _X.,6,Hangup
 
 	[conf1]
 	exten => _X.,1,System(echo "Asterisk"|mail -s "${CALLERID(num)} nach ${EXTEN} added to ConfBridge" user@domain.tld)
 	exten => _X.,1,Answer
-	exten => _X.,2,ConfBridge(1,,my_pin_user,sample_admin_menu)
+	exten => _X.,2,Wait(1)
+	exten => _X.,3,ConfBridge(1,recording_bridge,pin_conf,sample_admin_menu)
 	exten => _X.,3,Hangup
 
 	[sip_incoming]
