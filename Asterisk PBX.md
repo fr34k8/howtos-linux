@@ -194,6 +194,9 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 	exten => _X.,5,Dial(SIP/${Digits}@netvoip,120,tg)
 	exten => _X.,6,Goto(menu,${EXTEN},3)
 
+	[sip_incomming]
+	exten => 031xyz1,1,Goto(outgoing_sipcall,${EXTEN},1)
+
 ## Tipps with extensions.conf
 
 	vi /etc/asterisk/extensions.conf
