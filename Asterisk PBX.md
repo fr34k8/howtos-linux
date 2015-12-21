@@ -172,7 +172,7 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 	exten => _X.,4,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music1,${EXTEN},1:conf1,${EXTEN},1)
 
 	; Regex: only allow mobile Numbers 076 - 079. Block all other calls
-	exten => _X.,3,Set(regx=^[0][6-9])
+	exten => _X.,3,Set(regx=[7][6-9])
 	exten => _X.,4,GotoIf($[${REGEX("${regx}" ${CALLERID(num)})} = 1]?music1,${EXTEN},1:conf1,${EXTEN},1)
 
 	; If we do not execute a Hangup(), asterisk will response a 404 (not found) to the sip server
