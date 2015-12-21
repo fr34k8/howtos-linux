@@ -126,7 +126,7 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 	[sip_incomming]
 	exten => 031xyz,1,Goto(conf1,${EXTEN},1)
 
-## Voicemailbox system
+## Voicemail system
 
 	vi /etc/asterisk/voicemail.conf
 	[general]
@@ -154,6 +154,45 @@ Documentation about [ConfBridge](https://wiki.asterisk.org/wiki/display/AST/Conf
 	[sip_incomming]
 	exten => 031xyz1,1,Goto(voicemail,${EXTEN},1)
 	exten => 031xyz2,1,Goto(voicemailmain,${EXTEN},1)
+
+## Create a menu system for testing
+
+	vi /etc/asterisk/extensions.conf
+	[menu]
+	exten => _X.,1,Answer
+	exten => _X.,2,Wait(1)
+	exten => _X.,3,Read(Digits,demo-congrats)
+	exten => _X.,4,SayDigits(${Digits})
+	exten => _X.,5,GotoIf($["${Digits}" = "1"]?context1,${EXTEN},1)
+	exten => _X.,6,GotoIf($["${Digits}" = "2"]?context2,${EXTEN},1)
+	exten => _X.,7,GotoIf($["${Digits}" = "3"]?context3,${EXTEN},1)
+	exten => _X.,8,GotoIf($["${Digits}" = "0"]?menu,h,1)
+	exten => _X.,9,Goto(outgoing_sipcall,${EXTEN},1)
+	exten => h,1,Hangup
+
+	[context1]
+	exten => _X.,1,Answer
+	exten => _X.,2,Hangup
+	[context2]
+	exten => _X.,1,Answer
+	exten => _X.,2,Hangup
+	[context3]
+	exten => _X.,1,Answer
+	exten => _X.,2,Hangup
+
+	[sip_incomming]
+	exten => 031xyz1,1,Goto(menu,${EXTEN},1)
+
+## Create a dialout app
+
+	vi /etc/asterisk/extensions.conf
+	[outgoing_sipcall]
+	exten => _X.,1,Answer
+	exten => _X.,2,Wait(1)
+	exten => _X.,3,Read(Digits,pbx-transfer)
+	exten => _X.,4,SayDigits(${Digits})
+	exten => _X.,5,Dial(SIP/${Digits}@netvoip,120,tg)
+	exten => _X.,6,Goto(menu,${EXTEN},3)
 
 ## Tipps with extensions.conf
 
