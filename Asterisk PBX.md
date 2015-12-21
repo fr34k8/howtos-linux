@@ -40,7 +40,8 @@
 	insecure=invite
 	context=sip_incoming
 	nat=no
-	allow=!all,g722,alaw
+	; http://www.voip-info.org/wiki/view/ITU+G.711
+	allow=!all,g722,alaw,ulaw
 
 More info [about codecs in europe](http://www.voip-info.org/wiki/view/ITU+G.711).
 
