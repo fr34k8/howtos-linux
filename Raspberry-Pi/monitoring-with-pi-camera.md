@@ -13,7 +13,7 @@ Resicende monitoring for about CHF 200.- with (pure opensource) Raspian and moti
 
 # Install raspian
 
-According to [this](https://github.com/micressor/blob/master/Raspberry-Pi/raspian.md).
+According to [this](https://github.com/micressor/howtos-linux/blob/master/Raspberry-Pi/raspian.md).
 
 ## Camera driver
 
