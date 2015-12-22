@@ -2,12 +2,14 @@
 
 Resicende monitoring for about CHF 200.- with (pure opensource) Raspian and motion.
 
-## Hardware
+## Raspberry Pi Hardware
 
-* Raspberry Pi [Model B+](https://www.pi-shop.ch/raspberry-pi-model-b)
-* Raspberry Pi [HD-Cam](https://www.pi-shop.ch/hd-kamera-raspberry-pi)
-* Raspberry Pi [Silver Case](https://www.adafruit.com/products/2346)
-* [Realtek RTL5370](https://www.pi-shop.ch/miniature-wifi-802-11b-g-n-module-fuer-raspberry-pi) Wireless LAN 802.11n USB 2.0 Network Adapter
+* [Pi - Model B+](https://www.pi-shop.ch/raspberry-pi-model-b)
+* [Silver Case](https://www.pi-shop.ch/edles-alugehaeuse-fuer-raspberry-pi-b-und-pi-2)
+* [HD-Cam NoIR](https://www.pi-shop.ch/hd-kamera-raspberry-pi-noir)
+* [Miniature WiFi Dongle](https://www.pi-shop.ch/miniature-wifi-802-11b-g-n-module-fuer-raspberry-pi) Wireless LAN 802.11n USB 2.0 Network Adapter (Realtek RTL5370)
+* [8GB MicroSD Card](https://www.pi-shop.ch/8gb-sd-karte-noobs-raspian-pidora-xbmc-openelec-archlinux-riscos-bereits-installiert)
+* [Steckernetzteil](https://www.pi-shop.ch/steckernetzteil-microusb-5v-2a)
 
 # Install raspian
 
