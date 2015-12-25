@@ -6,11 +6,11 @@ Remove recursive all acls:
 
 Initiales Setzen rekursiv: 
 
-	setfacl -R -m u:user1:rwx,u:user2:rwx folder/
+	setfacl -R -m u:user1:rwX,u:user2:rwX folder/
 
 **default-acl** für den Ordner und alle zukünftigen Dateien und Ordner:
 
-	setfacl -d -m u:user1:rwx,u:user2:rwx folder/
+	setfacl -R -d -m u:user1:rwX,u:user2:rwX folder/
 
 # Links
 
