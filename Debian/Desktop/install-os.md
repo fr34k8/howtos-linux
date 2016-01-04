@@ -177,15 +177,21 @@ Wöchentlich eine logwatch e-mail der letzten 7 Tage:
 ## Useful for office
 
 	apt-get install \
-	audacity flashplugin-nonfree libreoffice-l10n-de default-jre \
-	icedtea-plugin jmeter freemind android-tools-adb virt-manager \
+	audacity libreoffice-l10n-de default-jre \
+	icedtea-plugin jmeter android-tools-adb virt-manager \
 	myspell-de-ch
 
-## remove rpcbind
+## Remove rpcbind
 
 Wir nutzen keinen nfs stuff.
 
       apt-get purge rpcbind
+
+## Remove flashplugin-nonfree
+
+I plan to no longer use flash websites:
+
+	apt-get autoremove --purge flashplugin-nonfree
 
 ## Related depends on lenovo's
 
