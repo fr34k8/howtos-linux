@@ -223,9 +223,7 @@ Inspired by <https://wiki.debian.org/UnattendedUpgrades>
 
 ## Power Management
 
-	apt-get install acpitool
-	apt-get install tp-smapi-dkms hdapsd
-	apt-get install laptop-mode-tools
+	apt-get install acpitool tp-smapi-dkms hdapsd laptop-mode-tools
 	echo "tp_smapi" >> /etc/modules
 	echo "hdaps" >> /etc/modules
 	update-initramfs -u
