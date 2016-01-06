@@ -51,3 +51,7 @@ If it is a UEFI system, check the bootloader:
 	file /boot/efi/EFI/debian/grubx64.efi
 	/boot/efi/EFI/debian/grubx64.efi: PE32+ executable (EFI application) x86-64 (stripped to external PDB), for MS Windows
 	export LC_ALL=C
+
+# Links
+
+* [Installing Debian to an existing dm-crypt container](https://blog.hartwork.org/?p=1757)
