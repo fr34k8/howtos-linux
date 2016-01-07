@@ -192,7 +192,7 @@ Check status of [btrbk in debian.](https://tracker.debian.org/pkg/btrbk)
 
 /home muss mit btrfs formatiert sein.
 
-	mkdir /home/btrbk_snapshots
+	mkdir /home/user1/_SNAPSHOTS
 
 ### Config
 
@@ -339,12 +339,12 @@ vi /etc/btrbk/btrbk.conf
 
 Restore a single file:
 
-	cp -p /home/btrbk_snapshots/user1.20150804/important.txt /home/user1/important.txt
+	cp -p /home/user1/_SNAPSHOSTS/user1.20150804/important.txt /home/user1/important.txt
 
 Restore a whole snapshot ([Quelle](http://www.digint.ch/btrbk/doc/readme.html)):
 
 	mv /home/user1 /home/user1.BROKEN
-	btrfs subvolume snapshot /home/btrbk_snapshots/user1.20150805 /home/user1
+	btrfs subvolume snapshot /home/user1/_SNAPSHOTS/user1.20150805 /home/user1
 
 That's it; your data subvolume is restored. If everything went fine, it's time to nuke the broken subvolume:
 
