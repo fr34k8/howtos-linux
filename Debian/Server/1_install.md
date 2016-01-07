@@ -111,7 +111,7 @@ EOF
 
 	chmod +x /etc/cron.daily/backup
 
-Synchronize /home/user/backup with unison or rsync.
+Synchronize /home/user/backup [with unison](https://github.com/micressor/howtos-linux/blob/master/Debian/backup-mit-unison-und-btrfs-snapshots.md) or rsync.
 
 ### offlineimap
 

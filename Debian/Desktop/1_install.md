@@ -175,6 +175,10 @@ Wöchentlich eine logwatch e-mail der letzten 7 Tage:
 	pbuilder debhelper zip lame lintian mtr \
 	git-buildpackage ruby devscripts
 
+## Backup
+
+[HOWTO: Install unison synchronisation together with btrfs snapshots.](https://github.com/micressor/howtos-linux/blob/master/Debian/backup-mit-unison-und-btrfs-snapshots.md)
+
 ## Useful for office
 
 	apt-get install \
