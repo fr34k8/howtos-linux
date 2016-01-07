@@ -208,23 +208,21 @@ Setup snapshot's for user1:
 
 	cat << EOF >/etc/btrbk/btrbk.conf
 	# Preserve matrix for source snapshots:
-	snapshot_preserve_daily    14
+	snapshot_preserve_daily    7
 	snapshot_preserve_weekly   4
-	snapshot_preserve_monthly  12
+	snapshot_preserve_monthly  6
 
 	# Preserve matrix for backup targets:
-	#target_preserve_daily      14
-	#target_preserve_weekly     14
-	#target_preserve_monthly    12
+	#target_preserve_daily      7
+	#target_preserve_weekly     4
+	#target_preserve_monthly    6
 
 	volume /home
-	  snapshot_dir btrbk_snapshots
 	  subvolume user1
-	  subvolume user1
-	  # Pro User wird der snapshot separat konfiguriert.
-	  #subvolume user2
-	  #subvolume user3
-EOF
+	    snapshot_dir user1/_SNAPSHOTS
+	  subvolume user2
+	    snapshot_dir user2/_SNAPSHOTS
+	EOF
 
 ### Cron
 
