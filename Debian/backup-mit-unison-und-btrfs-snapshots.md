@@ -171,7 +171,21 @@ Der ping stuff habe ich auf [stackoverflow](http://stackoverflow.com/questions/2
 
 ### Install
 
-Download btrbk from [here.](http://www.digint.ch/btrbk/download.html) Check status of [btrbk in debian.](https://tracker.debian.org/pkg/btrbk)
+#### from source
+
+Download btrbk from [here.](http://www.digint.ch/btrbk/download.html)
+
+	apt-get install libbdate-calc-perl
+	cd /tmp
+	wget [btrbk](http://www.digint.ch/download/btrbk/releases/btrbk-0.21.0.tar.xz)
+	unxz btrbk-0.21.0.tar.xz
+	tar xf btrbk-0.21.0.tar
+	cd btrbk-*
+	make install
+
+#### via apt-get
+
+Check status of [btrbk in debian.](https://tracker.debian.org/pkg/btrbk)
 
 	apt-get -t testing install btrbk
 	less /etc/btrbk/btrbk.conf.example
