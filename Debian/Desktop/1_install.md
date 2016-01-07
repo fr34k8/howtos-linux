@@ -162,6 +162,7 @@ Wöchentlich eine logwatch e-mail der letzten 7 Tage:
 
 	apt-get install \
 	openssh-server \
+	apt-file \
 	iceweasel-l10n-de \
 	opensc pcscd autoconf automake \
 	autotools-dev bc build-essential flac gettext gimp \

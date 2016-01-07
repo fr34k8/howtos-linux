@@ -17,7 +17,7 @@ EOF
 	apt-get install \
 	tripwire vim mutt screen sudo rsync \
 	logwatch postfix mailutils dnsutils locales \
-	lynx whois mtr apt-listchanges snort git
+	lynx whois mtr apt-listchanges snort git apt-file
 
 ## ntp
 
