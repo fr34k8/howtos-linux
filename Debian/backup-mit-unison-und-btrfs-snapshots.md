@@ -217,6 +217,8 @@ Setup snapshot's for user1:
 	#target_preserve_weekly     4
 	#target_preserve_monthly    6
 
+	timestamp_format long
+
 	volume /home
 	  subvolume user1
 	    snapshot_dir user1/_SNAPSHOTS
