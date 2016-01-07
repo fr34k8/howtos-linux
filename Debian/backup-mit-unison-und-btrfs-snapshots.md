@@ -177,7 +177,7 @@ Download btrbk from [here.](http://www.digint.ch/btrbk/download.html)
 
 	apt-get install libbdate-calc-perl
 	cd /tmp
-	wget [btrbk](http://www.digint.ch/download/btrbk/releases/btrbk-0.21.0.tar.xz)
+	wget http://www.digint.ch/download/btrbk/releases/btrbk-0.21.0.tar.xz
 	unxz btrbk-0.21.0.tar.xz
 	tar xf btrbk-0.21.0.tar
 	cd btrbk-*
