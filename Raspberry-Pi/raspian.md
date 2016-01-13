@@ -3,6 +3,11 @@
 Download Raspian from [here](https://www.raspberrypi.org/downloads/raspbian/)
 and install it according their instructions.
 
+## Locales
+
+	dpkg-reconfigure locales
+	de_CH.UTF-8... done
+
 ## Update firmware
 
 After installation boot your pi and update firmware and packages:
