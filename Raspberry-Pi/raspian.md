@@ -8,6 +8,13 @@ and install it according their instructions.
 	dpkg-reconfigure locales
 	de_CH.UTF-8... done
 
+## Keyboard
+
+To [configure](https://wiki.debian.org/Keyboard) the console keyboard:
+
+	dpkg-reconfigure keyboard-configuration
+	service keyboard-setup restart
+
 ## Update firmware
 
 After installation boot your pi and update firmware and packages:
