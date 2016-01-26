@@ -86,6 +86,7 @@ Frome [wiki.gnupg.org](https://wiki.gnupg.org/GnomeKeyring)
 	beacon.enabled = False
 	browser.cache.disk.enable = False
 	browser.cache.memory.enable = False
+	network.http.sendRefererHeader = 0
 	network.http.referer.XOriginPolicy = 1
 	webgl.disabled = True
 	webgl.disable-extensions= True
