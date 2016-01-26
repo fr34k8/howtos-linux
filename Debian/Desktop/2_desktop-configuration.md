@@ -66,9 +66,15 @@ Frome [wiki.gnupg.org](https://wiki.gnupg.org/GnomeKeyring)
 
 ## Firefox / Iceweasel
 
-Gefunden im privacy-handbuch.de
+### Add-Ons
 
-URL: about:config
+* NoScript
+* Adblock Edge
+* Better Privacy (LSO's / SuperCookies)
+* Self-Destructing Cookies
+* SixOrNot
+
+### about:config
 
 	media.peerconnection.enabled = False
 	geo.enabled = False
@@ -81,6 +87,8 @@ URL: about:config
 	browser.cache.disk.enable = False
 	browser.cache.memory.enable = False
 	network.http.sendRefererHeader = 0
+
+Inspired by [privacy-handbuch.de](https://privacy-handbuch.de/handbuch_21.htm).
 
 ### Silverlight
 
