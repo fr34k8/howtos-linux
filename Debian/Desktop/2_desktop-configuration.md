@@ -2,7 +2,7 @@
 
 ## Useful office software
 
-	apt-get install gummi texlive-lang-german
+	apt-get install gummi texlive-lang-german network-manager-openvpn-gnome
 
 ## Drucker / Scanner MG4100series
 
