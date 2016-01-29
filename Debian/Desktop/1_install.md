@@ -279,10 +279,10 @@ Um zu sehen ob die cron e-mail sauber kommt, anacron ausführen
 	nice -n 20 clamscan -o --stdout --quiet \
 	--follow-file-symlinks=2 \
 	--follow-dir-symlinks=0 \
-	--exclude-dir=backup \
-	--exclude-dir=/sys \
-	--exclude-dir=btrbk_snapshots \
+	--exclude-dir=.gpg \
 	--exclude-dir=_SNAPSHOTS \
+	--exclude-dir=cache \
+	--exclude-dir=/sys \
 	--exclude-dir=/run \
 	--exclude-dir=/dev \
 	--exclude-dir=/proc -r /
