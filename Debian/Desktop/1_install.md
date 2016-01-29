@@ -279,8 +279,9 @@ Um zu sehen ob die cron e-mail sauber kommt, anacron ausführen
 	nice -n 20 clamscan -o --stdout --quiet \
 	--follow-file-symlinks=2 \
 	--follow-dir-symlinks=0 \
-	--exclude-dir=.gpg \
+	--exclude=.gpg \
 	--exclude-dir=_SNAPSHOTS \
+	--exclude-dir=btr_backup \
 	--exclude-dir=cache \
 	--exclude-dir=/sys \
 	--exclude-dir=/run \
