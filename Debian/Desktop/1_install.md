@@ -288,7 +288,7 @@ Um zu sehen ob die cron e-mail sauber kommt, anacron ausführen
 	--exclude-dir=/proc -r /
 	EOF
 
-	chmod +x /etc/cron.daily/clamscan
+	chmod +x /etc/cron.weekly/clamscan
 	wget http://www.eicar.org/download/eicar.com.txt
 
 Viren werden mit dieser Konfiguration nur aufgezeigt! Um zu löschen ist
