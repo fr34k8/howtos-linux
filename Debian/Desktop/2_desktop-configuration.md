@@ -52,17 +52,31 @@ Manager](https://extensions.gnome.org/extension/945/cpu-power-manager/)
 
 	gnome-shell-extension-prefs
 
-## gpg: WARNING: The GNOME keyring manager hijacked the GnuPG agent
+## Disable GNOME keyring
 
-Disable GNOME Keyring:
+This disable gnome keyring permanently.
+Tested with Version 3.14.1 on Debian 8 (jessie).
+
+### For gpg
+
+If you have this warning: "gpg: WARNING: The GNOME keyring manager hijacked the GnuPG agent"
 
 	sudo dpkg-divert --local --rename --divert /etc/xdg/autostart/gnome-keyring-gpg.desktop-disable --add /etc/xdg/autostart/gnome-keyring-gpg.desktop
+
+### For ssh
+
+	sudo dpkg-divert --local --rename --divert /etc/xdg/autostart/gnome-keyring-ssh.desktop-disable --add /etc/xdg/autostart/gnome-keyring-ssh.desktop
+
+### Re enable it
 
 If you later decide to reenable it, then you can use:
 
 	sudo dpkg-divert --rename --remove /etc/xdg/autostart/gnome-keyring-gpg.desktop
+	sudo dpkg-divert --rename --remove /etc/xdg/autostart/gnome-keyring-ssh.desktop
 
-Frome [wiki.gnupg.org](https://wiki.gnupg.org/GnomeKeyring)
+
+
+## Disable GNOME keyring for ssh
 
 ## Firefox / Iceweasel
 
