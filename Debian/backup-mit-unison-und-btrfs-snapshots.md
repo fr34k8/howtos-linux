@@ -175,7 +175,7 @@ Der ping stuff habe ich auf [stackoverflow](http://stackoverflow.com/questions/2
 
 Download btrbk from [here.](http://www.digint.ch/btrbk/download.html)
 
-	apt-get install libbdate-calc-perl
+	apt-get install libdate-calc-perl
 	cd /tmp
 	wget http://www.digint.ch/download/btrbk/releases/btrbk-0.21.0.tar.xz
 	unxz btrbk-0.21.0.tar.xz
