@@ -94,19 +94,26 @@ Anschliessend mit <http://ip-check.info> testen.
 
 ## Apps
 
-From [f-droid.org](http://f-droid.org):
+Good Appls installed from [f-droid.org](http://f-droid.org):
 
 * add to calendar - import .ics files into calendar
-* AFWall+ - control network traffic
+* AFWall+ - control network traffic (or NetGuard)
 * AntennaPod - listen to audio feeds
-* APG - Encrypt email and files
-* K-9 Mail - full-featured email client
-* Barcode Scanner - Scan and create 2D and QR codes
-* BetterBatterystats - Monitor battery behaviour
-* DAVDroid - contacts and calendar sync
+* Barcode Scanner
+* Battery Dog
+* Call recorder for Android
+* Conversations
+* CPU Stats
+* DateStats
+* Diktofon
 * Document Viewer - Viewer for many document formats
+* HydroMemo
+* K-9 Mail - full-featured email client
 * Lesser Pad - Simple memo pad
-* OsmAnd~ - Offline/online maps and navigation
+* Material Player
+* OpenKeychain
+* OsmAnd~
+* ServeStream
 * Vanilla Music - Music player
 
 # FAQ
