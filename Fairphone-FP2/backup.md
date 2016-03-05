@@ -1,4 +1,4 @@
-# Backing up your android based Fairphone FP2 using ssh and rsync
+# Backing up your android based Fairphone FP2 using ssh and rsync without root access
 
 ## SSHelper configuration
 
