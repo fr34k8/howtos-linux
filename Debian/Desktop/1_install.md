@@ -122,15 +122,16 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	APT::Default-Release "jessie";
 	EOF
 
-[Priority](https://wiki.debian.org/AptPreferences) für testing [anpassen](http://www.argon.org/~roderick/apt-pinning.html):
+[Priority](https://wiki.debian.org/AptPreferences) for testing [anpassen](http://www.argon.org/~roderick/apt-pinning.html) (order is important).
 
 	vi /etc/apt/preferences.d/pinning
 	Package: *
-	Pin: release o=Debian,a=jessie
-	Pin-Priority:  900
-	Package: *
 	Pin: release o=Debian,a=testing
 	Pin-Priority: -500
+	Package: *
+	Pin: release o=Debian,n=jessie-updates
+	Pin-Priority: 995
+
 
 	vi /etc/apt/sources.list
 	deb http://ftp.ch.debian.org/debian testing main contrib non-free
