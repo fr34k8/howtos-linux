@@ -2,13 +2,16 @@
 
 ## SSHelper configuration
 
-Install [SSHelper](https://play.google.com/store/apps/details?id=com.arachnoid.sshelper) from google play store or from its homepage [here](http://arachnoid.com/android/SSHelper/index.html).
+Install [SSHelper](https://play.google.com/store/apps/details?id=com.arachnoid.sshelper) from google play store or from its homepage [here](http://arachnoid.com/android/SSHelper/index.html):
 
 * [X] Disable password logins
 * [ ] Enable Zeroconf broadcast
 * [ ] Enable log display server
 * [ ] Enable clipboard display server
 * [X] Prevent standby while running
+
+You have to let open the SSHelper screen on the phone. In my case after screen
+is off, connection dies.
 
 ## SSH configuration
 
@@ -35,13 +38,10 @@ Check connection with ssh key:
 
 	$ ssh -i ~/.ssh/id_fp2 <android-ip> -p2222
 
-## Mounting via sshfs
 
-	$ mkdir -p mnt/fp2
-	$ sshfs <android-ip>:/storage/emulated/0 mnt/fp2/
-	$ ls ~/mnt/fp2
+## Backing up directories
 
-## Backing up a directory
+Backing up DCIM/ Documents/ Downloads/ and Android/ in this example:
 
 	mkdir -p backup/fp2
 	rsync -rlcv --stats --progress \
@@ -50,6 +50,12 @@ Check connection with ssh key:
 	  <android-ip>:/storage/emulated/0/{DCIM,Documents,Downloads,Android} ~/backup/fp2 1>&2 || return 1
 
 Happy syncing!
+
+## Access via sshfs
+
+	$ mkdir -p mnt/fp2
+	$ sshfs <android-ip>:/storage/emulated/0 mnt/fp2/
+	$ ls ~/mnt/fp2
 
 # Links
 
