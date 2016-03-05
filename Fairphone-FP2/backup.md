@@ -43,8 +43,14 @@ Check connection with ssh key:
 
 ## Backing up a directory
 
-	$ mkdir -p backup/fp2
-	$ rsync -rlc mnt/fp2/DCIM backup/fp2/DCIM
+	mkdir -p backup/fp2
+	for i in DCIM Documents Downloads Android
+	do
+	  rsync -rlcv --stats --progress \
+	    --exclude=.thumbnails \
+	    --delete \
+	    <android-ip>:/storage/emulated/0/${i} ~/backup/fp2 1>&2 || return 1
+	done
 
 Happy syncing!
 
