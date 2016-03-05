@@ -118,8 +118,9 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 
 ### mixed mode with testing (optional)
 
-	vi /etc/apt/apt.conf.d/80defaultrelease
+	cat << EOF >/etc/apt/apt.conf.d/80defaultrelease
 	APT::Default-Release "jessie";
+	EOF
 
 [Priority](https://wiki.debian.org/AptPreferences) für testing [anpassen](http://www.argon.org/~roderick/apt-pinning.html):
 
