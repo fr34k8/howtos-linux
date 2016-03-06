@@ -228,7 +228,7 @@ Und aktivieren mit:
 
 Add this line too:
 
-	cat << EOF >>/etc/apt.conf.d/20auto-upgrades
+	cat << EOF >>/etc/apt/apt.conf.d/20auto-upgrades
 	APT::Periodic::Download-Upgradeable-Packages "1";
 	EOF
 
