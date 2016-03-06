@@ -226,6 +226,12 @@ Und aktivieren mit:
 
 	dpkg-reconfigure -plow unattended-upgrades
 
+Add this line too:
+
+	cat << EOF >>/etc/apt.conf.d/20auto-upgrades
+	APT::Periodic::Download-Upgradeable-Packages "1";
+	EOF
+
 Inspired by <https://wiki.debian.org/UnattendedUpgrades>
 
 ## Power Management
