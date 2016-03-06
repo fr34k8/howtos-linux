@@ -274,6 +274,8 @@ Um zu sehen ob die cron e-mail sauber kommt, anacron ausführen
 
 ## Clamav
 
+Official [ClamAV FAQ](https://github.com/vrtadmin/clamav-faq).
+
 	apt-get install clamav
 
 	cat << EOF >/etc/cron.weekly/clamscan
@@ -301,20 +303,27 @@ zusätzlich die Option.
 
 notwendig. **Vorsicht!** 
 
-### On access scan
+### On-access Scan Settings
 
-Wäre ideal aber läuft in 0.98.7 nicht wirklich.
+0.99 has a revamped on-access scanning engine.
 
 	apt-get install clamav-daemon
 	dpkg-reconfigure clamav-daemon
+
+	cat << EOF >/usr/local/bin/clamav_alert:sh
+	#!/bin/bash
+	Msg="ClamAV VIRUS ALERT $HOSTNAME: $1"
+	echo $Msg | mail root -s "$Msg"
+	EOF
+	chmod +x /usr/local/bin/clamav_alert:sh
+
 	vi /etc/clamav/clamd.conf
-	ScanOnAccess yes
-	# Wenn ganzes Filesystem muss clamav als root laufen.
 	User root
-	OnAccessIncludePath /
-	OnAccessExcludePath /tmp
-	OnAccessExcludePath /proc
-	OnAccessExcludePath /sys
+	ScanOnAccess yes
+	OnAccessMountPath /home
+	OnAccessIncludePath /home
+	OnAccessExcludePath /home/*/_SNAPSHOTS
+	VirusEvent /usr/local/bin/clamav_alert.sh "%v"
 
 	service clamav-daemon restart
 
