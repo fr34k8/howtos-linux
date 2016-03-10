@@ -318,10 +318,12 @@ notwendig. **Vorsicht!**
 
 	cat << EOF >/usr/local/bin/clamav_alert:sh
 	#!/bin/bash
-	Msg="ClamAV VIRUS ALERT $HOSTNAME: $1"
-	echo $Msg | mail root -s "$Msg"
+	Subject="ClamAV VIRUS ALERT ${HOSTNAME}: $1"
+	Msg=`mktemp`
+	tail -n80 /var/log/clamav/clamav.log >$Msg
+	cat $Msg | mail root -s "$Subject"
 	EOF
-	chmod +x /usr/local/bin/clamav_alert:sh
+	chmod +x /usr/local/bin/clamav_alert.sh
 
 	vi /etc/clamav/clamd.conf
 	User root
