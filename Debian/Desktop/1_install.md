@@ -322,6 +322,7 @@ notwendig. **Vorsicht!**
 	Msg=`mktemp`
 	tail -n80 /var/log/clamav/clamav.log >$Msg
 	cat $Msg | mail root -s "$Subject"
+	rm $Msg
 	EOF
 	chmod +x /usr/local/bin/clamav_alert.sh
 
