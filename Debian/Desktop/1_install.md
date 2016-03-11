@@ -316,7 +316,7 @@ notwendig. **Vorsicht!**
 	apt-get install clamav-daemon
 	dpkg-reconfigure clamav-daemon
 
-	cat << EOF >/usr/local/bin/clamav_alert:sh
+	cat << EOF >/usr/local/bin/clamav_alert.sh
 	#!/bin/bash
 	Subject="ClamAV VIRUS ALERT ${HOSTNAME}: $1"
 	Msg=`mktemp`
