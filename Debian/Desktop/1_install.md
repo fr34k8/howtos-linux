@@ -290,6 +290,7 @@ Official [ClamAV FAQ](https://github.com/vrtadmin/clamav-faq).
 	--follow-file-symlinks=2 \
 	--follow-dir-symlinks=0 \
 	--exclude=.gpg \
+	--exclude-dir=/home \
 	--exclude-dir=_SNAPSHOTS \
 	--exclude-dir=btr_backup \
 	--exclude-dir=cache \
