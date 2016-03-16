@@ -282,7 +282,7 @@ Um zu sehen ob die cron e-mail sauber kommt, anacron ausführen
 
 Official [ClamAV FAQ](https://github.com/vrtadmin/clamav-faq).
 
-	apt-get install clamav
+	apt-get install clamav-daemon clamav-freshclam
 
 	cat << EOF >/etc/cron.weekly/clamscan
 	#!/bin/bash
