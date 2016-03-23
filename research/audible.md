@@ -16,11 +16,11 @@
 * [Digitales Vergessen](https://de.wikipedia.org/wiki/Digitales_Vergessen)
 * [Frei aufgespielt: DRM entfernen legal und kostenlos](http://www.netzwelt.de/news/72511-frei-aufgespielt-drm-entfernen-legal-kostenlos.html)
 
-** Anwalt Alexander Wachs macht deutlich: "Mit dem Computer eine analoge Kopie des DRM-geschützten Liedes zu erstellen ist erlaubt, weil dabei kein wirksamer Kopierschutz im Sinne des Urheberrechtsgesetzes umgangen wird."
+* * Anwalt Alexander Wachs macht deutlich: "Mit dem Computer eine analoge Kopie des DRM-geschützten Liedes zu erstellen ist erlaubt, weil dabei kein wirksamer Kopierschutz im Sinne des Urheberrechtsgesetzes umgangen wird."
 
-** Man spricht hierbei auch von der analogen Lücke, die bereits das Mitschneiden von Radio oder CD auf Kassette rechtlich unbedenklich machte.
+* * Man spricht hierbei auch von der analogen Lücke, die bereits das Mitschneiden von Radio oder CD auf Kassette rechtlich unbedenklich machte.
 
-** DRM auf digitalem Weg zu entschlüsseln, ist hingegen illegal, da hier der wirksame Kopierschutz umgangen würde.
+* * DRM auf digitalem Weg zu entschlüsseln, ist hingegen illegal, da hier der wirksame Kopierschutz umgangen würde.
 
 # Links
 
