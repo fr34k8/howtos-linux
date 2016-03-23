@@ -8,6 +8,8 @@
 * [Audible Audio – DRM at its finest](https://taach.wordpress.com/2014/02/24/audible-audio-drm-at-its-finest)
 * [Audible.com without DRM](http://swankandswill.blogspot.ch/2010/07/audiblecom-without-drm.html)
 * [HOW TO download books from Audible.com](http://ubuntuforums.org/archive/index.php/t-933707.html)
+* [Warum hat Audible ein eigenes Format](http://www.hoerbuecher-blog.de/warum-hat-audible-ein-eigenes-format)
+* [Hörbücher mal in grauenhaft... audible.de](http://www.rince.de/index.php?url=archives/530-Hoerbuecher-mal-in-grauenhaft...-audible.de.html)
 * [Open letter to Audible and Amazon: Stop the DRM](http://www.zdnet.com/article/open-letter-to-audible-and-amazon-stop-the-drm)
 * [Digitale Rechteverwaltung)](https://de.wikipedia.org/wiki/Digitale_Rechteverwaltung)
 * [Digitale Rechteverwaltung unter Linux](https://de.wikipedia.org/wiki/Linux#Digitale_Rechteverwaltung)
