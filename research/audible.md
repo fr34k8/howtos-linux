@@ -4,3 +4,6 @@
 * [Audible Manager with wine](https://appdb.winehq.org/objectManager.php?sClass=version&iId=7988)
 * Audible says it [actively works on linux support](http://audible.custhelp.com/app/answers/detail/a_id/3899)
 
+# Links
+
+* [Alternativen zu Audible](http://www.lesen.net/kostenlose-hoerbuecher-hoerspiele/)
