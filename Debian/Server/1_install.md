@@ -12,6 +12,23 @@ EOF
 	APT::Default-Release "jessie";
 EOF
 
+### mixed mode with testing (optional)
+
+[Priority](https://wiki.debian.org/AptPreferences) for testing [anpassen](http://www.argon.org/~roderick/apt-pinning.html) (order is important).
+
+	vi /etc/apt/preferences.d/pinning
+	Package: *
+	Pin: release o=Debian,a=testing
+	Pin-Priority: -500
+
+	vi /etc/apt/sources.list
+	deb http://ftp.ch.debian.org/debian testing main contrib non-free
+	deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
+
+	apt-cache policy| grep testing
+	500 http://ftp.ch.debian.org/debian/ testing/main Translation-en
+	-500 http://ftp.ch.debian.org/debian/ testing/main amd64 Packages
+
 ## Useful base software
 
 	apt-get install \
