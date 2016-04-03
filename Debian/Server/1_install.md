@@ -130,6 +130,65 @@ EOF
 
 Synchronize /home/user/backup [with unison](https://github.com/micressor/howtos-linux/blob/master/Debian/backup-mit-unison-und-btrfs-snapshots.md) or rsync.
 
+## Clamav
+
+Official [ClamAV FAQ](https://github.com/vrtadmin/clamav-faq).
+
+	apt-get install clamav-daemon clamav-freshclam
+
+	cat << EOF >/etc/cron.weekly/clamscan
+	#!/bin/bash
+	nice -n 20 clamscan -o --stdout --quiet \
+	--follow-file-symlinks=2 \
+	--follow-dir-symlinks=0 \
+	--exclude=.gpg \
+	--exclude-dir=/home \
+	--exclude-dir=cache \
+	--exclude-dir=/sys \
+	--exclude-dir=/run \
+	--exclude-dir=/dev \
+	--exclude-dir=/proc -r /
+	EOF
+
+	chmod +x /etc/cron.weekly/clamscan
+	wget http://www.eicar.org/download/eicar.com.txt
+
+Viren werden mit dieser Konfiguration nur aufgezeigt! Um zu löschen ist
+zusätzlich die Option.
+
+      --remove=yes
+
+notwendig. **Vorsicht!**
+
+### On-access Scan Settings
+
+0.99 has a revamped on-access scanning engine.
+
+	apt-get install clamav-daemon
+	dpkg-reconfigure clamav-daemon
+
+	cat << EOF >/usr/local/bin/clamav_alert.sh
+	#!/bin/bash
+	Subject="ClamAV VIRUS ALERT ${HOSTNAME}: $1"
+	Msg=`mktemp`
+	tail -n80 /var/log/clamav/clamav.log >$Msg
+	cat $Msg | mail root -s "$Subject"
+	rm $Msg
+	EOF
+	chmod +x /usr/local/bin/clamav_alert.sh
+
+	vi /etc/clamav/clamd.conf
+	User root
+	ScanOnAccess yes
+	OnAccessMountPath /home
+	OnAccessIncludePath /home
+	OnAccessExcludePath /home/*/_SNAPSHOTS
+	VirusEvent /usr/local/bin/clamav_alert.sh "%v"
+
+	service clamav-daemon restart
+
+	tail -f /var/log/clamav/clamav.log
+
 ### offlineimap
 
 apt-get install [offlineimap](http://offlineimap.org)
