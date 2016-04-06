@@ -141,6 +141,17 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	500 http://ftp.ch.debian.org/debian/ testing/main Translation-en
 	-500 http://ftp.ch.debian.org/debian/ testing/main amd64 Packages
 
+## DNS Firewall (Response Policy Zone = RPZ)
+
+	git clone https://github.com/StevenBlack/hosts
+
+Copy relevant local /etc/hosts entries into ./myhosts File.
+
+	./makeHosts
+	sudo cp -p ./hosts /etc/hosts
+	sudo service network-manager restart
+	sudo service networking restart
+
 ## Useful base software
 
 	apt-get update
