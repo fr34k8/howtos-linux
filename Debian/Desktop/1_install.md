@@ -143,12 +143,14 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 
 ## DNS Firewall (Response Policy Zone = RPZ)
 
+	cd ~/src
 	git clone https://github.com/StevenBlack/hosts
+	cd hosts
 
 Copy relevant local /etc/hosts entries into ./myhosts File.
 
 	./makeHosts
-	sudo cp -p ./hosts /etc/hosts
+	sudo cp ./hosts /etc/hosts
 	sudo service network-manager restart
 	sudo service networking restart
 
