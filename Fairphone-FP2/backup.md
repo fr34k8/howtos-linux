@@ -26,7 +26,7 @@ Create a specific ssh key for using with your device:
 
 Now copy your new key to your device:
 
-	$ ssh-copy-id -i ~/.ssh/id_fp2 <android-ip>
+	$ ssh-copy-id -i ~/.ssh/id_fp2 <android-ip> -p2222
 	SSHelper Version 8.4 Copyright 2014, P. Lutus
 	Default password is "admin" (recommend: change it)
 	user@<android-ip>'s password: 
