@@ -231,22 +231,20 @@ apt-get install [offlineimap](http://offlineimap.org)
 
 	update-rc.d apache2 defaults
 
-### tls/ssl zertifikate mit openssl bei startssl.com
+### TLS/SSL certificate with letsencrypt
 
-Neues Zertifikat erstellen:
+Accordint to [getting started](https://letsencrypt.org/getting-started/) docs.
 
-	openssl genrsa -out domain.ch.key 2048
-	openssl req -new -key domain.ch.key -out domain.ch.csr
+	cd ~/root
+	git clone https://github.com/letsencrypt/letsencrypt
+	cd letsencrypt
+Test:
 
-Das Passwort aus dem Privat key entfernen, damit es der Apache Webserver lesen kann:
+	./letsencrypt-auto certonly --dry-run --webroot -w /srv/www/xyz/ -d xyz.domain.tld
 
-	openssl rsa -in domain.ch.key -out domain.ch.key
+Real certifacte generation:
 
-Das Zertifikat auf der Website von [StartSSL](https://www.startssl.com) signieren lassen und auf dem Server als **domain.ch.crt** speichern.
-
-Die Dateien \*.key und \*.crt ersetzen und
-
-	service apache2 reload
+	./letsencrypt-auto certonly --webroot -w /srv/www/xyz/ -d xyz.domain.tld
 
 ## Using Git to manage my website
 
