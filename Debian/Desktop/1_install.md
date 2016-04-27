@@ -71,9 +71,12 @@ EOF
 ## ssh
 
 	vi /etc/ssh/sshd_config
-
+	# default but to be sure
 	PasswordAuthentication no
 	PermitRootLogin without-password
+
+	vi /etc/ssh/ssh_config
+	VisualHostKey yes
 
 ## ntp
 
