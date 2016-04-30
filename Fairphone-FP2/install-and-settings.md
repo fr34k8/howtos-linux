@@ -18,6 +18,7 @@ Follow detailed instructions below.
 * Export NetGuard settings
 * Export K-9 Mail settings
 * Export AntennaPod settings
+* Export Contacts as vcard files
 
 # Install f-droid apps
 
