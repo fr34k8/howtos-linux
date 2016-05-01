@@ -5,7 +5,7 @@
 3. Install f-droid.org store
 4. Install Firefox from f-droid.org
 5. Install [NetGuard from github.com](https://github.com/M66B/NetGuard/releases)
-6. Install [SSHelper](http://arachnoid.com/android/SSHelper/resources/SSHelper.apk) from arachnoid.com.
+6. Install [SSHelper](http://arachnoid.com/android/SSHelper/resources/SSHelper.apk) from arachnoid.com. See detailed [backup howto](https://github.com/micressor/howtos-linux/blob/master/Fairphone-FP2/backup.md).
 7. Settings > Security > encrypt phone
 8. Restore all data to internal storage using SSHelper.
 9. Restore NetGuard firewall settings
