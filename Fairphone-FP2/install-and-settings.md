@@ -1,4 +1,4 @@
-# Backup, restore or migrate procedure
+# Backup & Restore / Migrate procedure
 
 1. Backup important settings
 2. Settings > Security > Enable unkown sources
@@ -19,6 +19,45 @@ Follow detailed instructions below.
 * Export K-9 Mail settings
 * Export AntennaPod settings
 * Export Contacts as vcard files
+
+# Wipe & Install
+
+Download `fp2-sibon-16.04.0-ota-userdebug.zip` from http://code.fairphone.com.
+
+Boot your FP2 into fastboot mode.
+
+	fastboot -w update fp2-sibon-16.04.0-ota-userdebug.zip
+
+Download `open_gapps-arm-X.X-pico-2016XXXX.zip` from http://opengapps.org.
+
+Boot your FP2 into TWRP `recovery` mode and disable md5 on .zip files. Activate
+TWRP's sideload and start upload from your linux desktop:
+
+	adb sideload open_gapps-arm-X.X-pico-2016XXXX.zip
+
+Reboot your FP2.
+
+# Encrypt your FP2
+
+I had some problems to encrypt my FP2. So this was my solution: Boot into TWRP
+`recovery` and drop a root shell:
+
+	ls -1 /dev/block/platform/*/userdata
+	/dev/block/platform/xyz/userdata
+	dd if=/dev/zero of=/dev/block/platform/xyz/userdata
+
+Download `fp2-sibon-16.04.0-ota-userdebug.zip` from http://code.fairphone.com.
+
+	unzip -d fp2-sibon-16.04.0-ota-userdebug fp2-sibon-16.04.0-ota-userdebug.zip
+	cd fp2-sibon-16.04.0-ota-userdebug
+
+Boot your FP2 into fastboot mode:
+
+	fastboot -w flash userdata fp2-sibon-16.04.0-ota-userdebug/userdata.img
+
+Reboot your FP2 and start encryption at Settings > Security after set your PIN.
+
+See this topic: [Encrypt phone with FairPhone OpenSoure OperatingSystem](https://forum.fairphone.com/t/encrypt-phone-with-fairphone-opensoure-operatingsystem/15474/11)
 
 # Install f-droid apps
 
