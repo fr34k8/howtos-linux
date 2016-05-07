@@ -2,6 +2,12 @@
 
 Inspired by [bootly](https://github.com/nikslor/bootly).
 
+## Install debian on pcengines apu board
+
+Follow this [instructions](https://github.com/ssinyagin/pcengines-apu-debian-cd)
+to install debian on your apu. Recommended by pcengines list of
+[disk images](http://pcengines.ch/howto.htm#images).
+
 ## Base
 
 	apt-get install ca-certificates git
@@ -89,5 +95,5 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 ## Create user
 
-	zarafa-admin -c xyz -p xyz1234 -e user@domain.tld -f "first last"
+	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
 	zarafa-admin --create-store xyz
