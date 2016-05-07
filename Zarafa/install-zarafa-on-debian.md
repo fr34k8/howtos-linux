@@ -4,7 +4,7 @@ Inspired by [bootly](https://github.com/nikslor/bootly).
 
 ## Base
 
-	apt-get install ca-certificates git
+	apt-get install ca-certificates git uptimed
 
 ## Zarafa
 
