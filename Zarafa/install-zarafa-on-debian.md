@@ -10,7 +10,7 @@ to install debian on your apu. Recommended by pcengines list of
 
 ## Base
 
-	apt-get install ca-certificates git
+	apt-get install ca-certificates git uptimed
 
 ## Zarafa
 
@@ -50,7 +50,7 @@ Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2
 	imap_enable = no
 
 	vi /etc/zarafa/ical.cfg
-	ical_enable = no
+	server_bind = 127.0.0.1
 
 	vi /etc/zarafa/dagent.cfg
 	server_bind = 127.0.0.1
@@ -97,3 +97,8 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
 	zarafa-admin --create-store xyz
+
+# Links
+
+* [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
+* [Z-Push shared and public folder sync](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync)
