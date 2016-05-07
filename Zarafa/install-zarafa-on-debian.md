@@ -45,6 +45,9 @@ Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2
 
 ### Config
 
+	vi /etc/zarafa/server.cfg
+	server_bind = ::1
+
 	vi /etc/zarafa/gateway.cfg
 	pop3_enable = no
 	imap_enable = no
