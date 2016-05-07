@@ -10,7 +10,7 @@ to install debian on your apu. Recommended by pcengines list of
 
 ## Base
 
-	apt-get install ca-certificates git uptimed
+	apt-get install ca-certificates git uptimed telnet
 
 ## Zarafa
 
@@ -102,3 +102,4 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 * [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
 * [Z-Push shared and public folder sync](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync)
+* [Z-Push Public Folders](https://www.mars-solutions.de/knowledgebase/z-Push)
