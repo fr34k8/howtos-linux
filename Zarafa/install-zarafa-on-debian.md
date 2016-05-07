@@ -1,4 +1,4 @@
-# Setup zarafa on debian with pcengines apu board
+# How to setup a zarafa server running on debian with a pcengines apu board
 
 Inspired by [bootly](https://github.com/nikslor/bootly).
 
@@ -64,6 +64,8 @@ Restart all /etc/init-d/zarafa-\* services.
 
 Download z-push from [here](http://download.z-push.org/final/) and install it according to [zarafa doc](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-z-push-activesync-for-mobile-devices)
 
+	apt-get install php5-cli php-soap
+
 	wget http://download.z-push.org/final/z-push-x.y.z.tgz
 	mkdir -p /usr/share/z-push
 	tar zxvf z-push-*.tar.gz -C /usr/share/z-push/ --strip-components=1
@@ -104,5 +106,16 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 # Links
 
 * [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
-* [Z-Push shared and public folder sync](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync)
-* [Z-Push Public Folders](https://www.mars-solutions.de/knowledgebase/z-Push)
+
+# Appendix
+
+## Z-Push tricks
+
+To get a folderid according to [this instructions](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync) works only, if the user is an
+administrator. So we have to enable `user1` as an admin first. 
+
+	zarafa-admin -u user1 -a y
+	cd /usr/share/z-push/backend/zarafa
+	./listfolders.php -l user1 -u user1 -p password1  -h http://127.0.0.1:236/zarafa
+
+* More infos in german are here: [Z-Push Public Folders](https://www.mars-solutions.de/knowledgebase/z-Push)
