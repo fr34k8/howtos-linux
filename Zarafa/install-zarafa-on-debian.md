@@ -1,10 +1,16 @@
-# Setup zarafa on debian with pcengines apu board
+# How to setup a zarafa server running on debian with a pcengines apu board
 
 Inspired by [bootly](https://github.com/nikslor/bootly).
 
+## Install debian on pcengines apu board
+
+Follow this [instructions](https://github.com/ssinyagin/pcengines-apu-debian-cd)
+to install debian on your apu. Recommended by pcengines list of
+[disk images](http://pcengines.ch/howto.htm#images).
+
 ## Base
 
-	apt-get install ca-certificates git uptimed unison
+	apt-get install ca-certificates git uptimed telnet unison
 
 ## Zarafa
 
@@ -39,6 +45,9 @@ Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2
 
 ### Config
 
+	vi /etc/zarafa/server.cfg
+	server_bind = 127.0.0.1
+
 	vi /etc/zarafa/gateway.cfg
 	pop3_enable = no
 	imap_enable = no
@@ -54,6 +63,8 @@ Restart all /etc/init-d/zarafa-\* services.
 ## Z-Push
 
 Download z-push from [here](http://download.z-push.org/final/) and install it according to [zarafa doc](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-z-push-activesync-for-mobile-devices)
+
+	apt-get install php5-cli php-soap
 
 	wget http://download.z-push.org/final/z-push-x.y.z.tgz
 	mkdir -p /usr/share/z-push
@@ -89,7 +100,7 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 ## Create user
 
-	zarafa-admin -c xyz -p xyz1234 -e user@domain.tld -f "first last"
+	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
 	zarafa-admin --create-store xyz
 
 ## Enable services at boot time
@@ -106,4 +117,16 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 # Links
 
 * [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
-* [Z-Push shared and public folder sync](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync)
+
+# Appendix
+
+## Z-Push tricks
+
+To get a folderid according to [this instructions](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync) works only, if the user is an
+administrator. So we have to enable `user1` as an admin first. 
+
+	zarafa-admin -u user1 -a y
+	cd /usr/share/z-push/backend/zarafa
+	./listfolders.php -l user1 -u user1 -p password1  -h http://127.0.0.1:236/zarafa
+
+* More infos in german are here: [Z-Push Public Folders](https://www.mars-solutions.de/knowledgebase/z-Push)
