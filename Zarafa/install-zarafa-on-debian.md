@@ -4,7 +4,7 @@ Inspired by [bootly](https://github.com/nikslor/bootly).
 
 ## Base
 
-	apt-get install ca-certificates git uptimed
+	apt-get install ca-certificates git uptimed unison
 
 ## Zarafa
 
@@ -91,6 +91,17 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 	zarafa-admin -c xyz -p xyz1234 -e user@domain.tld -f "first last"
 	zarafa-admin --create-store xyz
+
+## Enable services at boot time
+
+	systemctl enable zarafa-server
+	systemctl enable zarafa-dagent
+	systemctl enable zarafa-gateway
+	systemctl enable zarafa-ical
+	systemctl enable zarafa-monitor
+	systemctl enable zarafa-presence
+	systemctl enable zarafa-search
+	systemctl enable zarafa-spooler
 
 # Links
 
