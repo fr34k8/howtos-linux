@@ -10,7 +10,7 @@ to install debian on your apu. Recommended by pcengines list of
 
 ## Base
 
-	apt-get install ca-certificates git uptimed telnet unison
+	apt-get install ca-certificates git uptimed telnet unison ssmtp logwatch mailutils
 
 ## Zarafa
 
