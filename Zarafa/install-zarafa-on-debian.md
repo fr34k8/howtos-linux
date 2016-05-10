@@ -1,6 +1,13 @@
-# How to setup a zarafa server running on debian with a pcengines apu board
+# How to setup Zarafa-Server on Debian?
+
+## Goal
+
+This howto provide an easy step by step way to setup zarafa-server running
+on debian with a pcengines apu board.
 
 Inspired by [bootly](https://github.com/nikslor/bootly).
+
+# Install
 
 ## Install debian on pcengines apu board
 
@@ -8,7 +15,7 @@ Follow this [instructions](https://github.com/ssinyagin/pcengines-apu-debian-cd)
 to install debian on your apu. Recommended by pcengines list of
 [disk images](http://pcengines.ch/howto.htm#images).
 
-## Base
+## Base tools
 
 	apt-get install ca-certificates git uptimed telnet unison ssmtp logwatch mailutils
 
@@ -25,15 +32,23 @@ According to [zcp_administrator_manual](https://documentation.zarafa.com/zcp_adm
 	apt-get install apache2-mpm-prefork libapache2-mod-php5
 	apt-get install mysql-server
 
-Configuring a zarafa mysql user according to [Configuring the Zarafa Server](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-the-zarafa-server).
+## Z-Push
 
-	dpkg-reconfigure locales
-	[*] de_CH.UTF-8 UTF-8
+Download z-push from [here](http://download.z-push.org/final/) and install it according to [zarafa doc](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-z-push-activesync-for-mobile-devices)
 
-	vi /etc/default/zarafa
-	ZARAFA_USERSCRIPT_LOCALE="de_CH.UTF-8 UTF-8"
+	apt-get install php5-cli php-soap
 
-### WebApp
+	wget http://download.z-push.org/final/z-push-x.y.z.tgz
+	mkdir -p /usr/share/z-push
+	tar zxvf z-push-*.tar.gz -C /usr/share/z-push/ --strip-components=1
+	mkdir /var/lib/z-push /var/log/z-push
+	chown www-data:www-data /var/lib/z-push /var/log/z-push
+	cat /etc/apache2/sites-available/z-push.conf
+	Alias /Microsoft-Server-ActiveSync /usr/share/z-push/index.php
+	a2ensite z-push
+	service apache2 reload
+
+## WebApp
 
 Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2.2.0/) and scp it to apu.
 
@@ -42,6 +57,18 @@ Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2
 	dpkg -i *.deb
 	apt-get -f install -f
 	service apache2 reload
+
+# Configure
+
+## Zarafa
+
+Configuring a zarafa mysql user according to [Configuring the Zarafa Server](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-the-zarafa-server).
+
+	dpkg-reconfigure locales
+	[*] de_CH.UTF-8 UTF-8
+
+	vi /etc/default/zarafa
+	ZARAFA_USERSCRIPT_LOCALE="de_CH.UTF-8 UTF-8"
 
 ### Config
 
@@ -60,48 +87,9 @@ Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2
 
 Restart all /etc/init-d/zarafa-\* services.
 
-## Z-Push
+## Apache TLS/SSL
 
-Download z-push from [here](http://download.z-push.org/final/) and install it according to [zarafa doc](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-z-push-activesync-for-mobile-devices)
-
-	apt-get install php5-cli php-soap
-
-	wget http://download.z-push.org/final/z-push-x.y.z.tgz
-	mkdir -p /usr/share/z-push
-	tar zxvf z-push-*.tar.gz -C /usr/share/z-push/ --strip-components=1
-	mkdir /var/lib/z-push /var/log/z-push
-	chown www-data:www-data /var/lib/z-push /var/log/z-push
-	cat /etc/apache2/sites-available/z-push.conf 
-	Alias /Microsoft-Server-ActiveSync /usr/share/z-push/index.php
-	a2ensite z-push
-	service apache2 reload
-
-## Apache
-
-	vi /etc/apache2/vhosts.d/sslengine.include
-	# ssl hook
-	SSLEngine on
-	SSLProxyEngine on
-	SSLProtocol all -SSLv2 -SSLv3
-	SSLHonorCipherOrder On
-	SSLCipherSuite "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH EDH+aRSA !aNULL !eNULL !LOW !3DES !EXP !PSK !SRP !DSS !ADH !EXP !MD5 !RC4"
-	# Use HTTP Strict Transport Security to force client to use secure
-	# connections only
-	Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-
-	a2ensite default-ssl
-	a2enmod ssl headers
-	vi /etc/apache2/sites-enabled/default-ssl
-	Include /etc/apache2/vhosts.d/sslengine.include
-	SSLCertificateFile /etc/letsencrypt/live/domain.tld/fullchain.pem
-	SSLCertificateKeyFile /etc/letsencrypt/live/domain.tld/privkey.pem
-
-	service apache2 reload
-
-## Create user
-
-	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
-	zarafa-admin --create-store xyz
+According to [this instructions](https://github.com/micressor/howtos-linux/blob/master/Apache/sslengine.md).
 
 ## Enable services at boot time
 
@@ -114,11 +102,19 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 	systemctl enable zarafa-search
 	systemctl enable zarafa-spooler
 
-# Links
+# Testing
+# Usage
 
-* [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
+## Create user
+
+	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
+	zarafa-admin --create-store xyz
 
 # Appendix
+
+## Links
+
+* [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
 
 ## Z-Push tricks
 
