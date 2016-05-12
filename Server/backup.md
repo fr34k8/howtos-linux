@@ -13,6 +13,7 @@
 	USER=root
 	DSTDIR=/var/backup/$HOSTNAME
 	DBFILE=`hostname`.sql
+	BACKUP_DIRS='/etc /var/spool/cron'
 	
 	# backup piwik mysql database
 	mysqldump --all-databases \
@@ -22,7 +23,7 @@
 	        -r ${GPG_KEY} - >${DSTDIR}/${DBFILE}.gpg" && \
 	        rm ${TMPDIR}/$DBFILE || exit 3
 	
-	tar cfz ${TMPDIR}/${HOSTNAME}.tgz /etc /var/spool/cron &>/dev/null && \
+	tar cfz ${TMPDIR}/${HOSTNAME}.tgz $BACKUP_DIRS &>/dev/null && \
 	        chown ${USER}:${USER} ${TMPDIR}/${HOSTNAME}.tgz && \
 	        cat ${TMPDIR}/${HOSTNAME}.tgz | gpg --no-tty --encrypt \
 	        -r ${GPG_KEY} - >${DSTDIR}/${HOSTNAME}.tgz.gpg && \
