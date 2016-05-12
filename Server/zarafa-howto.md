@@ -103,6 +103,11 @@ According to [this instructions](https://github.com/micressor/howtos-linux/blob/
 	systemctl enable zarafa-spooler
 
 # Testing
+
+## Performance tuning
+
+[The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
+
 # Usage
 
 ## Create user
