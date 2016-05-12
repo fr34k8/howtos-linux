@@ -72,9 +72,27 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 
 ### Config
 
+	mysql
+	mysql> GRANT ALL PRIVILEGES ON zarafa.* TO 'zarafa'@'localhost' IDENTIFIED BY 'password';
+	mysql> GRANT ALTER, CREATE, CREATE ROUTINE, DELETE, DROP, INDEX, INSERT, LOCK TABLES, \
+      SELECT, UPDATE ON zarafa.* TO 'zarafa'@'localhost' IDENTIFIED BY 'password';
+
+	vi /etc/mysql/my.cnf
+	; around 50% of total RAM size
+	innodb_buffer_pool_size = 2048M
+	; 25% of the innodb_buffer_pool_size
+	innodb_log_file_size = 512M
+	innodb_log_buffer_size = 32M
+	innodb_file_per_table
+	max_allowed_packet = 16M
+	table_cache = 1000
+
 	vi /etc/zarafa/server.cfg
 	server_bind = 127.0.0.1
 	attachment_storage = database
+	# Size in bytes of the 'cell' cache (should be set as high as you can
+	# afford to set it)
+	cache_cell_size = 1024M
 
 	vi /etc/zarafa/gateway.cfg
 	pop3_enable = no
@@ -111,6 +129,7 @@ According to [this instructions](https://github.com/micressor/howtos-linux/blob/
 ## Performance tuning
 
 [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
+
 
 # Usage
 
