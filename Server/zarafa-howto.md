@@ -74,6 +74,7 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 
 	vi /etc/zarafa/server.cfg
 	server_bind = 127.0.0.1
+	attachment_storage = database
 
 	vi /etc/zarafa/gateway.cfg
 	pop3_enable = no
