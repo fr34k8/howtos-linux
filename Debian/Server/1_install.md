@@ -52,40 +52,9 @@ EOF
 
 ## Backup
 
-Import your backup gpg key into root's gnupg keystore.
-
-
-	cat << EOF >/etc/cron.daily/backup
-	#!/bin/bash
-
-	#set -x
-	umask 077
-
-	GPG_KEY=<your key>
-	TMPDIR=/tmp
-	USER=user
-	DSTDIR=/home/${USER}/backup/$HOSTNAME
-	DBFILE=`hostname`.sql
-
-	# backup piwik mysql database
-	mysqldump --all-databases --events >${TMPDIR}/${DBFILE} && \
-	  chown ${USER}:${USER} ${TMPDIR}/${DBFILE} && \
-	  su -c "cat ${TMPDIR}/${DBFILE} | gpg --encrypt \
-	    -r ${GPG_KEY} - >${DSTDIR}/${DBFILE}.gpg" - ${USER} && \
-	  rm ${TMPDIR}/$DBFILE || exit 3
-
-	tar cfz ${TMPDIR}/${HOSTNAME}.tgz /etc /var/spool/cron &>/dev/null && \
-	  chown ${USER}:${USER} ${TMPDIR}/${HOSTNAME}.tgz && \
-	  su -c "cat ${TMPDIR}/${HOSTNAME}.tgz | gpg --encrypt \
-	    -r ${GPG_KEY} - >${DSTDIR}/${HOSTNAME}.tgz.gpg" - ${USER} && \
-	    rm ${TMPDIR}/${HOSTNAME}.tgz || exit 3
-
-	exit 0
-EOF
-
-	chmod +x /etc/cron.daily/backup
-
-Synchronize /home/user/backup [with unison](https://github.com/micressor/howtos-linux/blob/master/Debian/backup-mit-unison-und-btrfs-snapshots.md) or rsync.
+Moved to [backup.md](https://github.com/micressor/howtos-linux/blob/master/Server/backup.md).
+Synchronize /home/user/backup [with unison](https://github.com/micressor/howtos-linux/blob/master/Debian/backup-mit-unison-und-btrfs-snapshots.md) or
+rsync.
 
 ## Clamav
 

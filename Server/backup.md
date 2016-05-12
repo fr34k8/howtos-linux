@@ -1,5 +1,7 @@
 # Encrypted gpg backup of /etc and mysql database
 
+Import your backup gpg key into root's gnupg keystore.
+
 	mkdir -p /var/backup
 
 	cat << EOF >>/etc/cron.daily/backup
