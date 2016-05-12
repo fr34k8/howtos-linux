@@ -18,17 +18,21 @@
 	mysqldump --all-databases \
 	        --events --single-transaction --routines >${TMPDIR}/${DBFILE} && \
 	        chown ${USER}:${USER} ${TMPDIR}/${DBFILE} && \
-	        su -c "cat ${TMPDIR}/${DBFILE} | gpg --encrypt \
-	        -r ${GPG_KEY} - >${DSTDIR}/${DBFILE}.gpg" - ${USER} && \
+	        cat ${TMPDIR}/${DBFILE} | gpg --no-tty --encrypt \
+	        -r ${GPG_KEY} - >${DSTDIR}/${DBFILE}.gpg" && \
 	        rm ${TMPDIR}/$DBFILE || exit 3
 	
 	tar cfz ${TMPDIR}/${HOSTNAME}.tgz /etc /var/spool/cron &>/dev/null && \
 	        chown ${USER}:${USER} ${TMPDIR}/${HOSTNAME}.tgz && \
-	        su -c "cat ${TMPDIR}/${HOSTNAME}.tgz | gpg --encrypt \
-	        -r ${GPG_KEY} - >${DSTDIR}/${HOSTNAME}.tgz.gpg" - ${USER} && \
+	        cat ${TMPDIR}/${HOSTNAME}.tgz | gpg --no-tty --encrypt \
+	        -r ${GPG_KEY} - >${DSTDIR}/${HOSTNAME}.tgz.gpg && \
 	        rm ${TMPDIR}/${HOSTNAME}.tgz || exit 3
 	
 	exit 0
 	EOF
 
 	chmod 700 /etc/cron.daily/backup
+
+# Links
+
+* [GnuPG: stdin: is not a tty](https://www.gnupg.org/documentation/manuals/gnupg/GPG-Configuration-Options.html)
