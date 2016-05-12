@@ -85,6 +85,9 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	vi /etc/zarafa/dagent.cfg
 	server_bind = 127.0.0.1
 
+	vi /etc/zarafa/presence.cfg
+	server_bind = 127.0.0.1
+
 Restart all /etc/init-d/zarafa-\* services.
 
 ## Apache TLS/SSL
