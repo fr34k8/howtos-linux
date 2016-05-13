@@ -32,6 +32,17 @@ According to [zcp_administrator_manual](https://documentation.zarafa.com/zcp_adm
 	apt-get install apache2-mpm-prefork libapache2-mod-php5
 	apt-get install mysql-server
 
+### Plugins
+
+Password:
+
+	cd /usr/share/zarafa-webapp/plugins
+	git clone https://github.com/silentsakky/zarafa-webapp-passwd.git passwd
+	chown -R www-data: passwd
+	cd passwd
+	mv config.php /etc/zarafa/webapp/config-passwd.php
+	ln -s /etc/zarafa/webapp/config-passwd.php config.php
+
 ## Z-Push
 
 Download z-push from [here](http://download.z-push.org/final/) and install it according to [zarafa doc](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-z-push-activesync-for-mobile-devices)
