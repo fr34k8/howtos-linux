@@ -1,4 +1,4 @@
-# Backup mit Sync (Unison) und Snapshots (BTRFS)
+# Backup für Desktop Linux mit Sync (Unison) und Snapshots (BTRFS) howto
 
 ## Konzept
 
@@ -23,7 +23,7 @@
 
 ### Requirements
 
-* BTRFS fs auf /home
+* BTRFS filesystem auf /home
 * Unison
 * btrbk
 * 2 oder mehr WS
@@ -38,11 +38,8 @@
 * Both server should use a timeserver
 * Setup ssh key's without-password.
 
-### Test
 
-	unison -testServer /home/user1 ssh://user@server2://home/user1
-
-### Config
+### Configure
 
 Auf der WS, die den **Stern** in der Topologie darstellt, werden alle Configs abgelegt. Pro entfernten Server eine \*.prf Datei.
 
@@ -142,7 +139,11 @@ Vorsicht bei cross syncing. Auf **Stern** anordnung achten.
 * -sortbysize list changed files by size, not name
 * sshargs = -C Enables ssh's compression feature.
 
-### Initial sync
+### Test
+
+	unison -testServer /home/user1 ssh://user@server2://home/user1
+
+### Usage
 
 Auf beiden root sync's muss das *.unison-mounted* file existieren.
 
@@ -150,13 +151,13 @@ Während dem initalen Sync sehr genau aufpassen, was er wohin syncen will:
 
 	unison sync-for-$HOSTNAME.prf -ui text
 
-### Batch mode and silent
+#### Batch mode and silent
 
 Erst wenn alles sauber sync, den batch job ausprobieren:
 
 	unison sync-for-$HOSTNAME.prf -ui text -batch -auto -silent -terse
 
-### Cron
+#### Cron
 
 Zum starten und überwachen der sync jobs nutze ich diesen Script:
 
@@ -194,7 +195,7 @@ Check status of [btrbk in debian.](https://tracker.debian.org/pkg/btrbk)
 
 	mkdir /home/user1/_SNAPSHOTS
 
-### Config
+### Configure
 
 Create a btrfs subvolume for a new user:
 
@@ -226,7 +227,13 @@ Setup snapshot's for user1:
 	    snapshot_dir user2/_SNAPSHOTS
 	EOF
 
-### Cron
+### Test
+
+	btrbk run
+
+### Usage
+
+#### Cron
 
 Täglicher Snapshot:
 
@@ -252,11 +259,12 @@ Täglicher Snapshot:
 	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_CRYPT
 	time btrbk run
 	time sync
+	btrbk stats
 	EOF
 
 	chmod 755 /etc/cron.daily/btrbk
 
-### Report about exclusive used data
+#### Report about exclusive used data
 
 	btrfs quota enable /home
 	btrfs qgroup show -f /home
@@ -269,7 +277,9 @@ Täglicher Snapshot:
 	EOF
 	chmod +x /usr/local/bin/btrfs-size.sh
 
-### Fixing Btrfs Filesystem Full Problems
+### Appendix
+
+#### Fixing Btrfs Filesystem Full Problems
 
 Gefunden bei [merlins.org](http://marc.merlins.org/perso/btrfs/post_2014-05-04_Fixing-Btrfs-Filesystem-Full-Problems.html) und bei [btrfs.wiki.kernel.org](https://btrfs.wiki.kernel.org/index.php/Problem_FAQ#I_get_.22No_space_left_on_device.22_errors.2C_but_df_says_I.27ve_got_lots_of_space).
 
@@ -277,13 +287,15 @@ Gefunden bei [merlins.org](http://marc.merlins.org/perso/btrfs/post_2014-05-04_F
 
 Wenn nebst dem Unison Sync zwischen den WS ausserdem ein Backup auf eine verschlüsselte USB Disk folgen soll.
 
-### Initial
+### Install
 
 Keyfile erstellen ([Quelle](http://www.finnie.org/2009/07/26/keyfile-based-luks-encryption-in-debian/)):
 
 	dd if=/dev/random of=/etc/luksbackup.key bs=1 count=2560
 
 (/dev/random vs [/dev/urandom](https://de.wikipedia.org/wiki//dev/random#.2Fdev.2Furandom))
+
+### Configure
 
 Verschlüsselung einrichten:
 
@@ -323,7 +335,7 @@ Disk in /etc/{crypttab,fstab} eintragen:
 	umount /srv/backup
 	cryptdisks_stop yellowdisk_crypt
 
-### Enable
+### Usage
 
 vi /etc/btrbk/btrbk.conf
 
@@ -337,7 +349,7 @@ vi /etc/btrbk/btrbk.conf
 
 	sudo btrbk run
 
-## Restore
+#### Restore
 
 Restore a single file:
 
