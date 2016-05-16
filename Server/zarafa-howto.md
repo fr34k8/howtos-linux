@@ -184,6 +184,27 @@ According to [this instructions](https://github.com/micressor/howtos-linux/blob/
 
 # Appendix
 
+## Reinstall, backup and restore mysql
+
+To restore a full database dump including mysql grant tables, use the following
+steps:
+
+	systemctl stop zarafa-server
+	systemctl stop mysql
+	rm -rf /var/lib/mysql/*
+	mysql_install_db
+	mysqld_safe --skip-grant-tables &
+	tail /var/log/mysql/*.log
+
+	cd /var/backup/mysql
+	cat mysql-all-databases.sql | mysql ; echo $?
+	killall mysqld
+	tail /var/log/mysql/*.log
+
+	service mysql start
+
+Check [this](https://github.com/micressor/howtos-linux/blob/master/Server/mysql.md).
+
 ## Links
 
 * [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
