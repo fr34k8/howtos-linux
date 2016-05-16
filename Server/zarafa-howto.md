@@ -117,9 +117,6 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	pop3_enable = no
 	imap_enable = no
 
-	vi /etc/zarafa/ical.cfg
-	server_bind = 127.0.0.1
-
 	vi /etc/zarafa/dagent.cfg
 	server_bind = 127.0.0.1
 
@@ -127,6 +124,17 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	server_bind = 127.0.0.1
 
 Restart all /etc/init-d/zarafa-\* services.
+
+### zarafa-ical
+
+	vi /etc/zarafa/ical.cfg
+	server_bind =
+	# wether normal connections can be made to the ical server
+	ical_enable = no
+	# wether ssl connections can be made to the ical server
+	icals_enable = yes
+	ssl_private_key_file = /etc/letsencrypt/live/doamin.tld/privkey.pem
+	ssl_certificate_file = /etc/letsencrypt/live/doamin.tld/fullchain.pem
 
 ### MySQL
 
