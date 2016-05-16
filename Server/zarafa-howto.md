@@ -91,19 +91,17 @@ explanation [Z-Push Public Folders](https://www.mars-solutions.de/knowledgebase/
   configured folders can be synchronized to the mobile.
 
 On Zarafa systems use `backend/zarafa/listfolders.php` script to get a list
-of available folder:
-
-To get user1 list of folders (and folderid):
+of available folder (and folderid) for user1:
 
 	cd /usr/share/z-push/backend/zarafa
 	zarafa-admin -u admin -a y
 	./listfolders.php -l user1 -u admin -p secret -h http://127.0.0.1:236/zarafa
 
-> Available folders in store 'user1':
-> --------------------------------------------------
-> Folder name:	Shared Appointments
-> Folder ID:	a0000000000000000000000000000000000000000000
-> Type:		SYNC_FOLDER_TYPE_USER_APPOINTMENT
+	Available folders in store 'user1':
+	--------------------------------------------------
+	Folder name:	Shared Appointments
+	Folder ID:	a0000000000000000000000000000000000000000000
+	Type:		SYNC_FOLDER_TYPE_USER_APPOINTMENT
 
 Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.zarafa.com/index.php/Z-Push_shared_and_public_folder_sync):
 
