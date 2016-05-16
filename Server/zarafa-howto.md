@@ -26,7 +26,7 @@ a couple of minutes it will ask for the hostname, and the rest will be
 done automatically, and a new Debian system will be installed on mSATA
 SSD drive.
 
-**!!! ALL EXISTING DATA ON THE DRIVE WILL BE LOST !!!***
+**!!! ALL EXISTING DATA ON THE DRIVE WILL BE LOST !!!**
 
 ## Base tools
 
@@ -34,7 +34,8 @@ SSD drive.
 
 ## Zarafa
 
-According to [zcp_administrator_manual](https://documentation.zarafa.com/zcp_administrator_manual/installing.html).
+Install instructions (according to [zcp_administrator_manual](https://documentation.zarafa.com/zcp_administrator_manual/installing.html)) to install zarafa on
+your apu:
 
 	mkdir src
 	wget https://download.zarafa.com/community/final/7.2/7.2.3.657/zcp-7.2.3.657-debian-8.0-x86_64-opensource.tar.gz
@@ -47,14 +48,21 @@ According to [zcp_administrator_manual](https://documentation.zarafa.com/zcp_adm
 
 ### Plugins
 
-Password:
+### Password
 
+Installation with **git clone** method did not work. I used instead this way
+and opened a [bug #15](https://github.com/silentsakky/zarafa-webapp-passwd/issues/15) report:
+
+	cd /tmp
+	wget [passwd-1.2.zip](https://github.com/silentsakky/zarafa-webapp-passwd/raw/master/builds/passwd-1.2.zip)
 	cd /usr/share/zarafa-webapp/plugins
-	git clone https://github.com/silentsakky/zarafa-webapp-passwd.git passwd
-	chown -R www-data: passwd
-	cd passwd
+	unzip /tmp/passwd-1.2.zip
 	mv config.php /etc/zarafa/webapp/config-passwd.php
+	rm config.php
 	ln -s /etc/zarafa/webapp/config-passwd.php config.php
+
+	vi /etc/zarafa/webapp/config-passwd.php
+	define('PLUGIN_PASSWD_USER_DEFAULT_ENABLE', true);
 
 ## Z-Push
 
