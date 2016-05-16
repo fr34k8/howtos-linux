@@ -106,23 +106,6 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	vi /etc/default/zarafa
 	ZARAFA_USERSCRIPT_LOCALE="de_CH.UTF-8 UTF-8"
 
-### Config
-
-	mysql
-	mysql> GRANT ALL PRIVILEGES ON zarafa.* TO 'zarafa'@'localhost' IDENTIFIED BY 'password';
-	mysql> GRANT ALTER, CREATE, CREATE ROUTINE, DELETE, DROP, INDEX, INSERT, LOCK TABLES, \
-      SELECT, UPDATE ON zarafa.* TO 'zarafa'@'localhost' IDENTIFIED BY 'password';
-
-	vi /etc/mysql/my.cnf
-	; around 50% of total RAM size
-	innodb_buffer_pool_size = 2048M
-	; 25% of the innodb_buffer_pool_size
-	innodb_log_file_size = 512M
-	innodb_log_buffer_size = 32M
-	innodb_file_per_table
-	max_allowed_packet = 16M
-	table_cache = 1000
-
 	vi /etc/zarafa/server.cfg
 	server_bind = 127.0.0.1
 	attachment_storage = database
@@ -144,6 +127,23 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	server_bind = 127.0.0.1
 
 Restart all /etc/init-d/zarafa-\* services.
+
+### MySQL
+
+	mysql
+	mysql> GRANT ALL PRIVILEGES ON zarafa.* TO 'zarafa'@'localhost' IDENTIFIED BY 'password';
+	mysql> GRANT ALTER, CREATE, CREATE ROUTINE, DELETE, DROP, INDEX, INSERT, LOCK TABLES, \
+      SELECT, UPDATE ON zarafa.* TO 'zarafa'@'localhost' IDENTIFIED BY 'password';
+
+	vi /etc/mysql/my.cnf
+	; around 50% of total RAM size
+	innodb_buffer_pool_size = 2048M
+	; 25% of the innodb_buffer_pool_size
+	innodb_log_file_size = 512M
+	innodb_log_buffer_size = 32M
+	innodb_file_per_table
+	max_allowed_packet = 16M
+	table_cache = 1000
 
 ## Apache TLS/SSL
 
