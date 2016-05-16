@@ -82,7 +82,11 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 ## WebApp
 
-Download WebApp from [here](https://download.zarafa.com/community/final/WebApp/2.2.0/) and scp it to apu.
+	cd /tmp
+
+Download WebApp (whole directory with a lot of \*.deb files) from
+[here](https://download.zarafa.com/community/final/WebApp/2.2.0/) and scp it to
+apu.
 
 	tar xf debian-8.0.tar
 	cd debian-8.0
