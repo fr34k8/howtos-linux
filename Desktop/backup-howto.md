@@ -235,34 +235,52 @@ Setup snapshot's for user1:
 
 #### Cron
 
-Täglicher Snapshot:
+##### cron.daily
 
-	cat << EOF >/etc/cron.daily/btrbk 
+Daily snapshot:
+
+	cat << EOF >/etc/cron.daily/backup
 	#!/bin/bash
-
+	exec 1>/dev/null
 	# Vars
-	DISK_CRYPT=disk_crypt
-	MOUNT_CRYPT=/srv/btr_backup
-	MOUNT_HOME=/home
-	BALANCE_DUSAGE=55
-
+	#DISK_CRYPT=disk_crypt
+	#MOUNT_CRYPT=/srv/btr_backup
 	# Main
-	set -x
-	if sudo cryptdisks_start $DISK_CRYPT;
-	then
-	  mount $MOUNT_CRYPT
-	fi
+	#if sudo cryptdisks_start $DISK_CRYPT;
+	#then
+	#  mount $MOUNT_CRYPT
+	#fi
+	btrbk run
+	sync
+	EOF
+
+	chmod 755 /etc/cron.daily/backup
+
+##### cron.weekly
+
+Weekly maintenance and statistics:
+
+	cat << EOF >>/etc/cron.weekly/backup
+	#!/bin/bash
+	# Vars
+	#CRYPT_DISK=disk_crypt
+	#CRYPT_MOUNT=/srv/btr_backup
+	BALANCE_MOUNT='/home /srv/btr_backup'
+	BALANCE_DUSAGE=55
+	# Main
+	#if cryptdisks_start $CRYPT_DISK;
+	#then
+	#  mount $CRYPT_MOUNT
+	#fi
 	btrfs filesystem show
-	btrfs filesystem df $MOUNT_HOME
-	btrfs filesystem df $MOUNT_CRYPT
-	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_HOME
-	time btrfs balance start -dusage=$BALANCE_DUSAGE $MOUNT_CRYPT
-	time btrbk run
-	time sync
+	for i in $BALANCE_MOUNT;
+	do
+	  btrfs balance start -dusage=$BALANCE_DUSAGE $i;
+	done
 	btrbk stats
 	EOF
 
-	chmod 755 /etc/cron.daily/btrbk
+	chmod 755 /etc/cron.weekly/backup
 
 #### Report about exclusive used data
 
