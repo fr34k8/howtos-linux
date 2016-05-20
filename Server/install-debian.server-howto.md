@@ -239,7 +239,7 @@ EOF
 
 ## Tripwire
 
-[Moved here!](https://github.com/micressor/howtos-linux/blog/master/Server/tripwire.md)
+[Moved here!](https://github.com/micressor/howtos-linux/blob/master/Server/tripwire.md)
 
 ## sms.php
 
