@@ -239,9 +239,7 @@ EOF
 
 ## Tripwire
 
-	tripwire init
-	tripwire --check
-	tripwire --update -r /var/lib/reports/xyz
+[Moved here!](https://github.com/micressor/howtos-linux/blog/master/Server/tripwire.md)
 
 ## sms.php
 
