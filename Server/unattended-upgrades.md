@@ -10,6 +10,9 @@ Aktualisiere Stabile und Sicherheits-Updates.
         "o=Debian,a=stable-updates";
         "origin=Debian,codename=${distro_codename},label=Debian-Security";
 	};
+	Unattended-Upgrade::MinimalSteps "true";
+	# I use InstallOnShutdown for desktop machines
+	#Unattended-Upgrade::InstallOnShutdown "true";
 	Unattended-Upgrade::Mail "root";
 
 testen:
