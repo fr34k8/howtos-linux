@@ -57,8 +57,8 @@ Weitere Infos zu  UEFI [Secure Boot](https://wiki.ubuntu.com/SecurityTeam/Secure
 	deb http://ftp.ch.debian.org/debian/ jessie-updates main contrib
 	deb-src http://ftp.ch.debian.org/debian/ jessie-updates main contrib
 	# jessie-backports
-	deb http://ftp.ch.debian.org/debian/ jessie-backports main contrib
-	deb-src http://ftp.ch.debian.org/debian/ jessie-backports main contrib
+	deb http://ftp.ch.debian.org/debian/ jessie-backports main contrib non-free
+	deb-src http://ftp.ch.debian.org/debian/ jessie-backports main contrib non-free
 	# testing
 	deb http://ftp.ch.debian.org/debian testing main contrib non-free
 	deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
