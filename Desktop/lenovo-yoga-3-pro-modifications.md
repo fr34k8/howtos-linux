@@ -4,6 +4,8 @@
 
 * [PDF's](https://github.com/micressor/docs-mirror/tree/master/lenovo/yoga)
 
+* Inspired by [longsleep's yoga3pro-linux](https://github.com/longsleep/yoga3pro-linux) howto
+
 ## Test
 
 Mit dem **non-free** live image lief Wifi einwandfrei.
@@ -63,24 +65,66 @@ Ich nehme den Treiber aus Debian Testing ([Quelle](https://www.aeyoun.com/how-to
 
 	vi /etc/apt/preferences.d/pinning
 	  Package: *
-	  Pin: release o=Debian,a=jessie
-	  Pin-Priority:  900
-	  Package: *
 	  Pin: release o=Debian,a=testing
 	  Pin-Priority: -500
 
 	vi /etc/apt/sources.list
-	  deb http://ftp.ch.debian.org/debian testing main contrib non-free
-	  deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
+	deb http://ftp.ch.debian.org/debian/ jessie main contrib non-free
+	deb-src http://ftp.ch.debian.org/debian/ jessie main contrib non-free
+	# jessie-updates, previously known as 'volatile'
+	deb http://ftp.ch.debian.org/debian/ jessie-updates main contrib
+	deb-src http://ftp.ch.debian.org/debian/ jessie-updates main contrib
+	# jessie-backports
+	deb http://ftp.ch.debian.org/debian/ jessie-backports main contrib
+	deb-src http://ftp.ch.debian.org/debian/ jessie-backports main contrib
+	# testing
+	deb http://ftp.ch.debian.org/debian testing main contrib non-free
+	deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
 
 	apt-get update
-	apt-get install -t testing xserver-xorg-video-intel
+
+**Update 29.05.2016:** Der aktuelle **stable-updates** Paket
+linux-image-3.16.0-4-amd64 mit Kernel 3.16.7-ckt25-1 hat ein Problem. Das
+Display schaltet direkt vor der Passphrase Eingabe zum entschlüsseln der
+Disk auf black. Den [Hinweis](https://wiki.debianforum.de/KMS) zum ausschalten
+via Kernel Paramenter `i915.modeset=0` führt dazu, dass zwar die Passphrase
+eingegeben werden kann und das System bootet. Jedoch der Intel Grafiktreiber
+[xserver-xorg-video-intel](https://tracker.debian.org/pkg/xserver-xorg-video-intel) die Zusammenarbeit (siehe auch
+[#817784](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=817784)) mit dem
+Kernelmodul i915 verweigert.
+
+Weitere gefundene Hinweise:
+
+* [i915 Black Screen on Boot Issue](http://florian-berger.de/en/articles/i915-black-screen-on-boot-issue/)
+* [archlinux - intel graphics](https://wiki.archlinux.org/index.php/intel_graphics)
+* [wiki debian - KernelModesetting](https://wiki.debian.org/KernelModesetting#Intel_GfxCards)
+* [archlinux - Intel](https://wiki.archlinux.org/index.php/Intel)
+* [solved - KMS / Intel turns display off](https://bbs.archlinux.org/viewtopic.php?pid=1504326#p1504326)
+* [snd-hda-intel: Cannot turn on display power on i915](https://forums.opensuse.org/showthread.php/508563-snd-hda-intel-Cannot-turn-on-display-power-on-i915)
+* [Intel® Graphics for Linux - Black screen debian](https://01.org/linuxgraphics/forum/graphics-installer-discussions/nuc5i3ryh-black-screen-debian)
+
+**Workaround** für das black screen issue ist ein aktueller 4.5er Kernel aus
+dem **jessie-backports** repo.
+
+Das System (manuell) via Grub mit dem Kernel parameter `i915.modeset=0` starten:
+
+	apt-get -t jessie-backports install linux-image-4.5.0-0.bpo.2-amd64
+	apt-get -t jessie-backports install xserver-xorg-video-intel
+
+Das Modul `i915` in die initramfs aufzunehmen, führt dazu, dass KMS
+(Kernelbased Mode-Setting) früher aktiv wird:
+
+	vi /etc/initramfs-tools/modules
+	i915
+	update-initramfs -v -u
 
 Entfernt wurden: xserver-org-video-modesetting xserver-xorg-video-siliconmotion
 
 	reboot
 	glxinfo | grep "OpenGL vendor"
 	  OpenGL vendor string: Intel Open Source Technology Center
+
+
 
 ## Sehr hohe Auflösung
 
@@ -89,7 +133,7 @@ Zu kleine Schrift ([Quelle](https://www.aeyoun.com/posts/lenovo-yoga3-pro-linux.
 Sichtbar im Grub Menu:
 
 	vi /etc/default/grub
-	  GRUB_GFXMODE=1280x1024
+	  GRUB_GFXMODE=800x600
 	update-grub
 
 Sichtbar in der Console (alt+ctrl+f1):
