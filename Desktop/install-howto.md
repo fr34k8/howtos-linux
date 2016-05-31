@@ -116,6 +116,7 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	# Debian 8.0 (Jessie)
 	deb     http://ftp.ch.debian.org/debian/ jessie main contrib non-free
 	deb     http://ftp.ch.debian.org/debian/ jessie-updates main contrib non-free
+	deb     http://ftp.ch.debian.org/debian/ jessie-backports main contrib non-free
 	deb-src http://ftp.ch.debian.org/debian/ jessie main contrib non-free
 	deb http://security.debian.org jessie/updates main
 
@@ -131,10 +132,6 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	Package: *
 	Pin: release o=Debian,a=testing
 	Pin-Priority: -500
-	Package: *
-	Pin: release o=Debian,n=jessie-updates
-	Pin-Priority: 995
-
 
 	vi /etc/apt/sources.list
 	deb http://ftp.ch.debian.org/debian testing main contrib non-free
