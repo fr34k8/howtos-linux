@@ -47,7 +47,10 @@ Der Chip ist ein BCM4352 von [Broadcom](http://www.broadcom.com/support/802.11/l
 
 Musste über einen anderen Weg in das Internet verbinden (Huawei USB Mobile Modem).
 
-	apt-get install broadcom-sta-dkms firmware-brcm80211
+	apt-get -t jessie-backports install broadcom-sta-dkms firmware-brcm80211
+
+**Update 29.05.2016:** Auch die Wifi Treiber müssen neu aus dem  **jessie-backports** Repos bezogen werden. Siehe Update im nächsten
+Kapitel.
 
 ## Intel Grafik
 
