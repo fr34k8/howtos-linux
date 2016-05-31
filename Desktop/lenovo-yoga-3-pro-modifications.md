@@ -118,13 +118,13 @@ Das Modul `i915` in die initramfs aufzunehmen, führt dazu, dass KMS
 	i915
 	update-initramfs -v -u
 
-Entfernt wurden: xserver-org-video-modesetting xserver-xorg-video-siliconmotion
+* Entfernt wurden: xserver-org-video-modesetting xserver-xorg-video-siliconmotion
+
+Verifizieren das der intel Treiber verwendet wird:
 
 	reboot
 	glxinfo | grep "OpenGL vendor"
 	  OpenGL vendor string: Intel Open Source Technology Center
-
-
 
 ## Sehr hohe Auflösung
 
