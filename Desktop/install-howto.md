@@ -70,6 +70,7 @@ EOF
 
 ## ssh
 
+	apt-get install openssh-server rsync sshfs
 	vi /etc/ssh/sshd_config
 	# default but to be sure
 	PasswordAuthentication no
@@ -111,6 +112,8 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 	  %sudo  ALL = NOPASSWD: ALL
 
 ## apt
+
+	apt-get install apt-file
 
 	vi /etc/apt/sources.list
 	# Debian 8.0 (Jessie)
@@ -172,19 +175,19 @@ Moved [here](https://github.com/micressor/howtos-linux/blob/master/Server/logwat
 ## Useful tools
 
 	apt-get install \
-	openssh-server \
-	apt-file \
-	iceweasel-l10n-de \
-	opensc pcscd autoconf automake \
-	autotools-dev bc build-essential flac gettext gimp \
-	git-core qtgstreamer-plugins \
-	gstreamer0.10-plugins-ugly \
+	bc flac gettext gimp \
+	git qtgstreamer-plugins gstreamer0.10-plugins-ugly \
 	gstreamer0.10-plugins-good \
-	iptraf libdvdread4 lltag mc rsync sshfs \
-	smartmontools sox ttf-mscorefonts-installer uptimed \
-	vorbis-tools vlc whois \
-	pbuilder debhelper zip lame lintian mtr \
-	git-buildpackage ruby devscripts
+	iptraf libdvdread4 lltag mc  \
+	sox ttf-mscorefonts-installer uptimed \
+	vorbis-tools vlc whois zip lame mtr
+
+### build tools
+
+	apt-get install \
+	pbuilder debhelper git-buildpackage ruby devscripts lintian \
+	autotools-dev autoconf automake build-essential \
+	virt-manager jmeter
 
 ## Backup
 
@@ -194,7 +197,7 @@ Moved [here](https://github.com/micressor/howtos-linux/blob/master/Server/logwat
 
 	apt-get install \
 	audacity libreoffice-l10n-de default-jre \
-	icedtea-plugin jmeter android-tools-adb virt-manager \
+	icedtea-plugin android-tools-adb \
 	myspell-de-ch
 
 ## Remove rpcbind
@@ -209,17 +212,13 @@ I plan to no longer use flash websites:
 
 	apt-get autoremove --purge flashplugin-nonfree
 
-## Related depends on lenovo's
-
-      apt-get install firmware-iwlwifi tp-smapi-dkms hdapsd
-
 ## Unattended-upgrades
 
 Move to [unattended-upgrades](https://github.com/micressor/howtos-linux/blob/master/Server/unattended-upgrades.md)
 
 ## Power Management
 
-	apt-get install acpitool laptop-mode-tools
+	apt-get install acpitool laptop-mode-tools smartmontools
 
 Wenn laptop-mode-tools installiert, schläft die USB Maus/Tastatur ständig ein. Lösung [gefunden:](https://debianforum.de/forum/viewtopic.php?f=13&t=152520)
 

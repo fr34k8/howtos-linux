@@ -1,3 +1,9 @@
+# Lenovo depends
+
+## Wifi
+
+      apt-get install firmware-iwlwifi tp-smapi-dkms hdapsd
+
 ## Power Management
 
 	apt-get install tp-smapi-dkms hdapsd
