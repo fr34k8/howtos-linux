@@ -229,7 +229,7 @@ Wenn laptop-mode-tools installiert, schläft die USB Maus/Tastatur ständig ein.
 
 ## mail / SMTP (SSMTP)
 
-Stepps according to [here](https://github.com/micressor/howtos-linux/blob/master/Tools/ssmtp.md).
+Stepps according to [here](https://github.com/micressor/howtos-linux/blob/master/Server/ssmtp.md).
 
 ## Anacron
 
