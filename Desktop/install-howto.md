@@ -107,7 +107,7 @@ Weshalb [sudo](https://wiki.debian.org/sudo)?
 
 Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 
-	adduser user1 sudo
+	usermod -a -G sudo user1
 	visudo
 	  %sudo  ALL = NOPASSWD: ALL
 
