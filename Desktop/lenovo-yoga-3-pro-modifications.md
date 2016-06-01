@@ -38,25 +38,7 @@ Weitere Infos zu  UEFI [Secure Boot](https://wiki.ubuntu.com/SecurityTeam/Secure
 
 	* Installation **nur starten,** wenn das anders aussehende **Debian UEFI Installer Splash Logo** erscheint.
 
-
-## Wifi
-
-Das hinzufügen der Firmware über einen USB Stick während der Installation (mit *debian-installer*) hat nicht funktioniert.
-
-Der Chip ist ein BCM4352 von [Broadcom](http://www.broadcom.com/support/802.11/linux_sta.php). Weitere Infos sind im [Debian Wiki (wl driver)](https://wiki.debian.org/wl).
-
-Musste über einen anderen Weg in das Internet verbinden (Huawei USB Mobile Modem).
-
-	apt-get install broadcom-sta-dkms firmware-brcm80211
-
-## Intel Grafik
-
-Sehr langsam mit dem Treiber aus Debian 8.0 (Jessie) unbrauchbar.
-
-Ich nehme den Treiber aus Debian Testing ([Quelle](https://www.aeyoun.com/how-to/debian-newer-intel-graphics.html)).
-
-	glxinfo | grep "OpenGL vendor"
-	  OpenGL vendor string: VMWare, Inc.
+### apt
 
 	vi /etc/apt/apt.conf.d/80defaultrelease
 	  APT::Default-Release "jessie";
@@ -75,13 +57,37 @@ Ich nehme den Treiber aus Debian Testing ([Quelle](https://www.aeyoun.com/how-to
 	deb http://ftp.ch.debian.org/debian/ jessie-updates main contrib
 	deb-src http://ftp.ch.debian.org/debian/ jessie-updates main contrib
 	# jessie-backports
-	deb http://ftp.ch.debian.org/debian/ jessie-backports main contrib
-	deb-src http://ftp.ch.debian.org/debian/ jessie-backports main contrib
+	deb http://ftp.ch.debian.org/debian/ jessie-backports main contrib non-free
+	deb-src http://ftp.ch.debian.org/debian/ jessie-backports main contrib non-free
 	# testing
 	deb http://ftp.ch.debian.org/debian testing main contrib non-free
 	deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
 
 	apt-get update
+
+## Wifi
+
+Das hinzufügen der Firmware über einen USB Stick während der Installation (mit *debian-installer*) hat nicht funktioniert.
+
+Der Chip ist ein BCM4352 von [Broadcom](http://www.broadcom.com/support/802.11/linux_sta.php). Weitere Infos sind im [Debian Wiki
+(wl driver)](https://wiki.debian.org/wl).
+
+Musste über einen anderen Weg in das Internet verbinden (Huawei USB Mobile Modem).
+
+	apt-get -t jessie-backports install broadcom-sta-dkms firmware-brcm80211
+
+**Update 29.05.2016:** Auch die Wifi Treiber müssen neu aus dem  **jessie-backports** Repos bezogen werden. Siehe Update im nächsten
+Kapitel.
+
+## Intel Grafik
+
+Sehr langsam mit dem Treiber aus Debian 8.0 (Jessie) unbrauchbar.
+
+Ich nehme den Treiber aus Debian Testing ([Quelle](https://www.aeyoun.com/how-to/debian-newer-intel-graphics.html)).
+
+	glxinfo | grep "OpenGL vendor"
+	  OpenGL vendor string: VMWare, Inc.
+
 
 **Update 29.05.2016:** Der aktuelle **stable-updates** Paket
 linux-image-3.16.0-4-amd64 mit Kernel 3.16.7-ckt25-1 hat ein Problem. Das
