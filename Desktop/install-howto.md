@@ -219,10 +219,7 @@ Move to [unattended-upgrades](https://github.com/micressor/howtos-linux/blob/mas
 
 ## Power Management
 
-	apt-get install acpitool tp-smapi-dkms hdapsd laptop-mode-tools
-	echo "tp_smapi" >> /etc/modules
-	echo "hdaps" >> /etc/modules
-	update-initramfs -u
+	apt-get install acpitool laptop-mode-tools
 
 Wenn laptop-mode-tools installiert, schläft die USB Maus/Tastatur ständig ein. Lösung [gefunden:](https://debianforum.de/forum/viewtopic.php?f=13&t=152520)
 
@@ -230,12 +227,6 @@ Wenn laptop-mode-tools installiert, schläft die USB Maus/Tastatur ständig ein.
 	AUTOSUSPEND_RUNTIME_DEVTYPE_BLACKLIST="usbhid usb-storage"
 
 	reboot
-oder
-
-	modprobe tp_smapi
-	cat /sys/devices/platform/smapi/BAT0/cycle_count
-
-* [Infos auf thinkwiki.org](http://www.thinkwiki.org/wiki/Tp_smapi)
 
 ## mail / SMTP (SSMTP)
 
