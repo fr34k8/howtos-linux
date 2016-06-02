@@ -23,34 +23,34 @@ Via Gnome Drucker Menu den Drucker suchen und hinzufügen.
 
 ### Extensions
 
-[Drop down
+* [Dash to dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
+
+* [Drop down
 terminal](https://extensions.gnome.org/extension/442/drop-down-terminal/)
 
-[Alternate Tab](https://extensions.gnome.org/extension/15/alternatetab/)
+* [Alternate Tab](https://extensions.gnome.org/extension/15/alternatetab/)
 
-[system-monitor](https://extensions.gnome.org/extension/120/system-monitor/)
-
-[Suspend
+* [Suspend
 Button](https://extensions.gnome.org/extension/826/suspend-button/)
 
-[Hibernate Status
+* [Hibernate Status
 Button](https://extensions.gnome.org/extension/755/hibernate-status-button/)
 
-[Refresh Wifi
+* [Refresh Wifi
 Connections](https://extensions.gnome.org/extension/905/refresh-wifi-connections/)
 
-[Sound Output Device
+* [Sound Output Device
 Chooser](https://extensions.gnome.org/extension/906/sound-output-device-chooser/)
 
-[Battery Power Statistics
+* [Battery Power Statistics
 Shortcut](https://extensions.gnome.org/extension/175/battery-power-statistics-shortcut/)
 
-[CPU Power
+* [CPU Power
 Manager](https://extensions.gnome.org/extension/945/cpu-power-manager/)
 
-[windowNavigator](https://extensions.gnome.org/extension/10/windownavigator/)
+* [windowNavigator](https://extensions.gnome.org/extension/10/windownavigator/)
 
-	gnome-shell-extension-prefs
+	gnome-tweak-tool
 
 ## Disable GNOME keyring
 
