@@ -18,7 +18,7 @@ Aktualisiere Stabile und Sicherheits-Updates.
 
 testen:
 
-	unattended-upgrade -d –dry-run
+	unattended-upgrade -d --dry-run
 
 Und aktivieren mit:
 
