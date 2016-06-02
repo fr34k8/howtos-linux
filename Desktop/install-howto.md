@@ -68,6 +68,23 @@ A VISUAL editor could be a full screen editor as vi or emacs.
 	endif
 EOF
 
+## Console font size
+
+Sichtbar in der Console (alt+ctrl+f1):
+
+	vi /etc/default/console-setup
+	  FONTFACE="Terminus"
+	  FONTSIZE="16x32"
+
+	/etc/init.d/console-setup restart
+
+Sichtbar im Grub Menu:
+
+	vi /etc/default/grub
+	  GRUB_GFXMODE=800x600
+	update-grub
+	reboot
+
 ## ssh
 
 	apt-get install openssh-server rsync sshfs
