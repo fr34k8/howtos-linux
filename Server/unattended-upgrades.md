@@ -5,9 +5,10 @@ Aktualisiere Stabile und Sicherheits-Updates.
 	apt-get install unattended-upgrades
 
 	vi /etc/apt/apt.conf.d/50unattended-upgrades
+	// Codename based matching:
 	Unattended-Upgrade::Origins-Pattern {
-        "o=Debian,a=stable";
-        "o=Debian,a=stable-updates";
+        "o=Debian,a=jessie";
+        "o=Debian,a=jessie-updates";
         "origin=Debian,codename=${distro_codename},label=Debian-Security";
 	};
 	Unattended-Upgrade::MinimalSteps "true";
