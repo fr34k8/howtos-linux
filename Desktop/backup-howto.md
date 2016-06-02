@@ -178,9 +178,9 @@ Download btrbk from [here.](http://www.digint.ch/btrbk/download.html)
 
 	apt-get install libdate-calc-perl
 	cd /tmp
-	wget http://www.digint.ch/download/btrbk/releases/btrbk-0.21.0.tar.xz
-	unxz btrbk-0.21.0.tar.xz
-	tar xf btrbk-0.21.0.tar
+	wget http://www.digint.ch/download/btrbk/releases/btrbk-0.23.1.tar.xz
+	unxz btrbk-0.23.1.tar.xz
+	tar xf btrbk-0.23.1.tar
 	cd btrbk-*
 	make install
 
@@ -209,14 +209,12 @@ Setup snapshot's for user1:
 
 	cat << EOF >/etc/btrbk/btrbk.conf
 	# Preserve matrix for source snapshots:
-	snapshot_preserve_daily    7
-	snapshot_preserve_weekly   4
-	snapshot_preserve_monthly  6
+	snapshot_preserve_min      14d
+	snapshot_preserve          14d 4w 12m
 
 	# Preserve matrix for backup targets:
-	#target_preserve_daily      7
-	#target_preserve_weekly     4
-	#target_preserve_monthly    6
+	target_preserve_min        14d
+	snapshot_preserve          14d 4w 12m
 
 	timestamp_format long
 
@@ -278,6 +276,7 @@ Weekly maintenance and statistics:
 	  btrfs balance start -dusage=$BALANCE_DUSAGE $i;
 	done
 	btrbk stats
+	btrbk list latest
 	EOF
 
 	chmod 755 /etc/cron.weekly/backup
