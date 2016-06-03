@@ -134,11 +134,21 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 
 	vi /etc/apt/sources.list
 	# Debian 8.0 (Jessie)
-	deb     http://ftp.ch.debian.org/debian/ jessie main contrib non-free
-	deb     http://ftp.ch.debian.org/debian/ jessie-updates main contrib non-free
-	deb     http://ftp.ch.debian.org/debian/ jessie-backports main contrib non-free
+	# jessie
+	deb http://ftp.ch.debian.org/debian/ jessie main contrib non-free
 	deb-src http://ftp.ch.debian.org/debian/ jessie main contrib non-free
-	deb http://security.debian.org jessie/updates main
+	# jessie security updates
+	deb http://security.debian.org/ jessie/updates main contrib non-free
+	deb-src http://security.debian.org/ jessie/updates main contrib non-free
+	# jessie updates
+	deb http://ftp.ch.debian.org/debian/ jessie-updates main contrib
+	deb-src http://ftp.ch.debian.org/debian/ jessie-updates main contrib
+	# jessie-backports
+	deb http://ftp.ch.debian.org/debian/ jessie-backports main contrib
+	deb-src http://ftp.ch.debian.org/debian/ jessie-backports main contrib
+	# testing
+	deb http://ftp.ch.debian.org/debian testing main contrib non-free
+	deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
 
 ### mixed mode with testing (optional)
 
