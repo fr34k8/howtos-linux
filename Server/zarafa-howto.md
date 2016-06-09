@@ -218,6 +218,16 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
 	zarafa-admin --create-store xyz
 
+# Backup / Restore
+
+* [Encrypted gpg backup of /etc and mysql database](https://github.com/micressor/howtos-linux/blob/master/Server/backup.md)
+
+## Iporting ICAL ics files into Zarafa
+
+	curl -u 'user:pass' -T calendar.ics https://localhost:8443/ical/user
+
+
+
 # Appendix
 
 ## Reinstall, backup and restore mysql
