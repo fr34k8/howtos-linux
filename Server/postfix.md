@@ -3,7 +3,7 @@
 Steps to configure postfix as a **Satellite System** with smarthost.
 Inspired by [ubuntuusers.de](https://wiki.ubuntuusers.de/Postfix/).
 
-## Smarthost (Satelitesystem) config
+## Configure
 
 
 	apt-get install postfix
@@ -52,3 +52,7 @@ Proper sender names:
 	postmap hash:/etc/postfix/sender_canonical
 
 	/etc/init.d/postfix restart 	
+
+## Test
+
+	echo text | mail -s 'test 1' root
