@@ -30,7 +30,7 @@ SSD drive.
 
 ## Base tools
 
-	apt-get install ca-certificates git uptimed telnet unison ssmtp logwatch mailutils
+	apt-get install ca-certificates git uptimed telnet unison postfix logwatch mailutils
 
 ## Zarafa
 
@@ -95,6 +95,11 @@ apu.
 	service apache2 reload
 
 # Configure
+
+## Postfix
+
+Configure Postfix as a **Satellite System** according to
+[this steps](https://github.com/micressor/howtos-linux/blob/master/Server/postfix.md).
 
 ## Zarafa
 
