@@ -162,7 +162,7 @@ Restart all /etc/init-d/zarafa-\* services.
 
 ## Apache TLS/SSL
 
-* Apache config according to [this instructions](https://github.com/micressor/howtos-linux/blob/master/Apache/sslengine.md).
+* Apache config according to [this instructions](https://github.com/micressor/howtos-linux/blob/master/Snippets/Apache/sslengine.md).
 * Letsencrypt according to [this instructions](https://github.com/micressor/howtos-linux/blob/master/Server/letsencrypt.md)
 
 ## Enable services at boot time
