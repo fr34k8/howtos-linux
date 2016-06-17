@@ -86,6 +86,10 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 	a2ensite z-push
 	service apache2 reload
+	ln -s /usr/share/z-push/z-push-admin.php /usr/local/sbin/z-push-admin
+	ln -s /usr/share/z-push/z-push-top.php /usr/local/sbin/z-push-top
+
+
 
 ## WebApp
 
