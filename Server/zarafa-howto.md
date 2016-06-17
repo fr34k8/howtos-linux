@@ -111,6 +111,8 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	vi /etc/default/zarafa
 	ZARAFA_USERSCRIPT_LOCALE="de_CH.UTF-8 UTF-8"
 
+**Important [note](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#storing-attachments-outside-the-database)**: For first time installations, the attachment storage method should be selected before starting the server for the first time as it is not easy to switch the attachment storage method later on.
+
 	vi /etc/zarafa/server.cfg
 	server_bind = 127.0.0.1
 	attachment_storage = database
