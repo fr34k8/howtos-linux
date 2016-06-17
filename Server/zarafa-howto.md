@@ -77,6 +77,13 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 	chown www-data:www-data /var/lib/z-push /var/log/z-push
 	cat /etc/apache2/sites-available/z-push.conf
 	Alias /Microsoft-Server-ActiveSync /usr/share/z-push/index.php
+	<Directory /usr/share/z-push>
+	php_flag magic_quotes_gpc off
+	php_flag register_globals off
+	php_flag magic_quotes_runtime off
+	php_flag short_open_tag on
+	</Directory>
+
 	a2ensite z-push
 	service apache2 reload
 
