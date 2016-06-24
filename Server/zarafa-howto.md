@@ -224,7 +224,8 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 
 ## Performance tuning
 
-[The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
+* [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
+* [Apache module mpm_worker + php issue](http://stackoverflow.com/questions/15423814/apache-module-mpm-worker-php-issue)
 
 
 # Usage
