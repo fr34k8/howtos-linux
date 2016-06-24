@@ -199,7 +199,7 @@ explanation [Z-Push Public Folders](https://www.mars-solutions.de/knowledgebase/
 On Zarafa systems use `backend/zarafa/listfolders.php` script to get a list
 of available folder (and folderid) for user1:
 
-	cd /usr/share/z-push/backend/zarafa
+	cd /usr/share/z-push/backend/kopano
 	zarafa-admin -u admin -a y
 	./listfolders.php -l user1 -u admin -p secret -h http://127.0.0.1:236/zarafa
 
@@ -215,7 +215,7 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 	array(
 	'store'     => "Shared Appointments",
 	'folderid'  => "a0000000000000000000000000000000000000000000",
-	'name'      => "Marys Kalendar",
+	'name'      => "Alice Kalendar",
 	'type'      => SYNC_FOLDER_TYPE_USER_APPOINTMENT,
 	),
 
