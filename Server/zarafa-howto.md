@@ -66,15 +66,16 @@ and opened a [bug #15](https://github.com/silentsakky/zarafa-webapp-passwd/issue
 
 ## Z-Push
 
-Download z-push from [here](http://download.z-push.org/final/) and install it according to [zarafa doc](https://documentation.zarafa.com/zcp_administrator_manual/configure_zcp_components.html#configure-z-push-activesync-for-mobile-devices)
+Install [z-push package](http://download.z-push.org/final/)from repository
+according to
+[this instructions](https://wiki.z-hub.io/display/ZP/Installation):
 
-	apt-get install php5-cli php-soap
+	cat /etc/apt/sources.list.d/z-push.list
+	deb http://repo.z-hub.io/z-push:/pre-final/Debian_8.0/ /
 
-	wget http://download.z-push.org/final/z-push-x.y.z.tgz
-	mkdir -p /usr/share/z-push
-	tar zxvf z-push-*.tar.gz -C /usr/share/z-push/ --strip-components=1
-	mkdir /var/lib/z-push /var/log/z-push
-	chown www-data:www-data /var/lib/z-push /var/log/z-push
+	wget -qO - http://repo.z-hub.io/z-push:/pre-final/Debian_8.0/Release.key | apt-key add -
+	apt-get install z-push-kopano
+
 	cat /etc/apache2/sites-available/z-push.conf
 	Alias /Microsoft-Server-ActiveSync /usr/share/z-push/index.php
 	<Directory /usr/share/z-push>
@@ -86,10 +87,6 @@ Download z-push from [here](http://download.z-push.org/final/) and install it ac
 
 	a2ensite z-push
 	service apache2 reload
-	ln -s /usr/share/z-push/z-push-admin.php /usr/local/sbin/z-push-admin
-	ln -s /usr/share/z-push/z-push-top.php /usr/local/sbin/z-push-top
-
-
 
 ## WebApp
 
