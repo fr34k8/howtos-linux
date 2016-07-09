@@ -1,6 +1,8 @@
 # Reserach: DRM free e-books
 
 * [DRM entfernen: Wissenswertes, Fragen und Antworten](http://allesebook.de/ebooks/drm-entfernen-wissenswertes-fragen-und-antworten-35488)
+* [DeDRM](http://www.apprenticealf.wordpress.com/)
+* [DeDRM at github](https://github.com/apprenticeharper)
 
 # Research: How to play audible audiobooks at linux
 
