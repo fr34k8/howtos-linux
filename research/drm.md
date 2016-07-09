@@ -3,6 +3,8 @@
 * [DRM entfernen: Wissenswertes, Fragen und Antworten](http://allesebook.de/ebooks/drm-entfernen-wissenswertes-fragen-und-antworten-35488)
 * [DeDRM](http://www.apprenticealf.wordpress.com/)
 * [DeDRM at github](https://github.com/apprenticeharper)
+* [Das neue DRM mit Tolino und Telekom Cloud?](http://www.lesen.net/forum/ebook-reader/tolino/10166-das-neue-drm-mit-tolino-und-telekom-cloud/)
+* [Verleger Ralph Möllers: "DRM ist böse!" (Digital Rights Management)](https://www.youtube.com/watch?v=wCpSq536YLs)
 
 # Research: How to play audible audiobooks at linux
 
