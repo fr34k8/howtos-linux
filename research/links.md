@@ -1,3 +1,7 @@
+# Reserach: DRM free e-books
+
+* [DRM entfernen: Wissenswertes, Fragen und Antworten](http://allesebook.de/ebooks/drm-entfernen-wissenswertes-fragen-und-antworten-35488)
+
 # Research: How to play audible audiobooks at linux
 
 * [How to listen to Audible files?](http://askubuntu.com/questions/16918/how-to-listen-to-audible-files)
@@ -16,6 +20,6 @@
 * [Digitales Vergessen](https://de.wikipedia.org/wiki/Digitales_Vergessen)
 * [Frei aufgespielt: DRM entfernen legal und kostenlos](http://www.netzwelt.de/news/72511-frei-aufgespielt-drm-entfernen-legal-kostenlos.html): Anwalt Alexander Wachs macht deutlich: "Mit dem Computer eine analoge Kopie des DRM-geschützten Liedes zu erstellen ist erlaubt, weil dabei kein wirksamer Kopierschutz im Sinne des Urheberrechtsgesetzes umgangen wird." Man spricht hierbei auch von der analogen Lücke, die bereits das Mitschneiden von Radio oder CD auf Kassette rechtlich unbedenklich machte. DRM auf digitalem Weg zu entschlüsseln, ist hingegen illegal, da hier der wirksame Kopierschutz umgangen würde.
 
-# Links
+## Links
 
 * [Alternativen zu Audible](http://www.lesen.net/kostenlose-hoerbuecher-hoerspiele)
