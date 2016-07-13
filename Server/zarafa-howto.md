@@ -226,6 +226,7 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 
 * [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
 * [Apache module mpm_worker + php issue](http://stackoverflow.com/questions/15423814/apache-module-mpm-worker-php-issue)
+* [Apache with fcgid: acceptable performance and better resource utilization](http://2bits.com/articles/apache-fcgid-acceptable-performance-and-better-resource-utilization.html)
 
 
 # Usage
