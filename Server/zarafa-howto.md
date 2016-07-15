@@ -279,11 +279,13 @@ Check [this](https://github.com/micressor/howtos-linux/blob/master/Server/mysql.
 
 	apt-get install php5-fpm
 	a2enconf php5-cgi
-	a2enmod a2fcgid proxy_fcgi
+	a2enmod fcgid proxy_fcgi
 
 	vi /etc/php5/fpm/pool.d/www.conf
 	;listen = /var/run/php5-fpm.sock
 	listen = 127.0.0.1:9000'
+
+	service php5-fpm restart
 
 	vi /etc/apache2/sites-enabled/zarafa-webapp.conf
 	ProxyPassMatch ^/webapp/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/usr/share/zarafa-webapp/$1
