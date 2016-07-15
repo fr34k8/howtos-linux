@@ -224,15 +224,6 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 
 
 # Testing
-
-## Performance tuning
-
-* [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
-* [Apache module mpm_worker + php issue](http://stackoverflow.com/questions/15423814/apache-module-mpm-worker-php-issue)
-* [Apache with fcgid: acceptable performance and better resource utilization](http://2bits.com/articles/apache-fcgid-acceptable-performance-and-better-resource-utilization.html)
-* [High-performance PHP on apache httpd 2.4.x using mod_proxy_fcgi and php-fpm](https://wiki.apache.org/httpd/PHP-FPM)
-
-
 # Usage
 
 ## Create user
@@ -273,9 +264,18 @@ steps:
 
 Check [this](https://github.com/micressor/howtos-linux/blob/master/Server/mysql.md).
 
-## Changelog
+## Try to use php5-fpm for performance optimization on apu
 
-### 2016-07-13
+**Problem:** Zarafa's webapp with 4 overlayed calendars need a lot of
+cpu power in a short term. In a weekly calendar view, changing between
+weeks takes up to 4 seconds.
+
+This was a try to use php5 with a threaded apache:
+
+	apache2ctl -V |grep -A 2 'MPM:'
+	Server MPM:     worker
+	threaded:     yes
+	forked:     yes (variable process count)
 
 	apt-get install php5-fpm
 	a2enconf php5-cgi
@@ -294,3 +294,10 @@ Check [this](https://github.com/micressor/howtos-linux/blob/master/Server/mysql.
 	#DirectoryIndex index.php
 
 	service apache2 restart
+
+**Summary:** Technical possible, but needs too much manual maintenance.
+
+* [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
+* [Apache module mpm_worker + php issue](http://stackoverflow.com/questions/15423814/apache-module-mpm-worker-php-issue)
+* [Apache with fcgid: acceptable performance and better resource utilization](http://2bits.com/articles/apache-fcgid-acceptable-performance-and-better-resource-utilization.html)
+* [High-performance PHP on apache httpd 2.4.x using mod_proxy_fcgi and php-fpm](https://wiki.apache.org/httpd/PHP-FPM)
