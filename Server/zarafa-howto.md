@@ -270,7 +270,7 @@ Check [this](https://github.com/micressor/howtos-linux/blob/master/Server/mysql.
 cpu power in a short term. In a weekly calendar view, changing between
 weeks takes up to 4 seconds.
 
-This was a try to use php5 with a threaded apache:
+This was a try to use php5-fpm with a threaded apache:
 
 	apache2ctl -V |grep -A 2 'MPM:'
 	Server MPM:     worker
