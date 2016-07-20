@@ -5,6 +5,7 @@
 * [DeDRM at github](https://github.com/apprenticeharper)
 * [Das neue DRM mit Tolino und Telekom Cloud?](http://www.lesen.net/forum/ebook-reader/tolino/10166-das-neue-drm-mit-tolino-und-telekom-cloud/)
 * [Verleger Ralph Möllers: "DRM ist böse!" (Digital Rights Management)](https://www.youtube.com/watch?v=wCpSq536YLs)
+* [höbu ebooks](http://ebooks.hoebu.de/)
 
 # Research: How to play audible audiobooks at linux
 
@@ -23,6 +24,7 @@
 * [Digitale Rechteverwaltung unter Linux](https://de.wikipedia.org/wiki/Linux#Digitale_Rechteverwaltung)
 * [Digitales Vergessen](https://de.wikipedia.org/wiki/Digitales_Vergessen)
 * [Frei aufgespielt: DRM entfernen legal und kostenlos](http://www.netzwelt.de/news/72511-frei-aufgespielt-drm-entfernen-legal-kostenlos.html): Anwalt Alexander Wachs macht deutlich: "Mit dem Computer eine analoge Kopie des DRM-geschützten Liedes zu erstellen ist erlaubt, weil dabei kein wirksamer Kopierschutz im Sinne des Urheberrechtsgesetzes umgangen wird." Man spricht hierbei auch von der analogen Lücke, die bereits das Mitschneiden von Radio oder CD auf Kassette rechtlich unbedenklich machte. DRM auf digitalem Weg zu entschlüsseln, ist hingegen illegal, da hier der wirksame Kopierschutz umgangen würde.
+* [höbu - Hörbuch Download](http://www.hoebu.de/)
 
 ## Links
 
