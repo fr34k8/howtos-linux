@@ -44,6 +44,7 @@ your apu:
 	dpkg -i *.deb
 	apt-get install -f
 	apt-get install apache2-mpm-prefork libapache2-mod-php5
+	a2enmod headers expires deflate
 	apt-get install mysql-server
 
 ### Plugins
@@ -151,6 +152,8 @@ Restart all /etc/init-d/zarafa-\* services.
 	ssl_private_key_file = /etc/letsencrypt/live/doamin.tld/privkey.pem
 	ssl_certificate_file = /etc/letsencrypt/live/doamin.tld/fullchain.pem
 
+* [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
+
 ### MySQL
 
 	mysql
@@ -221,14 +224,6 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 
 
 # Testing
-
-## Performance tuning
-
-* [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
-* [Apache module mpm_worker + php issue](http://stackoverflow.com/questions/15423814/apache-module-mpm-worker-php-issue)
-* [Apache with fcgid: acceptable performance and better resource utilization](http://2bits.com/articles/apache-fcgid-acceptable-performance-and-better-resource-utilization.html)
-
-
 # Usage
 
 ## Create user
@@ -269,8 +264,40 @@ steps:
 
 Check [this](https://github.com/micressor/howtos-linux/blob/master/Server/mysql.md).
 
-## Links
+## Try to use php5-fpm for performance optimization on apu
 
-* [Importing ICAL ics files into Zarafa](https://wiki.zarafa.com/index.php/Importing_ICAL_ics_files_into_Zarafa)
+**Problem:** Zarafa's webapp with 4 overlayed calendars need a lot of
+cpu power in a short term. In a weekly calendar view, changing between
+weeks takes up to 4 seconds.
 
+This was a try to use php5-fpm with a threaded apache:
 
+	apache2ctl -V |grep -A 2 'MPM:'
+	Server MPM:     worker
+	threaded:     yes
+	forked:     yes (variable process count)
+
+	apt-get install php5-fpm
+	a2enconf php5-cgi
+	a2enmod fcgid proxy_fcgi
+
+	vi /etc/php5/fpm/pool.d/www.conf
+	;listen = /var/run/php5-fpm.sock
+	listen = 127.0.0.1:9000'
+
+	service php5-fpm restart
+
+	vi /etc/apache2/sites-enabled/zarafa-webapp.conf
+	ProxyPassMatch ^/webapp/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/usr/share/zarafa-webapp/$1
+	DirectoryIndex /index.php index.php
+	<Directory /usr/share/zarafa-webapp/>
+	#DirectoryIndex index.php
+
+	service apache2 restart
+
+**Summary:** Technical possible, but needs too much manual maintenance.
+
+* [The performance of Z-push, WebAccess and WebApp is dependent on the tuning of MySQL, ZCP caching and Apache.](http://wiki.zarafa.com/index.php?title=Apache_tuning)
+* [Apache module mpm_worker + php issue](http://stackoverflow.com/questions/15423814/apache-module-mpm-worker-php-issue)
+* [Apache with fcgid: acceptable performance and better resource utilization](http://2bits.com/articles/apache-fcgid-acceptable-performance-and-better-resource-utilization.html)
+* [High-performance PHP on apache httpd 2.4.x using mod_proxy_fcgi and php-fpm](https://wiki.apache.org/httpd/PHP-FPM)
