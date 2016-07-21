@@ -152,6 +152,7 @@ apt-get install [offlineimap](http://offlineimap.org)
 	cd /etc/apache2/sites-enabled
 	ln -s /etc/apache2/sites-available/domain.conf
 	a2enmod php5 headers ssl access_compat wsgi socache_shmcb rewrite expires proxy proxy_http deflate userdir
+	apt-get install php5-xcache
 
 	service apache2 start
 

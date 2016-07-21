@@ -43,7 +43,7 @@ your apu:
 	cd cp-7.2.3.657-debian-8.0-x86_64-opensource
 	dpkg -i *.deb
 	apt-get install -f
-	apt-get install apache2-mpm-prefork libapache2-mod-php5
+	apt-get install apache2-mpm-prefork libapache2-mod-php5 php5-xcache
 	a2enmod headers expires deflate
 	apt-get install mysql-server
 
