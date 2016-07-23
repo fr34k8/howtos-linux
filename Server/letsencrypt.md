@@ -13,3 +13,13 @@ Real certifacte generation:
 
 	./letsencrypt-auto certonly --webroot -w /srv/www/xyz/ -d xyz.domain.tld
 
+
+## Automagic
+
+	cat << EOF >>/tmp/letsencrypt
+	#!/bin/bash
+	set -x
+	/usr/local/letsencrypt/letsencrypt-auto renew
+	systemctl reload apache2
+	EOF
+	install -o root -g root -m 755 /tmp/letsencrypt /etc/cron.weekly/letsencrypt
