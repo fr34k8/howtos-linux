@@ -89,6 +89,13 @@ according to
 	a2ensite z-push
 	service apache2 reload
 
+**Important note,** if you use TLS (SNI) certificates: [Common Problems with Hostname Verification](https://developer.android.com/training/articles/security-ssl.html#CommonHostnameProbs)
+
+Workaround as example:
+
+	cd /etc/apache2/sites-enabled
+	mv z-push.conf 1_z-push.conf
+
 ## WebApp
 
 	cd /tmp
