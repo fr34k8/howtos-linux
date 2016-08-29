@@ -12,6 +12,7 @@ Inspired by [ubuntuusers.de](https://wiki.ubuntuusers.de/Postfix/).
 Configure to catch all e-mails to root:
 
 	vi /etc/aliases
+	user1: root
 	root: me@domain.tld
 
 Generate db:

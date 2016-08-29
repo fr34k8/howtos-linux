@@ -9,25 +9,6 @@ Inspired by [bootly](https://github.com/nikslor/bootly).
 
 # Install
 
-## Install debian on pcengines apu board
-
-Follow this [instructions](https://github.com/ssinyagin/pcengines-apu-debian-cd)
-to install debian on your apu. Recommended by pcengines list of
-[disk images](http://pcengines.ch/howto.htm#images).
-
-	cd /tmp
-	wget https://github.com/ssinyagin/pcengines-apu-debian-cd/releases/download/8.3-20160401/debian-8.3-amd64-CD-1.iso
-	dd if=images/debian-8.3-amd64-CD-1.iso of=/dev/sdX bs=16M
-
-
-**WARNING:** this is a fully automated installation. Once you boot from the
-USB stick, it will only give you 5 seconds in the initial menu, then in
-a couple of minutes it will ask for the hostname, and the rest will be
-done automatically, and a new Debian system will be installed on mSATA
-SSD drive.
-
-**!!! ALL EXISTING DATA ON THE DRIVE WILL BE LOST !!!**
-
 ## Base tools
 
 	apt-get install ca-certificates git uptimed telnet unison postfix logwatch mailutils
@@ -37,15 +18,33 @@ SSD drive.
 Install instructions (according to [zcp_administrator_manual](https://documentation.zarafa.com/zcp_administrator_manual/installing.html)) to install zarafa on
 your apu:
 
+	cd ~
 	mkdir src
-	wget https://download.zarafa.com/community/final/7.2/7.2.3.657/zcp-7.2.3.657-debian-8.0-x86_64-opensource.tar.gz
-	tar xfz zcp-7.2.3.657-debian-8.0-x86_64-opensource.tar.gz
-	cd cp-7.2.3.657-debian-8.0-x86_64-opensource
+
+Download latest zcp-x.x.x.xxx-debian-x.x-x86_64-opensource.tar.gz from:
+
+	wget https://download.zarafa.com/community/final
+	tar xfz zcp-x.x.x.xxx-debian-x.x-x86_64-opensource.tar.gz
+	cd cp-x.x.x.xxx-debian-x.x-x86_64-opensource
 	dpkg -i *.deb
 	apt-get install -f
 	apt-get install apache2-mpm-prefork libapache2-mod-php5 php5-xcache
 	a2enmod headers expires deflate
 	apt-get install mysql-server
+
+## WebApp
+
+	cd /tmp
+
+Download WebApp (whole directory with a lot of \*.deb files) from
+[here](https://download.zarafa.com/community/final/WebApp/2.2.0/) and scp it to
+apu.
+
+	tar xf debian-8.0.tar
+	cd debian-8.0
+	dpkg -i *.deb
+	apt-get -f install -f
+	service apache2 reload
 
 ### Plugins
 
@@ -58,8 +57,8 @@ and opened a [bug #15](https://github.com/silentsakky/zarafa-webapp-passwd/issue
 	wget [passwd-1.2.zip](https://github.com/silentsakky/zarafa-webapp-passwd/raw/master/builds/passwd-1.2.zip)
 	cd /usr/share/zarafa-webapp/plugins
 	unzip /tmp/passwd-1.2.zip
+	cd passwd
 	mv config.php /etc/zarafa/webapp/config-passwd.php
-	rm config.php
 	ln -s /etc/zarafa/webapp/config-passwd.php config.php
 
 	vi /etc/zarafa/webapp/config-passwd.php
@@ -77,7 +76,7 @@ according to
 	wget -qO - http://repo.z-hub.io/z-push:/pre-final/Debian_8.0/Release.key | apt-key add -
 	apt-get install z-push-kopano
 
-	cat /etc/apache2/sites-available/z-push.conf
+	cat << EOF >/etc/apache2/sites-available/z-push.conf
 	Alias /Microsoft-Server-ActiveSync /usr/share/z-push/index.php
 	<Directory /usr/share/z-push>
 	php_flag magic_quotes_gpc off
@@ -85,6 +84,11 @@ according to
 	php_flag magic_quotes_runtime off
 	php_flag short_open_tag on
 	</Directory>
+	EOF
+	chgrp www-data /var/log/z-push
+	chmod g+w /var/log/z-push
+	chgrp www-data /var/lib/z-push
+	chmod g+w /var/lib/z-push
 
 	a2ensite z-push
 	service apache2 reload
@@ -95,20 +99,6 @@ Workaround as example:
 
 	cd /etc/apache2/sites-enabled
 	mv z-push.conf 1_z-push.conf
-
-## WebApp
-
-	cd /tmp
-
-Download WebApp (whole directory with a lot of \*.deb files) from
-[here](https://download.zarafa.com/community/final/WebApp/2.2.0/) and scp it to
-apu.
-
-	tar xf debian-8.0.tar
-	cd debian-8.0
-	dpkg -i *.deb
-	apt-get -f install -f
-	service apache2 reload
 
 # Configure
 
@@ -135,6 +125,8 @@ Configuring a zarafa mysql user according to [Configuring the Zarafa Server](htt
 	# Size in bytes of the 'cell' cache (should be set as high as you can
 	# afford to set it)
 	cache_cell_size = 1024M
+	mysql_user = zarafa
+	mysql_password = secret
 
 	vi /etc/zarafa/gateway.cfg
 	pop3_enable = no
@@ -235,8 +227,8 @@ Edit `/usr/share/z-push/config.php` and follow [this instructions](https://wiki.
 
 ## Create user
 
-	zarafa-admin -c user@domain.tld -p xyz1234 -e user@domain.tld -f "first last"
-	zarafa-admin --create-store xyz
+	zarafa-admin -c user1 -p xyz1234 -e user@domain.tld -f "first last"
+	zarafa-admin --create-store user1
 
 # Backup / Restore
 
