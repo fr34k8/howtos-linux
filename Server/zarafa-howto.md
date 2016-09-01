@@ -144,6 +144,7 @@ Restart all /etc/init-d/zarafa-\* services.
 
 	vi /etc/zarafa/ical.cfg
 	server_bind =
+	server_timezone = Europe/Zurich
 	# wether normal connections can be made to the ical server
 	ical_enable = no
 	# wether ssl connections can be made to the ical server
