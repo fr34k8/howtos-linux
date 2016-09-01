@@ -93,6 +93,12 @@ according to
 	a2ensite z-push
 	service apache2 reload
 
+**Important note,** if you use TLS (SNI) certificates: [Common Problems with Hostname Verification](https://developer.android.com/training/articles/security-ssl.html#CommonHostnameProbs)
+
+Workaround as example:
+
+	cd /etc/apache2/sites-enabled
+	mv z-push.conf 1_z-push.conf
 
 # Configure
 
@@ -138,6 +144,7 @@ Restart all /etc/init-d/zarafa-\* services.
 
 	vi /etc/zarafa/ical.cfg
 	server_bind =
+	server_timezone = Europe/Zurich
 	# wether normal connections can be made to the ical server
 	ical_enable = no
 	# wether ssl connections can be made to the ical server

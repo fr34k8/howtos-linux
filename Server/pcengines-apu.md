@@ -1,3 +1,14 @@
+# pcengines apu2
+## Serial port configuration
+
+According to [user manual](http://pcengines.ch/pdf/apu2.pdf) set terminal
+emulator to 115200 8N1
+
+	apt-get install minicom
+	minicom -s
+
+Enter bios configuration with F10 key.
+
 ## Install debian on pcengines apu board
 
 Follow this [instructions](https://github.com/ssinyagin/pcengines-apu-debian-cd)
@@ -16,4 +27,3 @@ done automatically, and a new Debian system will be installed on mSATA
 SSD drive.
 
 **!!! ALL EXISTING DATA ON THE DRIVE WILL BE LOST !!!**
-
