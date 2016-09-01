@@ -44,3 +44,9 @@ Automatic start after reboot, if special disk monted on /home/bitcoind is there:
 ### Firewall
 
 Add port 8333 forwarding rule to the system that runs bitcoind.
+
+Validate that connectioncount is >8, so bitcoind is accepting incoming
+connections:
+
+	bitcoin-cli getconnectioncount
+	11
