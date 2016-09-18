@@ -36,6 +36,10 @@ Configure postfix according to [this](https://github.com/micressor/howtos-linux/
 
 Configure logwatch according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/logwatch.md)
 
+### Fail2ban
+
+Configure fail2ban according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/fail2ban.md)
+
 ### Bitcoin core
 
 Create config file:
