@@ -4,7 +4,7 @@ See also [Linux Instructions](https://bitcoin.org/en/full-node#linux-instruction
 
 # Install
 
-	apt-get install openssh-server rsync ca-certificates lm-sensors postfix mailutils
+	apt-get install openssh-server rsync ca-certificates lm-sensors postfix mailutils speedometer
 
 Create user:
 
@@ -57,6 +57,15 @@ Automatic start after reboot, if special disk monted on /home/bitcoind is there:
 	crontab -e
 	PATH=/usr/local/bin
 	@reboot if [ -f /home/bitcoind/.disk-here ]; then bitcoind -daemon; fi
+
+Tweaking .bashrc:
+
+	vi ~/.bashrc
+	alias log='tail -f ~/.bitcoin/*.log'
+	alias alog='tail -f ~/.bitcoin/*.log | grep -v "UpdateTip"'
+	alias speed='speedometer -r eth0 -t eth0'
+	EOF
+	. ~/.bashrc
 
 ### Firewall
 
