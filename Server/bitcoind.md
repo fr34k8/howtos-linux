@@ -4,6 +4,8 @@ See also [Linux Instructions](https://bitcoin.org/en/full-node#linux-instruction
 
 # Install
 
+	apt-get install openssh-server rsync ca-certificates lm-sensors postfix
+
 Create user:
 
 	useradd -m bitcoind
@@ -26,12 +28,23 @@ If corret go on:
 
 ## Configure
 
+### Postfix
+
+Configure postfix according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/postfix.md)
+
+### Logwatch
+
+Configure logwatch according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/logwatch.md)
+
+### Bitcoin core
+
 Create config file:
 
 	mkdir ~/.bitcoin
 	touch ~/.bitcoin/bitcoin.conf
 	chmod 600 ~/.bitcoin/bitcoin.conf
 	cat << EOF >~/.bitcoin/bitcoin.conf
+	debug=mempool
 	alertnotify=echo %s | mail -s "Bitcoin Alert" admin@foo.com
 	maxuploadtarget=2700
 	par=3
