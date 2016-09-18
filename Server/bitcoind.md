@@ -4,7 +4,7 @@ See also [Linux Instructions](https://bitcoin.org/en/full-node#linux-instruction
 
 # Install
 
-	apt-get install openssh-server rsync ca-certificates lm-sensors postfix
+	apt-get install openssh-server rsync ca-certificates lm-sensors postfix mailutils
 
 Create user:
 
