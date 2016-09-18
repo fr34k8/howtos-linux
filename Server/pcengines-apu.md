@@ -4,8 +4,8 @@
 According to [user manual](http://pcengines.ch/pdf/apu2.pdf) set terminal
 emulator to 115200 8N1
 
-	apt-get install minicom
-	minicom -s
+	apt-get install screen
+	screen -T xterm-256color /dev/ttyUSB0 115200
 
 Enter bios configuration with F10 key.
 
