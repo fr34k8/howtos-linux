@@ -8,8 +8,8 @@ See also [Linux Instructions](https://bitcoin.org/en/full-node#linux-instruction
 
 Create user:
 
-	useradd -m bitcoind
-	su - bitcoind
+	useradd -m bitcoin
+	su - bitcoin
 	mkdir ~/src
 	cd src
 	wget [from here](https://bitcoin.org/bin/bitcoin-core-0.13.0/bitcoin-0.13.0-x86_64-linux-gnu.tar.gz)
@@ -61,13 +61,13 @@ Create config file:
 	alertnotify=echo %s | mail -s "Bitcoin Alert" admin@foo.com
 	EOF
 
-Automatic start after reboot, if special disk monted on /home/bitcoind is there:
+Automatic start after reboot, if special disk monted on /home/bitcoin is there:
 
-	cd /home/bitcoind
+	cd /home/bitcoin
 	mkdir -disk-here
 	crontab -e
-	PATH=/usr/local/bin
-	@reboot if [ -f /home/bitcoind/.disk-here ]; then bitcoind -daemon; fi
+	PATH=/home/bitcoin/bin:/usr/local/bin:/usr/bin:/bin
+	@reboot if [ -f /home/bitcoin/.disk-here ]; then bitcoind -daemon; fi
 
 Tweaking .bashrc:
 
