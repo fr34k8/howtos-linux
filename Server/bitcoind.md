@@ -40,6 +40,10 @@ Configure logwatch according to [this](https://github.com/micressor/howtos-linux
 
 Configure fail2ban according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/fail2ban.md)
 
+### Unattended upgrades
+
+Configure unattended upgrades according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/unattended-upgrades.md)
+
 ### Bitcoin core
 
 Create config file:
