@@ -52,10 +52,11 @@ Create config file:
 	touch ~/.bitcoin/bitcoin.conf
 	chmod 600 ~/.bitcoin/bitcoin.conf
 	cat << EOF >~/.bitcoin/bitcoin.conf
-	debug=mempool
-	alertnotify=echo %s | mail -s "Bitcoin Alert" admin@foo.com
-	maxuploadtarget=2700
 	par=3
+	debug=mempool
+	shrinkdebuglog=1
+	maxuploadtarget=2700
+	alertnotify=echo %s | mail -s "Bitcoin Alert" admin@foo.com
 	EOF
 
 Automatic start after reboot, if special disk monted on /home/bitcoind is there:
