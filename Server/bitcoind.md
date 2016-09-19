@@ -53,6 +53,8 @@ Create config file:
 	chmod 600 ~/.bitcoin/bitcoin.conf
 	cat << EOF >~/.bitcoin/bitcoin.conf
 	par=3
+	daemon=1
+	txindex=1
 	debug=mempool
 	shrinkdebuglog=1
 	maxuploadtarget=2700
