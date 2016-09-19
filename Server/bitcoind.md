@@ -28,6 +28,11 @@ If corret go on:
 
 ## Configure
 
+### sysstat
+
+	vi /etc/default/sysstat
+	ENABLED="true"
+
 ### Postfix
 
 Configure postfix according to [this](https://github.com/micressor/howtos-linux/blob/master/Server/postfix.md)
