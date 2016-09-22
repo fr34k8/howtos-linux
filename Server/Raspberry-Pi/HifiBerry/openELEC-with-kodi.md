@@ -5,10 +5,11 @@
 Download the Raspberry Pi [Build](http://openelec.tv/get-openelec). Double
 check, what Pi version (1/2) you have.
 
+	apt-get install pv
+
 Insert a sd card and be sure, that all partitions are unmounted:
 
-	gzip -d OpenELEC-RPi2.arm-6.0.0.img.gz
-	sudo dd if=./OpenELEC-RPi2.arm-6.0.0.img of=/dev/mmcblk0 bs=4M
+	gzip -dc OpenELEC-RPi2.arm-6.0.0.img.gz | pv | sudo dd of=/dev/mmcblk0 bs=4M
 	sync
 
 ## Enable hifiberry's DAC+
