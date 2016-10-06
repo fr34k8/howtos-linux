@@ -268,7 +268,7 @@ Anacron wird bei systemd Nutzung nur am Netz ausgeführt. Damit die /etc/cron.\*
 	cat << EOF >on-ac.conf
 	[Unit]
 	ConditionACPower=
-EOF
+	EOF
 
 	systemctl daemon-reload
 
