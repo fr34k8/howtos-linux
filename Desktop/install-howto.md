@@ -66,7 +66,7 @@ A VISUAL editor could be a full screen editor as vi or emacs.
 	if &t_Co > 1
 	  syntax enable
 	endif
-EOF
+	EOF
 
 ## Console font size
 
