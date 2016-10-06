@@ -148,11 +148,11 @@ Anschliessend mit <http://ip-check.info> testen.
 
 ## Playing DVD's
 
-	vi /etc/apt/sources.list
-
-	  # for http://www.videolan.org/developers/libdvdcss.html
-	  deb http://download.videolan.org/pub/debian/stable/ /
-	  deb-src http://download.videolan.org/pub/debian/stable/ /
+	cat << EOF > /etc/apt/sources.list.d/libdvdcss.list
+	# for http://www.videolan.org/developers/libdvdcss.html
+	deb http://download.videolan.org/pub/debian/stable/ /
+	deb-src http://download.videolan.org/pub/debian/stable/ /
+	EOF
 
 	wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc | sudo apt-key add -
 	apt-get update
