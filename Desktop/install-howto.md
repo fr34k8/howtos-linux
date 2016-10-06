@@ -152,20 +152,18 @@ Beispiele von [ubuntuusers.de](https://wiki.ubuntuusers.de/sudo/Konfiguration)
 
 ### mixed mode with testing (optional)
 
-	cat << EOF >/etc/apt/apt.conf.d/80defaultrelease
-	APT::Default-Release "jessie";
-	EOF
-
 [Priority](https://wiki.debian.org/AptPreferences) for testing [anpassen](http://www.argon.org/~roderick/apt-pinning.html) (order is important).
 
-	vi /etc/apt/preferences.d/pinning
+	cat << EOF > /etc/apt/preferences.d/pinning
 	Package: *
 	Pin: release o=Debian,a=testing
 	Pin-Priority: -500
+	EOF
 
-	vi /etc/apt/sources.list
+	cat << EOF > /etc/apt/sources.list.d/testing.list
 	deb http://ftp.ch.debian.org/debian testing main contrib non-free
 	deb-src http://ftp.ch.debian.org/debian testing main contrib non-free
+	EOF
 
 	apt-cache policy| grep testing
 	500 http://ftp.ch.debian.org/debian/ testing/main Translation-en
