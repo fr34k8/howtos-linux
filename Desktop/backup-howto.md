@@ -233,53 +233,7 @@ Setup snapshot's for user1:
 
 #### Cron
 
-##### cron.daily
-
-Daily snapshot:
-
-	cat << EOF >/etc/cron.daily/backup
-	#!/bin/bash
-	exec 1>/dev/null
-	# Vars
-	#DISK_CRYPT=disk_crypt
-	#MOUNT_CRYPT=/srv/btr_backup
-	# Main
-	#if sudo cryptdisks_start $DISK_CRYPT;
-	#then
-	#  mount $MOUNT_CRYPT
-	#fi
-	btrbk run
-	sync
-	EOF
-
-	chmod 755 /etc/cron.daily/backup
-
-##### cron.weekly
-
-Weekly maintenance and statistics:
-
-	cat << EOF >>/etc/cron.weekly/backup
-	#!/bin/bash
-	# Vars
-	#CRYPT_DISK=disk_crypt
-	#CRYPT_MOUNT=/srv/btr_backup
-	BALANCE_MOUNT='/home /srv/btr_backup'
-	BALANCE_DUSAGE=55
-	# Main
-	#if cryptdisks_start $CRYPT_DISK;
-	#then
-	#  mount $CRYPT_MOUNT
-	#fi
-	btrfs filesystem show
-	for i in $BALANCE_MOUNT;
-	do
-	  btrfs balance start -dusage=$BALANCE_DUSAGE $i;
-	done
-	btrbk stats
-	btrbk list latest
-	EOF
-
-	chmod 755 /etc/cron.weekly/backup
+Moved to [configure-other-stuff.sh](https://github.com/micressor/lenovo-t460s/blob/master/misc/configure-other-stuff.sh).
 
 #### Report about exclusive used data
 
