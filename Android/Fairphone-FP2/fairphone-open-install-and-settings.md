@@ -117,18 +117,18 @@ Good Apps installed from [APTOIDE](http://www.aptoide.com/):
 I had some problems to encrypt my FP2. So this was my solution: Boot into TWRP
 `recovery` and drop a root shell:
 
-	ls -1 /dev/block/platform/*/*/userdata
-	/dev/block/platform/xyz/xyz/userdata
-	dd if=/dev/zero of=/dev/block/platform/xyz/xyz/userdata
+	ls -1 /dev/block/platform/*/by-name/userdata
+	/dev/block/platform/xyz/by-name/userdata
+	dd if=/dev/zero of=/dev/block/platform/xyz/by-name/userdata
 
-Download `fp2-sibon-16.04.0-ota-userdebug.zip` from http://code.fairphone.com.
+Download `fp2-sibon-16.10.0-manual-userdebug.zip` from http://code.fairphone.com.
 
-	unzip -d fp2-sibon-16.04.0-ota-userdebug fp2-sibon-16.04.0-ota-userdebug.zip
-	cd fp2-sibon-16.04.0-ota-userdebug
+	unzip -d fp2-sibon-16.10.0-manual-userdebug fp2-sibon-16.10.0-manual-userdebug.zip
+	cd fp2-sibon-16.10.0-manual-userdebug
 
 Boot your FP2 into fastboot mode:
 
-	fastboot -w flash userdata fp2-sibon-16.04.0-ota-userdebug/userdata.img
+	fastboot -w flash userdata userdata.img
 
 Reboot your FP2 and start encryption at Settings > Security after set your PIN.
 
