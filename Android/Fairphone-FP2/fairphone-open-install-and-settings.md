@@ -34,15 +34,40 @@ Perform a full backup of sdcard0 to sdcard1:
 2. Select all dirs at sdcard0 -> Compress to `.zip`
 3. Remove sdcard1 from device
 
+### via SSHelper app
+
+1. Install SSHelper from [here](http://arachnoid.com/android/SSHelper/resources/SSHelper.apk).
+2. Check [howto](https://github.com/micressor/howtos-linux/blob/master/Fairphone-FP2/backup.md) setup.
+
 ## Install
 
+1. Settings > Security > encrypt phone (if encryption does not work, see Appendix below)
+2. Settings > Security > Enable unkown sources
+3. Install F-Droid store from [here](https://f-droid.org/FDroid.apk)
+4. Install Firefox via FFUpdater app (from F-Droid).
+5. Install NetGuard from [here](https://github.com/M66B/NetGuard/releases)
+6. Restore all data to internal storage using SSHelper.
+7. Restore NetGuard firewall settings from `.xml` file
+
 ## Restore
+
+### via tar
 
 Restore sdcard0 via sdcard1.tar:
 
 	adb shell
 	cd /storage/sdcard0
 	tar -vx -f /storage/sdcard1/backups/sdcard0.tar
+
+### via Amaze app
+
+
+1. Copy `.zip` to target
+2. Select extract here
+
+### via SSHelper app
+
+See backup chapter.
 
 ## Settings
 
@@ -73,6 +98,12 @@ Restore sdcard0 via sdcard1.tar:
 * Geräteadministratoren > Android Geräte-Manager: disabled
 * Trust Agents > Smart Lock (Google): disabled
 * Apps mit Nutzungsdatenzugriff: all disabled
+
+### Firefox Add-Ons
+
+* Self-Destructing Cookies
+* uBlock Origin
+* [NSA - NoScript](https://noscript.net/nsa/) Anywhere
 
 ## Apps
 
@@ -114,24 +145,22 @@ Good Apps installed from [APTOIDE](http://www.aptoide.com/):
 
 ## Encrypt your FP2
 
-I had some problems to encrypt my FP2. So this was my solution: Boot into TWRP
-`recovery` and drop a root shell:
+I had some problems to encrypt my FP2. Cause was that this FP2 was already
+encrypted before. It seems a LUKS header problem. So this was my solution:
+
+1. Boot into TWRP `recovery` and drop a root shell:
 
 	ls -1 /dev/block/platform/*/by-name/userdata
 	/dev/block/platform/xyz/by-name/userdata
 	dd if=/dev/zero of=/dev/block/platform/xyz/by-name/userdata
 
-Download `fp2-sibon-16.10.0-manual-userdebug.zip` from http://code.fairphone.com.
+This overwrite very block of the userdata partition with zero's and  consumes a lot of time! Be careful with this.
 
-	unzip -d fp2-sibon-16.10.0-manual-userdebug fp2-sibon-16.10.0-manual-userdebug.zip
-	cd fp2-sibon-16.10.0-manual-userdebug
+2. Boot into bootloader (fastboot) mode and re-create your userdata partition:
 
-Boot your FP2 into fastboot mode:
+	fastboot erase userdata
+	fastboot format userdata
 
-	fastboot -w flash userdata userdata.img
+3. Boot normal into your FP2 and start encryption again (at Settings -> Security).
 
-Reboot your FP2 and start encryption at Settings > Security after set your PIN.
-
-See this topic: [Encrypt phone with FairPhone OpenSoure OperatingSystem](https://forum.fairphone.com/t/encrypt-phone-with-fairphone-opensoure-operatingsystem/15474/11)
-
-#
+Check also this topic: [Encrypt phone with FairPhone OpenSoure OperatingSystem](https://forum.fairphone.com/t/encrypt-phone-with-fairphone-opensoure-operatingsystem/15474/11)
