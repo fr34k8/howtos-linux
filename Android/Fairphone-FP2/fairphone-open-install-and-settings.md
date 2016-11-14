@@ -47,8 +47,9 @@ Perform a full backup of sdcard0 to sdcard1:
 3. Install F-Droid store from [here](https://f-droid.org/FDroid.apk)
 4. Install Firefox via FFUpdater app (from F-Droid).
 5. Install NetGuard from [here](https://github.com/M66B/NetGuard/releases)
-6. Restore all data to internal storage using SSHelper.
+6. Restore all data to internal storage using prefered backup/restore method.
 7. Restore NetGuard firewall settings from `.xml` file
+8. Install necessary apps. See apps chapter below.
 
 ## Restore
 
