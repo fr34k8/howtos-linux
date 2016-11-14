@@ -13,6 +13,7 @@
 * Export Contacts as `.vcf` files
 * Export Calendar as `.ics` via Web-App.
 * Export spaRSS as `.opml` file
+* Export Bitcoin Wallet as backup file
 
 ### via tar
 
