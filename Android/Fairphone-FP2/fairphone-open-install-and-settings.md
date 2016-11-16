@@ -166,3 +166,5 @@ This overwrite very block of the userdata partition with zero's and  consumes a 
 3. Boot normal into your FP2 and start encryption again (at Settings -> Security).
 
 Check also this topic: [Encrypt phone with FairPhone OpenSoure OperatingSystem](https://forum.fairphone.com/t/encrypt-phone-with-fairphone-opensoure-operatingsystem/15474/11)
+
+* Faster with resize2fs command: Check [Encrypt phone with FairPhone Open OS](https://forum.fairphone.com/t/encrypt-phone-with-fairphone-open-os/15474/32)
