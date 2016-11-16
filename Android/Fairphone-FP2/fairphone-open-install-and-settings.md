@@ -143,6 +143,13 @@ Good Apps installed from [APTOIDE](http://www.aptoide.com/):
 * aCalendar+
 * MeteoSwiss
 
+Apps to deactivate:
+
+* Browser
+* Kamera
+* Sprachwahl
+* Suche
+
 # Appendix
 
 ## Encrypt your FP2
