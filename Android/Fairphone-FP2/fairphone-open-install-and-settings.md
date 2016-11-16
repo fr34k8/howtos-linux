@@ -126,6 +126,7 @@ Good Apps installed from [f-droid.org](http://f-droid.org):
 * FFUpdater
 * HydroMemo
 * K-9 Mail - full-featured email client
+* LeafPic
 * Lesser Pad - Simple memo pad
 * Material Player
 * NetGuard
