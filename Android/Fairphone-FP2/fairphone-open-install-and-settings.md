@@ -154,9 +154,9 @@ encrypted before. It seems a LUKS header problem. So this was my solution:
 
 	ls -1 /dev/block/platform/*/by-name/userdata
 	/dev/block/platform/xyz/by-name/userdata
-	dd if=/dev/zero of=/dev/block/platform/xyz/by-name/userdata
+	dd if=/dev/zero of=/dev/block/platform/xyz/by-name/userdata bs=1M
 
-This overwrite very block of the userdata partition with zero's and  consumes a lot of time! Be careful with this.
+This overwrite very block of the userdata partition with zero's and  consumes a lot of time (my last try was 10 minutes)! Be careful with this.
 
 2. Boot into bootloader (fastboot) mode and re-create your userdata partition:
 
