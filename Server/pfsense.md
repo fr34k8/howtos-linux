@@ -17,6 +17,7 @@
    TLS Authentication: Enabled
    Generate TLS Key: Enabled
    Tunnel Network: 192.168.3.0/24
+   IPv6 Tunnel Network: fd00:9999::/64
    Redirect Gateway: Enabled
    (Force all client generated traffic through the tunnel.)
    Concurrent Connections: 5
