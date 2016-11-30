@@ -23,6 +23,7 @@
    Concurrent Connections: 5
    DNS Default Domain: vpn.domain.tld
    DNS Server enable: Copy dns servers from System / General Setup
+   NTP Server enable: use pfsense ip as ntp master
 6. Firewall Rule Configuration
    Traffic from clients to server: Enabled
    Traffic from clients through VPN: Enabled
