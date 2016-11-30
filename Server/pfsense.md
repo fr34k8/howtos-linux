@@ -20,6 +20,8 @@
    Redirect Gateway: Enabled
    (Force all client generated traffic through the tunnel.)
    Concurrent Connections: 5
+   DNS Default Domain: vpn.domain.tld
+   DNS Server enable: Copy dns servers from System / General Setup
 6. Firewall Rule Configuration
    Traffic from clients to server: Enabled
    Traffic from clients through VPN: Enabled
