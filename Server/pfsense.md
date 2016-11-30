@@ -17,6 +17,8 @@
    TLS Authentication: Enabled
    Generate TLS Key: Enabled
    Tunnel Network: 192.168.3.0/24
+   Redirect Gateway: Enabled
+   (Force all client generated traffic through the tunnel.)
    Concurrent Connections: 5
 6. Firewall Rule Configuration
    Traffic from clients to server: Enabled
