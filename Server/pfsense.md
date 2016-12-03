@@ -51,6 +51,7 @@ Create a Client Certificate for the VPN user:
 8. Import configuration via gnome openvpn importer.
 
 * [PfSense: OpenVPN](https://doc.pfsense.org/index.php/Category:OpenVPN)
+* [PfSense: Dualstack IPv6 + IPv4 mit pfSense an DSL](https://moerbst.wordpress.com/2016/07/31/ipv6mit-pfsense-an-dsl-der-telekom/)
 
 ## WLAN Router config
 
