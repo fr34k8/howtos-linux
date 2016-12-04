@@ -42,6 +42,8 @@ Navigate to Services / DHCPv6 Server & RA / bridge0 / Router Advertisements:
 * Router priority : High
 * Domain search list: xyz.domain.tld
 
+* [PfSense: Dualstack IPv6 + IPv4 mit pfSense an DSL](https://moerbst.wordpress.com/2016/07/31/ipv6mit-pfsense-an-dsl-der-telekom/)
+
 ## OpenVPN config
 
 1. Start wizard
@@ -93,7 +95,6 @@ Create a Client Certificate for the VPN user:
 8. Import configuration via gnome openvpn importer.
 
 * [PfSense: OpenVPN](https://doc.pfsense.org/index.php/Category:OpenVPN)
-* [PfSense: Dualstack IPv6 + IPv4 mit pfSense an DSL](https://moerbst.wordpress.com/2016/07/31/ipv6mit-pfsense-an-dsl-der-telekom/)
 
 ## WLAN Router config
 
