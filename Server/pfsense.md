@@ -21,11 +21,11 @@ PPPoE Configuration:
 Because I have a LAN,WIFI bridge0, so I have to set my static IPv6 IP's at
 the bridge0 interface:
 
-IPv4 Configuration Type: Static IPv4
-IPv6 Configuration Type: Static IPv6
-IPv4 Address: 192.168.1.1
-IPv6 Address: 2001:2002:2003:face::1 / 64
-IPv6 Upstream gateway: none
+* IPv4 Configuration Type: Static IPv4
+* IPv6 Configuration Type: Static IPv6
+* IPv4 Address: 192.168.1.1
+* IPv6 Address: 2001:2002:2003:face::1 / 64
+* IPv6 Upstream gateway: none
 
 Navigate to Services / DHCPv6 Server & RA / bridge0 / DHCPv6 Server:
 
