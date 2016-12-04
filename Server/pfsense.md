@@ -1,5 +1,47 @@
 # PfSense
 
+## Dualstack IPv6 + IPv4 with DSL over PPPoE
+
+Interfaces -> WAN:
+
+1. IPv4 Configuration Type: PPPoE
+2. IPv6 Configuration Type: DHCP6
+
+DHCP6 Client Configuration:
+
+* DHCPv6 Prefix Delegation size: 64
+* [X] Request a IPv6 prefix/information through the IPv4 connectivity link
+* [X] Send an IPv6 prefix hint to indicate the desired prefix size for delegation
+
+PPPoE Configuration:
+
+* Username: xyz
+* Password: xyz
+
+Because I have a LAN,WIFI bridge0, so I have to set my static IPv6 IP's at
+the bridge0 interface:
+
+IPv4 Configuration Type: Static IPv4
+IPv6 Configuration Type: Static IPv6
+IPv4 Address: 192.168.1.1
+IPv6 Address: 2001:2002:2003:face::1 / 64
+IPv6 Upstream gateway: none
+
+Navigate to Services / DHCPv6 Server & RA / bridge0 / DHCPv6 Server:
+
+* DHCPv6 Server: [X] Enable DHCPv6 server on interface bridge0
+* Subnet: 2001:2002:2003:face::
+* Subnet Mask: 64 bits
+* Available Range: 2001:2002:2003:face:: to 2001:2002:2003:face:ffff:ffff:ffff:ffff
+* Range: 2001:2002:2003:face:dddd::  to 2001:2002:2003:face:dddd:ffff:ffff:ffff
+* Prefix Delegation Size: 48
+
+Navigate to Services / DHCPv6 Server & RA / bridge0 / Router Advertisements:
+
+* Router mode: Assisted
+* Router priority : High
+* Domain search list: xyz.domain.tld
+
 ## OpenVPN config
 
 1. Start wizard
