@@ -2,21 +2,25 @@
 
 ## Dualstack IPv6 + IPv4 with DSL over PPPoE
 
-Interfaces -> WAN:
+### Interfaces -> WAN
 
 1. IPv4 Configuration Type: PPPoE
 2. IPv6 Configuration Type: DHCP6
 
-DHCP6 Client Configuration:
+### DHCP6 Client Configuration
 
 * DHCPv6 Prefix Delegation size: 64
 * [X] Request a IPv6 prefix/information through the IPv4 connectivity link
 * [X] Send an IPv6 prefix hint to indicate the desired prefix size for delegation
 
-PPPoE Configuration:
+### PPPoE Configuration
 
 * Username: xyz
 * Password: xyz
+
+* [PfSense: Dualstack IPv6 + IPv4 mit pfSense an DSL](https://moerbst.wordpress.com/2016/07/31/ipv6mit-pfsense-an-dsl-der-telekom/)
+
+### Interfaces -> Bridge0
 
 Because I have a LAN,WIFI bridge0, so I have to set my static IPv6 IP's at
 the bridge0 interface:
@@ -27,26 +31,31 @@ the bridge0 interface:
 * IPv6 Address: 2001:2002:2003:face::1 / 64
 * IPv6 Upstream gateway: none
 
-
 Navigate to Services / DHCPv6 Server & RA / bridge0 / Router Advertisements:
 
-* Router mode: Assisted
-* Router priority : High
+* Router mode: Unmanaged
 * Domain search list: xyz.domain.tld
 
-**Note:** I'd like to run with statless autoconfig only. But there is a [bug
-in pfsense](https://redmine.pfsense.org/issues/4218). So the following is a workaround:
+#### Workaround every pfsense reboot
 
-Navigate to Services / DHCPv6 Server & RA / bridge0 / DHCPv6 Server:
+**Situation**: Router Advertisements does not proper work, if there is a
+bridge configured. Because, pfSense does not configure a link local address
+on the bridge. See this [bug](https://redmine.pfsense.org/issues/4218) in
+pfsense. Bug is also included in 2.3.2-RELEASE-p1.
 
-* DHCPv6 Server: [X] Enable DHCPv6 server on interface bridge0
-* Subnet: 2001:2002:2003:face::
-* Subnet Mask: 64 bits
-* Available Range: 2001:2002:2003:face:: to 2001:2002:2003:face:ffff:ffff:ffff:ffff
-* Range: 2001:2002:2003:face:dddd::  to 2001:2002:2003:face:dddd:ffff:ffff:ffff
-* Prefix Delegation Size: 48
+Workaround in `/etc/inc/interfaces.inc` did not work for me. So this is my
+workaround (after a pfsense reboot) until it is fixed:
 
-* [PfSense: Dualstack IPv6 + IPv4 mit pfSense an DSL](https://moerbst.wordpress.com/2016/07/31/ipv6mit-pfsense-an-dsl-der-telekom/)
+1. Navigate to Interfaces / Bridge0
+   Change IPv6 Configuration Type: Track Interface
+   Track IPv6 Interface:
+     IPv6 Interface: WAN
+     IPv6 Prefix ID: 0
+2. Save and apply change.
+   After that, PfSense configures the missing Link Local address to the bridge.
+3. Revert step 1, save and apply.
+
+Now the radvd works proper.
 
 ## OpenVPN config
 
