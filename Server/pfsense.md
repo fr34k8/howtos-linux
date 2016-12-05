@@ -27,20 +27,14 @@ the bridge0 interface:
 * IPv6 Address: 2001:2002:2003:face::1 / 64
 * IPv6 Upstream gateway: none
 
-Navigate to Services / DHCPv6 Server & RA / bridge0 / DHCPv6 Server:
-
-* DHCPv6 Server: [X] Enable DHCPv6 server on interface bridge0
-* Subnet: 2001:2002:2003:face::
-* Subnet Mask: 64 bits
-* Available Range: 2001:2002:2003:face:: to 2001:2002:2003:face:ffff:ffff:ffff:ffff
-* Range: 2001:2002:2003:face:dddd::  to 2001:2002:2003:face:dddd:ffff:ffff:ffff
-* Prefix Delegation Size: 48
-
 Navigate to Services / DHCPv6 Server & RA / bridge0 / Router Advertisements:
 
-* Router mode: Assisted
-* Router priority : High
+* Router mode: Unmanaged
+* Subnets: 2001:2002:2003:face:: / 64
 * Domain search list: xyz.domain.tld
+
+**Important**: Ich no RA Subnet is defined, pfSense will not assign an statless
+autoconfig ip. Seems to be a bug.
 
 * [PfSense: Dualstack IPv6 + IPv4 mit pfSense an DSL](https://moerbst.wordpress.com/2016/07/31/ipv6mit-pfsense-an-dsl-der-telekom/)
 
