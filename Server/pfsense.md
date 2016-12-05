@@ -36,7 +36,7 @@ Navigate to Services / DHCPv6 Server & RA / bridge0 / Router Advertisements:
 * Router mode: Unmanaged
 * Domain search list: xyz.domain.tld
 
-#### Workaround every pfsense reboot
+#### Workaround: If Router Advertisements does not work, because bridge does not have IPv6 link local address
 
 **Situation**: Router Advertisements does not proper work, if there is a
 bridge configured. Because, pfSense does not configure a link local address
