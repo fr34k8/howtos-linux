@@ -34,6 +34,7 @@ the bridge0 interface:
 Navigate to Services / DHCPv6 Server & RA / bridge0 / Router Advertisements:
 
 * Router mode: Unmanaged
+* Subnets: 2001:2002:2003:face::1 / 64
 * Domain search list: xyz.domain.tld
 
 #### Workaround: If Router Advertisements does not work, because bridge does not have IPv6 link local address
