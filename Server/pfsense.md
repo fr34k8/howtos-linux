@@ -114,4 +114,4 @@ Create a Client Certificate for the VPN user:
 
 # Links
 
-* [How to setup Wi-Fi with pfSense](https://www.servethehome.com/how-to-setup-wi-fi-with-pfsense/
+* [How to setup Wi-Fi with pfSense](https://www.servethehome.com/how-to-setup-wi-fi-with-pfsense/)
