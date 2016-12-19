@@ -117,6 +117,7 @@ Good Apps installed from [f-droid.org](http://f-droid.org):
 * AntennaPod - listen to audio feeds
 * Barcode Scanner
 * BatteryBot Pro
+* [BatteryFu](https://f-droid.org/repository/browse/?fdfilter=batteryfu&fdid=com.tobykurien.batteryfu)
 * Bitcoin Wallet
 * Boilr
 * Call recorder for Android
@@ -126,7 +127,7 @@ Good Apps installed from [f-droid.org](http://f-droid.org):
 * FFUpdater
 * HydroMemo
 * K-9 Mail - full-featured email client
-* LeafPic
+* [Gallery](https://f-droid.org/repository/browse/?fdfilter=gallery&fdid=com.simplemobiletools.gallery)
 * Lesser Pad - Simple memo pad
 * Material Player
 * NetGuard
