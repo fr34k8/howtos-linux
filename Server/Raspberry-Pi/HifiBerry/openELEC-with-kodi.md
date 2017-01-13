@@ -62,3 +62,5 @@ Enjoy!
 * [Disable Ports on OpenElec](http://openelec.tv/forum/69-network/75724-disable-ports-on-openelec)
 
 * [HifiBerry: Configuring the sound card in OpenElec using device-tree-overlays](https://www.hifiberry.com/guides/configuring-the-sound-card-in-openelec-with-device-tree-overlays/)
+
+* [Configuring wiht a pi 1](https://www.hifiberry.com/guides/openelec-configuration/)
