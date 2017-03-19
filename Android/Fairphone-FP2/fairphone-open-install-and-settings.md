@@ -109,16 +109,19 @@ See backup chapter.
 
 ## Apps
 
-Good Apps installed from [f-droid.org](http://f-droid.org):
+Apps installed from [f-droid.org](http://f-droid.org):
 
-* add to calendar - import .ics files into calendar
+### Good
 * Amaze - Manage local files
 * AFWall+ - control network traffic (or NetGuard)
 * AntennaPod - listen to audio feeds
 * Barcode Scanner
 * BatteryBot Pro
+* [BatteryFu](https://f-droid.org/repository/browse/?fdid=com.tobykurien.batteryfu)
 * Bitcoin Wallet
 * Boilr
+* [Calendar ICS adapter](https://f-droid.org/repository/browse/?fdid=de.k3b.android.calendar.ics.adapter)
+* [Calendar Import-Export](https://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.ical)
 * Call recorder for Android
 * Conversations
 * DAVdroid - sync contacts and calendars
@@ -126,25 +129,30 @@ Good Apps installed from [f-droid.org](http://f-droid.org):
 * FFUpdater
 * HydroMemo
 * K-9 Mail - full-featured email client
-* LeafPic
+* [Gallery](https://f-droid.org/repository/browse/?fdfilter=gallery&fdid=com.simplemobiletools.gallery)
 * Lesser Pad - Simple memo pad
 * Material Player
 * NetGuard
 * Open Camera
 * OpenKeychain
 * Orbot
+* Orfox
 * OS Monitor
 * OsmAnd~
 * spaRSS
 * VLC
-* Wifi Analyzer
 
-Good Apps installed from [APTOIDE](http://www.aptoide.com/):
+Good from [APTOIDE](http://www.aptoide.com/):
 
 * aCalendar+
 * MeteoSwiss
 
-Apps to deactivate:
+### No longer used
+
+* [Add to calendar](https://f-droid.org/repository/browse/?fdfilter=ics&fdid=org.dgtale.icsimport)
+* Wifi Analyzer
+
+### Disabled
 
 * Browser
 * Kamera
