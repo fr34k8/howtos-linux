@@ -18,7 +18,7 @@ Login into openelec via ssh:
 
 	mount -o remount,rw /flash
 	vi /flash/config.txt
-	dtoverlay=hifiberry-dac
+	dtoverlay=hifiberry-dacplus
 	dtdebug=1
 	sync
 	mount -o remount,ro /flash
